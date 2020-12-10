@@ -1,0 +1,24 @@
+filter.has_antimono_basis.mono has [preorder iota] twice
+metric.bounded.subset
+alternating_prod stuff
+metric and emetric balls
+abs_sum_le_sum_abs linear_ordered_field.to_linear_ordered_comm_ring
+one_gsmul
+lots of lattice to linear order
+with_top.coe_lt_top partial -> pre
+set.Ioo_subset_Iio_self
+tactic.ring_exp.mul_coeff_pf_one_mul
+set.indicator_compl
+monoid_has_dvd
+norm_num.inv_one group with zero
+with_top.coe_sup maybe
+dist_lt_coe
+multiset.abs_sum_le_sum_abs
+distrib_three_right semiring -> to_distrib
+with_top.coe_lt_coe part -> pre
+min_max_distrib_left distrib of liner
+set.univ_inv ahs_inv
+galois_connection has_le
+metric.complete_of_cauchy_seq_tendsto emetric
+gsmul_eq_smul add_comm_group to ad_group
+check out add_submonoid.mem_bot
