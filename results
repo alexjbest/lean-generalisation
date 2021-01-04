@@ -1,24 +1,63 @@
-filter.has_antimono_basis.mono has [preorder iota] twice
 metric.bounded.subset
-alternating_prod stuff
-metric and emetric balls
-abs_sum_le_sum_abs linear_ordered_field.to_linear_ordered_comm_ring
 one_gsmul
 lots of lattice to linear order
-with_top.coe_lt_top partial -> pre
+with_top.coe_lt_top partial -> pre parts done by yury in #4925?
+with_top.coe_lt_coe part -> pre
 set.Ioo_subset_Iio_self
 tactic.ring_exp.mul_coeff_pf_one_mul
 set.indicator_compl
-monoid_has_dvd
 norm_num.inv_one group with zero
-with_top.coe_sup maybe
-dist_lt_coe
-multiset.abs_sum_le_sum_abs
-distrib_three_right semiring -> to_distrib
-with_top.coe_lt_coe part -> pre
-min_max_distrib_left distrib of liner
-set.univ_inv ahs_inv
 galois_connection has_le
-metric.complete_of_cauchy_seq_tendsto emetric
+intermediate_value_Icc not sure how interesting as its in the target
+is_open.mul_left continuous mul rather than top gp, many more like this, quotient_add_group.is_open_map_coe, compact_open_separated_mul, compact_covered_by_mul_left_translates, topological_group.t1_space, is_open.mul_right, nhds_translation_add_neg, nhds_translation_mul_inv, compact_covered_by_add_left_translates, compact_open_separated_add  this is called a  Paratopological group and all  compact ones are top gps, do we have this?
+with_bot.add_bot
+is_linear_map.with_bound [nondiscrete_normed_field.to_normed_field]
+padic_seq.equiv_zero_of_val_eq_of_equiv_zero toabs val
+euclidean_geometry.angle_nonneg [normed_add_torsor.to_add_torsor] and friends
+measure_theory.simple_func.integral [normed_space.to_semimodule] bochner integal codomain only semimodule /R
+is_well_order.linear_order can be generalised to noncomputable / decidable version of linear_order_of_STO'
+partial_order stuff in topology/algebra/ordered only needs preorder, can replace partial with pre in entire file
+
+lots of stuff in integral_closure
+
+not visible in new verison
+dist_lt_coe
+min_max_distrib_left distrib of liner
 gsmul_eq_smul add_comm_group to ad_group
+metric.complete_of_cauchy_seq_tendsto emetric
+with_top.coe_sup maybe
 check out add_submonoid.mem_bot
+fraction_map.map [field.to_euclidean_domain]
+
+lemmas
++dvd_pow
++cau_seq.one_not_equiv_zero
++distrib_three_right semiring -> to_distrib
++abs_sum_le_sum_abs linear_ordered_field.to_linear_ordered_comm_ring
++monotone_mul_right_of_nonneg
++alternating_prod stuff
++set.univ_inv has_inv
++galois_connnection l u stuff
++opposite has_sub and rewrite opposite.op_sub
++pow_abs and abs_neg_one_pow remove comm
++ring_equiv.map_mul done by Yury in #5227
++ring_hom.char_p_iff_char_p field to division ring
++char_p_of_ne_zero kenny did a bunch at same time
++card_nth_roots_subgroup_units
++div_div_eq_mul_div [comm_group_with_zero.to_group_with_zero]
++int.cast_max linear_ordered_commm to linear_ordered done by Yury in #5327
++Cauchy.Cauchy_eq inhabited, why doesn't linter work here
++end of unifrorm_embedding (line 367) only needs gamma to be t2_space uniformly_extend_unique
++minimal_polynomial.aeval_ne_zero_of_dvd_not_unit_minimal_polynomial ring not domain
++continuous_multilinear_map.norm_restrict_scalars ??
++rat.cast_fpow
++polynomial.continuous_eval done by yury
+
+
+defs
+cau_seq.completion.Cauchy comm ring to ring also some weird with equiv?
++filter.has_antimono_basis.mono has [preorder iota] twice
+mul_action.fixed_by  can be gend to any mul_action
+order_dual.order_topology part to pre
+monoid_has_dvd to semigp
+metric and emetric balls
