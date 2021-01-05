@@ -77,19 +77,20 @@ meta def minimal_vertices_dfs (d : dag T) : T → native.rb_map T bool → nativ
           minimal_vertices_dfs w (mins.insert w ff) vis)
       (minimals, visited.insert v tt))
 -- #eval to_string (((((dag.mk ℕ).insert_vertex 3).insert_edge 2 1).insert_edge 2 3).minimal_vertices_dfs 1 (native.rb_map.mk _ _) (native.rb_map.mk _ _)).fst
+open native.rb_set
 /-- Return the list of minimal vertices in a dag -/
-meta def minimal_vertices (d : dag T) (start : list T) : list T :=
+meta def minimal_vertices (d : dag T) (start : native.rb_set T) : native.rb_set T :=
   native.rb_map.fold
-  (start.foldr
+  (start.fold
+    ((d.vertices.foldl (λ ol t, native.rb_map.insert ol t tt) (native.rb_map.mk T bool),
+      d.vertices.foldl (λ ol t, native.rb_map.insert ol t ff) (native.rb_map.mk T bool)) :
+      native.rb_map T bool × native.rb_map T bool)
     (λ (v : T) (minsvis : native.rb_map T bool × native.rb_map T bool),
       if (minsvis.2.find v).get_or_else ff then
         minsvis
       else
         minimal_vertices_dfs d v minsvis.1 minsvis.2)
-    ((d.vertices.foldl (λ ol t, native.rb_map.insert ol t tt) (native.rb_map.mk T bool),
-      d.vertices.foldl (λ ol t, native.rb_map.insert ol t ff) (native.rb_map.mk T bool)) :
-      native.rb_map T bool × native.rb_map T bool)
-  ).fst [] (λ w b ol, if b && (w ∈ start) then w :: ol else ol)
+  ).fst (native.rb_map.mk _ _) (λ w b ol, if b && start.contains w then ol.insert w else ol)
 -- #eval (((dag.mk ℕ).insert_vertex 3).insert_edges [(2, 1), (2, 3), (4,2)]).minimal_vertices [1,2]
 
 
