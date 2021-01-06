@@ -12,6 +12,7 @@ import init.data.ordering.basic init.function init.meta.name init.meta.format in
 import meta.rb_map
 --import all
 
+
 declare_trace generalising
 open native
 set_option trace.generalising false
@@ -135,9 +136,9 @@ do t ← env.mfold (dag.mk name)
       guard (l.tail.all $ λ b, (b.info = binder_info.inst_implicit) || (b.info = binder_info.implicit)),
       guard (tgt.get_app_args.head.is_var && l.ilast.type.get_app_args.head.is_var),
       guard l.head.type.is_sort,
-      generalising_trace name,
-      generalising_trace l,
-      generalising_trace tgt,
+      -- generalising_trace name,
+      -- generalising_trace l,
+      -- generalising_trace tgt,
       let src := l.ilast.type.erase_annotations.get_app_fn.const_name,
       let tgt := tgt.erase_annotations.get_app_fn.const_name,
       guard (src ≠ tgt),
@@ -147,24 +148,26 @@ do t ← env.mfold (dag.mk name)
   return t
 
 set_option pp.all true
-    #check mul_action.to_has_scalar -- want this
-    #check ring_hom.has_coe_to_fun -- not this
+-- TODO
+    -- #check mul_action.to_has_scalar -- want this
+    -- #check ring_hom.has_coe_to_fun -- not this
     set_option trace.generalising true
-    run_cmd do decl ← get_decl `mul_action.to_has_scalar,
-    let name := decl.to_name in do
-    tactic.has_attribute `instance name >> (do
-      (l, tgt) ← return decl.type.pi_binders,
-      guard (l.tail.all $ λ b, (b.info = binder_info.inst_implicit) || (b.info = binder_info.implicit)),
-      guard (tgt.get_app_args.head.is_var && l.ilast.type.get_app_args.head.is_var),
-      guard l.head.type.is_sort,
-      generalising_trace name,
-      generalising_trace l,
-      generalising_trace tgt,
-      let src := l.ilast.type.erase_annotations.get_app_fn.const_name,
-      let tgt := tgt.erase_annotations.get_app_fn.const_name,
-      guard (src ≠ tgt),
-      trace ((dag.mk _root_.name).insert_edge src tgt)) <|>
-      trace (dag.mk _root_.name)
+  -- run_cmd do decl ← get_decl `mul_action.to_has_scalar,
+    -- let name := decl.to_name in do
+    -- tactic.has_attribute `instance name >> (do
+    --   (l, tgt) ← return decl.type.pi_binders,
+    --   guard (l.tail.all $ λ b, (b.info = binder_info.inst_implicit) || (b.info = binder_info.implicit)),
+    --   guard (tgt.get_app_args.head.is_var && l.ilast.type.get_app_args.head.is_var),
+    --   guard l.head.type.is_sort,
+    --   generalising_trace name,
+    --   generalising_trace l,
+    --   generalising_trace tgt,
+    --   let src := l.ilast.type.erase_annotations.get_app_fn.const_name,
+    --   let tgt := tgt.erase_annotations.get_app_fn.const_name,
+    --   guard (src ≠ tgt),
+    --   trace ((dag.mk _root_.name).insert_edge src tgt)) <|>
+    --   trace (dag.mk _root_.name)
+
 meta def print_dag : tactic unit := do c ← get_env, class_dag c >>= trace
 -- run_cmd print_dag
 meta def print_div (l : list name) : tactic unit :=
@@ -268,13 +271,13 @@ open native.rb_set
 -- meta def trace_and_return (ss:string){X : Type*} [has_to_format X] (x : tactic X): tactic X := do l ←  x, trace ("out"++ss), trace l, return l
 meta def get_instance_chains (cla : name) : ℕ → expr → tactic (native.rb_set name)
 := λ n e, do
-  generalising_trace $ "considering" ++ to_string e ++ " " ++ to_string n,
+  -- generalising_trace $ "considering " ++ to_string e ++ " " ++ to_string n,
   boo ← is_instance_chain n e,
   if boo then
     (do
-      generalising_trace $ "inst chain" ++ to_string e ++ " " ++ to_string n,
+      generalising_trace $ "inst chain",
       guardb $ e.has_var_idx n, -- does the chain contain the instance we are generalising?
-      generalising_trace $ "contains" ++ to_string n,
+      generalising_trace $ "contains " ++ to_string n,
       tar ← target cla e n,
       return $ mk_rb_set.insert tar) <|> return mk_rb_set
   else
@@ -301,13 +304,13 @@ lemma mem_orbit_self
 {α : Type u} {β : Type v} [monoid α] [mul_action α β]
 (b : β) : b ∈ mul_action.orbit α b :=
 ⟨1, mul_action.one_smul _⟩
-    #print mem_orbit_self
-run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mem_orbit_self,trace l.value.binding_body.binding_body.binding_body.binding_body
-run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mem_orbit_self, aa ← get_instance_chains `mul_action 0 l.value.binding_body.binding_body.binding_body.binding_body , trace $ cd.minimal_vertices aa --.lambda_body.app_fn.app_fn.app_arg.lambda_body.app_fn.app_arg.app_fn.lambda_body--find_gens' cd e l.type l.value 0 ""
-  run_cmd print_div [`has_scalar,`mul_action]
-  run_cmd print_reachable `has_scalar
-  run_cmd print_reachable `mul_action
-  run_cmd print_dag
+--     #print mem_orbit_self
+-- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mem_orbit_self,trace l.value.binding_body.binding_body.binding_body.binding_body
+-- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mem_orbit_self, aa ← get_instance_chains `mul_action 0 l.value.binding_body.binding_body.binding_body.binding_body , trace $ cd.minimal_vertices aa --.lambda_body.app_fn.app_fn.app_arg.lambda_body.app_fn.app_arg.app_fn.lambda_body--find_gens' cd e l.type l.value 0 ""
+--   run_cmd print_div [`has_scalar,`mul_action]
+--   run_cmd print_reachable `has_scalar
+--   run_cmd print_reachable `mul_action
+--   run_cmd print_dag
 
 lemma aa2 (G : Type) [add_comm_semigroup G] (x : G) : G := x + x
 
@@ -394,7 +397,7 @@ meta def find_gens' (cd : dag name) (env : environment) : expr → expr → ℕ 
     tou ← get_instance_chains tty.get_app_fn.const_name 0 tbody,
     generalising_trace ou,
     generalising_trace tou,
-    let ans := cd.minimal_vertices (ou.union tou),
+    let ans := (λ u, (cd.minimal_vertices u).union $ u.filter (λ v, ¬ cd.contains v)) (ou.union tou),
     generalising_trace ans,
     -- do unused separety
     --  guard ((ans.size = 0) && (¬us')) >>
@@ -541,6 +544,19 @@ section examples
   -- add_monoid linter only finds semiring
   lemma bad3pfbad (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
   by simp only [nsmul_eq_mul] at h; simp only [nat.cast_bit0, nsmul_eq_mul, nat.cast_one, nat.cast_mul]; assoc_rewrite h; exact mul_zero 2
+  set_option pp.all true
+  lemma bad3pfbad' (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
+  by {rw [nsmul_eq_mul] at ⊢ h,  rw [nat.cast_mul, mul_assoc, h], exact mul_zero _}
+set_option pp.max_steps 30000
+set_option pp.max_depth 30000
+set_option pp.goal.max_hypotheses 10000
+-- #print bad3pfbad'
+-- set_option trace.generalising true
+-- run_cmd do d ← get_decl `bad3pfbad',
+--   cd ← dag_attr.get_cache,
+--   e ← get_env,
+--   trace $ find_gens' cd e d.type d.value 0 "",
+  -- return ()
 
   -- add_monoid
   lemma bad4 (G : Type*) [add_comm_group G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
@@ -581,12 +597,6 @@ section examples
     group,
   end
 
--- run_cmd do e ← get_env, l← e.get `bad9, trace $ get_instance_chains `group 3 l.value.lambda_body (pure mk_rb_set)
--- run_cmd do
---  e ← get_env,
---  l← e.get `good2,
---  ou← get_instance_chains `add_monoid 1 l.value.lambda_body (pure mk_rb_set),
---  class_dag e >>= (λ d, trace $ d.minimal_vertices ou)
 open equiv.set equiv sum nat function set subtype
 
 @[simp] lemma sum_diff_subset_apply_inr' {α : Sort} {β : Sort} {γ : Sort}
@@ -605,6 +615,10 @@ lemma supr_apply' {α : Type*} {β : α → Type*} {ι : Sort*} [Π i, has_Sup (
 
 
 variables {α β γ :Type} {ι : Sort} {s : set α}
+--none
+theorem exists_nat_ge' [linear_ordered_semiring α] [archimedean α] (x : α) :
+  ∃ n : ℕ, x ≤ n :=
+(exists_nat_gt x).imp $ λ n, le_of_lt
 
 theorem finset_le {r : α → α → Prop} [is_trans α r]
   {ι} [hι : nonempty ι] {f : ι → α} (D : directed r f) (s : finset ι) :
@@ -616,16 +630,9 @@ multiset.induction_on s.1 (let ⟨z⟩ := hι in ⟨z, λ _, false.elim⟩) $
   (λ h, h.symm ▸ h₁)
   (λ h, trans (H _ h) h₂)⟩
 
-set_option trace.generalising false
-run_cmd do d ← get_decl `finset_le,
-  cd ← dag_attr.get_cache,
-  e ← get_env,
-  trace $ find_gens' cd e d.type d.value 0 "",
-  return ()
-
--- lemma finite.bdd_below_bUnion [semilattice_inf α] [nonempty α] {I : set β} {S : β → set α} (H : finite I) :
---   (bdd_below (⋃i∈I, S i)) ↔ (∀i ∈ I, bdd_below (S i)) :=
--- @finite.bdd_above_bUnion (order_dual α) _ _ _ _ _ H
+lemma finite.bdd_below_bUnion [semilattice_inf α] [nonempty α] {I : set β} {S : β → set α} (H : finite I) :
+  (bdd_below (⋃i∈I, S i)) ↔ (∀i ∈ I, bdd_below (S i)) :=
+@finite.bdd_above_bUnion (order_dual α) _ _ _ _ _ H
 
 
 open filter
@@ -656,7 +663,7 @@ lemma piecewise_piecewise_of_subset_left' {δ : α → Sort*} (s : finset α) (g
   [Π i, decidable (i ∈ t)] (h : s ⊆ t) (f₁ f₂ g : Π a, δ a) :
   s.piecewise (t.piecewise f₁ f₂) g = s.piecewise f₁ g :=
 s.piecewise_congr (λ i hi, finset.piecewise_eq_of_mem _ _ _ (h hi)) (λ _ _, rfl)
-#check       piecewise_piecewise_of_subset_left'
+-- #check       piecewise_piecewise_of_subset_left'
 
 lemma sub_le_of_abs_sub_le_left' {c b a : α} [linear_ordered_ring α] (h : abs (a - b) ≤ c) : b - c ≤ a :=
 if hz : 0 ≤ a - b then
@@ -678,16 +685,16 @@ end examples
 set_option pp.all true
 set_option trace.generalising false
 -- run_cmd gene
-#print inv_mul_cancel_left'
-#print group_with_zero.mul
-#print mul_action.mem_orbit_self
+-- #print inv_mul_cancel_left'
+-- #print group_with_zero.mul
+-- #print mul_action.mem_orbit_self
 
-run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mul_action.mem_orbit_self, aa ← get_instance_chains `mul_action 0 l.value, trace aa --.lambda_body.app_fn.app_fn.app_arg.lambda_body.app_fn.app_arg.app_fn.lambda_body--find_gens' cd e l.type l.value 0 ""
-run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mul_action.mem_orbit_self, aa ← is_instance_chain 6 l.value.lambda_body.app_fn.app_fn.app_arg.lambda_body.app_fn.app_arg.app_fn.lambda_body, trace aa--find_gens' cd e l.type l.value 0 ""
-run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mul_action.mem_orbit_self, trace $ l.value.lambda_body.app_fn.app_fn.app_arg.lambda_body.app_fn.app_arg.app_fn.lambda_body--find_gens' cd e l.type l.value 0 ""
-run_cmd do e ← get_env, cd ← class_dag e, l← e.get `char_p_iff_char_p', trace $ find_gens' cd e l.type l.value 0 ""
-run_cmd do e ← get_env, cd ← class_dag e, l← e.get `inv_mul_cancel_left', trace $ find_gens' cd e l.type l.value 0 ""
-run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mul_action.mem_orbit_self, trace $ find_gens' cd e l.type l.value 0 ""
+-- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mul_action.mem_orbit_self, aa ← get_instance_chains `mul_action 0 l.value, trace aa --.lambda_body.app_fn.app_fn.app_arg.lambda_body.app_fn.app_arg.app_fn.lambda_body--find_gens' cd e l.type l.value 0 ""
+-- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mul_action.mem_orbit_self, aa ← is_instance_chain 6 l.value.lambda_body.app_fn.app_fn.app_arg.lambda_body.app_fn.app_arg.app_fn.lambda_body, trace aa--find_gens' cd e l.type l.value 0 ""
+-- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mul_action.mem_orbit_self, trace $ l.value.lambda_body.app_fn.app_fn.app_arg.lambda_body.app_fn.app_arg.app_fn.lambda_body--find_gens' cd e l.type l.value 0 ""
+-- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `char_p_iff_char_p', trace $ find_gens' cd e l.type l.value 0 ""
+-- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `inv_mul_cancel_left', trace $ find_gens' cd e l.type l.value 0 ""
+-- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mul_action.mem_orbit_self, trace $ find_gens' cd e l.type l.value 0 ""
 
 
 namespace linter
@@ -746,10 +753,7 @@ Pseudocode:
 -- #print gpow_of_nat
 -- #print gpow_neg_succ_of_nat
 -- #print category_theory.category.comp_id
-#printlist.mem_of_mem_inter_right
--- set_option pp.max_steps 30000
--- set_option pp.max_depth 30000
--- set_option pp.goal.max_hypotheses 10000
+-- #printlist.mem_of_mem_inter_right
 
 -- run_cmd (do
 --   e ← get_env,
