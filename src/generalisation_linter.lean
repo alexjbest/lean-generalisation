@@ -10,7 +10,6 @@ import algebra.char_p
 import algebra.category.Group
 import init.data.ordering.basic init.function init.meta.name init.meta.format init.control.monad
 import meta.rb_map
--- import tactic.local_cache
 --import all
 
 declare_trace generalising
@@ -269,10 +268,13 @@ open native.rb_set
 -- meta def trace_and_return (ss:string){X : Type*} [has_to_format X] (x : tactic X): tactic X := do l ←  x, trace ("out"++ss), trace l, return l
 meta def get_instance_chains (cla : name) : ℕ → expr → tactic (native.rb_set name)
 := λ n e, do
+  generalising_trace $ "considering" ++ to_string e ++ " " ++ to_string n,
   boo ← is_instance_chain n e,
   if boo then
     (do
-    guardb $ e.has_var_idx n, -- does the chain contain the instance we are generalising?
+      generalising_trace $ "inst chain" ++ to_string e ++ " " ++ to_string n,
+      guardb $ e.has_var_idx n, -- does the chain contain the instance we are generalising?
+      generalising_trace $ "contains" ++ to_string n,
       tar ← target cla e n,
       return $ mk_rb_set.insert tar) <|> return mk_rb_set
   else
@@ -291,7 +293,7 @@ meta def get_instance_chains (cla : name) : ℕ → expr → tactic (native.rb_s
     | (sort a) := return mk_rb_set
     | (mvar unique pretty type) := return mk_rb_set
     | (local_const unique pretty bi type) := return mk_rb_set
-    | (macro a a_1) := return mk_rb_set
+    | (macro a el) := el.mfoldl (λ ol ex, ol.union <$> get_instance_chains n ex) mk_rb_set
     end
 universes u v w
 set_option pp.all true
@@ -385,26 +387,27 @@ meta def find_gens' (cd : dag name) (env : environment) : expr → expr → ℕ 
   generalising_trace $ "type " ++ to_string ty,
   if tty ≠ ty then trace "WARNING types not equal" else skip,
   (do guard tty.get_app_fn.is_constant, -- for now we ignore things like [∀ i, decidable_eq $ f i]
-  -- generalising_trace $ "body " ++ to_string body,
-  -- generalising_trace "n ",
-  -- generalising_trace n,
-  ou  ← get_instance_chains tty.get_app_fn.const_name 0 body,
-  tou ← get_instance_chains tty.get_app_fn.const_name 0 tbody,
-  -- trace ou,
-  -- trace tou,
-  let ans := cd.minimal_vertices (ou.union tou),
-  --trace ans,
-  -- do unused separety
-  --  guard ((ans.size = 0) && (¬us')) >>
-  --    (find_gens' tbody body (n + 1) (s ++ "unused_arg ? " ++ "\n" ++ ty.to_string ++ "\n" ++ ts'.to_string ++ "\n" ++ na.to_string)) <|>
-  -- guard ((ts'.length = 0) && (¬us')) >>
-  --   (find_gens' tbody body (n + 1) (s ++ "unused_arg ? " ++ "\n" ++ ty.to_string ++ "\n" ++ ts'.to_string ++ "\n" ++ na.to_string)) <|>
-   guard ((¬ ans.contains tty.get_app_fn.const_name)
-     --  && (¬us')
-     && (tty.get_app_fn.const_name.get_prefix ∉ banned_aliases)),
-
-      --  has_attribute `instance ts'.head.const_name >>
-     find_gens' tbody body (n + 1) (s ++ na.to_string ++ ": " ++ ty.get_app_fn.const_name.to_string ++ " ↝" ++ ans.fold "" (λ n ol, ol ++ " " ++ n.to_string) ++ "\n")) <|>
+    -- generalising_trace $ "body " ++ to_string body,
+    -- generalising_trace "n ",
+    -- generalising_trace n,
+    ou  ← get_instance_chains tty.get_app_fn.const_name 0 body,
+    tou ← get_instance_chains tty.get_app_fn.const_name 0 tbody,
+    generalising_trace ou,
+    generalising_trace tou,
+    let ans := cd.minimal_vertices (ou.union tou),
+    generalising_trace ans,
+    -- do unused separety
+    --  guard ((ans.size = 0) && (¬us')) >>
+    --    (find_gens' tbody body (n + 1) (s ++ "unused_arg ? " ++ "\n" ++ ty.to_string ++ "\n" ++ ts'.to_string ++ "\n" ++ na.to_string)) <|>
+    -- guard ((ts'.length = 0) && (¬us')) >>
+    --   (find_gens' tbody body (n + 1) (s ++ "unused_arg ? " ++ "\n" ++ ty.to_string ++ "\n" ++ ts'.to_string ++ "\n" ++ na.to_string)) <|>
+    guard (¬ ans.contains tty.get_app_fn.const_name),
+    --  && (¬us')
+    generalising_trace ans,
+    guard (tty.get_app_fn.const_name.get_prefix ∉ banned_aliases),
+    generalising_trace ans,
+    --  has_attribute `instance ts'.head.const_name >>
+    find_gens' tbody body (n + 1) (s ++ na.to_string ++ ": " ++ ty.get_app_fn.const_name.to_string ++ " ↝" ++ ans.fold "" (λ n ol, ol ++ " " ++ n.to_string) ++ "\n")) <|>
   find_gens' tbody body (n + 1) s
   -- acc is the main logic, that will be folded over the type and the body
   -- let acc : expr → ℕ → list expr × bool → tactic (list expr × bool) := (λ ex le ⟨ol, us⟩, do
@@ -434,6 +437,7 @@ meta def find_gens' (cd : dag name) (env : environment) : expr → expr → ℕ 
 | (pi _ _ _ tbody) (lam _ _ _ body) n s := find_gens' tbody body (n + 1) s -- a non instance binder
 | _ _ _ s := return (if s.length = 0 then none else s) -- done with binders so finish
 
+-- A mostly useless wrapping class that gets a bunch of debug info and calls find_gens'
 meta def print_gens (cd : dag name) (decl : declaration) : tactic (option string) :=
   guard decl.is_trusted >> (do -- ignore meta stuff
   env ← get_env,
@@ -488,6 +492,20 @@ meta def print_gens (cd : dag name) (decl : declaration) : tactic (option string
   --                         end),
   ) <|> return none
 
+@[user_attribute]
+meta def dag_attr : user_attribute (dag name) unit := {
+  name := "_dag",
+  descr := "(interal) attribute just to store the class dag",
+  cache_cfg := ⟨λ _, (do e ← get_env, class_dag e), []⟩
+}
+
+meta def print_gens_wrap (decl : declaration) : tactic (option string) :=
+do
+  e ← get_env,
+  cd ← dag_attr.get_cache,
+  --  cd ← class_dag e,
+  print_gens cd decl
+
 meta def gene : tactic unit := -- old function for running the linter before it was hooked up as a linter
 do curr_env ← get_env,
   let decls := curr_env.fold [] list.cons,
@@ -498,7 +516,6 @@ do curr_env ← get_env,
   cd ← class_dag curr_env,
   local_decls.mmap' (λ a, (do l ← print_gens cd a, ll ← l, trace a.to_name, trace ll) <|> skip)
 --  #print star_injective
-open expr
 section examples
   lemma good (G : Type*) [group G] (n : ℤ) (g : G) (h : g^(-n) = 1) : g^n = 1 :=
   begin
@@ -570,9 +587,7 @@ section examples
 --  l← e.get `good2,
 --  ou← get_instance_chains `add_monoid 1 l.value.lambda_body (pure mk_rb_set),
 --  class_dag e >>= (λ d, trace $ d.minimal_vertices ou)
-open equiv.set
-
-open equiv sum nat function set subtype
+open equiv.set equiv sum nat function set subtype
 
 @[simp] lemma sum_diff_subset_apply_inr' {α : Sort} {β : Sort} {γ : Sort}
   {α} {s t : set α} (h : s ⊆ t) [decidable_pred s] (x : t \ s) :
@@ -588,7 +603,25 @@ lemma supr_apply' {α : Type*} {β : α → Type*} {ι : Sort*} [Π i, has_Sup (
 @infi_apply α (λ i, order_dual (β i)) _ _ f a
 
 
+
 variables {α β γ :Type} {ι : Sort} {s : set α}
+
+theorem finset_le {r : α → α → Prop} [is_trans α r]
+  {ι} [hι : nonempty ι] {f : ι → α} (D : directed r f) (s : finset ι) :
+  ∃ z, ∀ i ∈ s, r (f i) (f z) :=
+show ∃ z, ∀ i ∈ s.1, r (f i) (f z), from
+multiset.induction_on s.1 (let ⟨z⟩ := hι in ⟨z, λ _, false.elim⟩) $
+λ i s ⟨j, H⟩, let ⟨k, h₁, h₂⟩ := D i j in
+⟨k, λ a h, or.cases_on (multiset.mem_cons.1 h)
+  (λ h, h.symm ▸ h₁)
+  (λ h, trans (H _ h) h₂)⟩
+
+set_option trace.generalising false
+run_cmd do d ← get_decl `finset_le,
+  cd ← dag_attr.get_cache,
+  e ← get_env,
+  trace $ find_gens' cd e d.type d.value 0 "",
+  return ()
 
 -- lemma finite.bdd_below_bUnion [semilattice_inf α] [nonempty α] {I : set β} {S : β → set α} (H : finite I) :
 --   (bdd_below (⋃i∈I, S i)) ↔ (∀i ∈ I, bdd_below (S i)) :=
@@ -657,41 +690,6 @@ run_cmd do e ← get_env, cd ← class_dag e, l← e.get `inv_mul_cancel_left', 
 run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mul_action.mem_orbit_self, trace $ find_gens' cd e l.type l.value 0 ""
 
 
--- meta def save_data (dn : name) (a : α) [reflected a] : tactic unit :=
--- tactic.add_decl $ mk_definition dn [] (reflect α) (reflect a)
-
--- meta def load_data (dn : name) : tactic α :=
--- do e ← tactic.get_env,
---    d ← e.get dn,
---    tactic.eval_expr α d.value
-
--- meta def poke_data (dn : name) : tactic bool :=
--- do e ← tactic.get_env,
-  --  return (e.get dn).to_bool
-@[user_attribute]
-meta def dag_attr : user_attribute (dag name) unit := {
-  name := "_dag",
-  descr := "(interal) attribute just to store the class dag",
-  cache_cfg := ⟨λ _, (do e ← get_env, class_dag e), []⟩
-}
-
--- run_cmd do
---   m ← dag_attr.get_cache,
---   tactic.trace m -- change to `tactic.trace m.to_list`
---   -- to list all the commands in each namespace
--- meta def get_dag : tactic (dag name) :=
--- do s
--- (do
--- b ← local_cache.internal.poke_data `super_secret,
--- guard (¬b)) <|> (local_cache.internal.save_data `super_secret (dag.mk name)),
--- local_cache.internal.load_data `super_secret
-meta def print_gens_wrap (decl : declaration) : tactic (option string) :=
-do
-e ← get_env,
- cd ← dag_attr.get_cache,
---  cd ← class_dag e,
- print_gens cd decl
-
 namespace linter
 @[linter] meta def generalisation_linter : linter :=
 { test := print_gens_wrap,
@@ -748,12 +746,10 @@ Pseudocode:
 -- #print gpow_of_nat
 -- #print gpow_neg_succ_of_nat
 -- #print category_theory.category.comp_id
--- #printlist.mem_of_mem_inter_right
-set_option pp.all true
+#printlist.mem_of_mem_inter_right
 -- set_option pp.max_steps 30000
 -- set_option pp.max_depth 30000
 -- set_option pp.goal.max_hypotheses 10000
-set_option pp.all false
 
 -- run_cmd (do
 --   e ← get_env,
