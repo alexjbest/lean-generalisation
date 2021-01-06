@@ -10,8 +10,7 @@ import algebra.char_p
 import algebra.category.Group
 import init.data.ordering.basic init.function init.meta.name init.meta.format init.control.monad
 import meta.rb_map
---import all
-
+-- import all
 
 
 declare_trace generalising
@@ -308,41 +307,11 @@ meta def get_instance_chains (cla : name) : ℕ → expr → tactic (native.rb_s
     | (local_const unique pretty bi type) := return mk_rb_set
     | (macro a el) := el.mfoldl (λ ol ex, ol.union <$> get_instance_chains n ex) mk_rb_set
     end
-universes u v w
-set_option pp.all true
-lemma mem_orbit_self
-{α : Type u} {β : Type v} [monoid α] [mul_action α β]
-(b : β) : b ∈ mul_action.orbit α b :=
-⟨1, mul_action.one_smul _⟩
---     #print mem_orbit_self
--- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mem_orbit_self,trace l.value.binding_body.binding_body.binding_body.binding_body
--- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mem_orbit_self, aa ← get_instance_chains `mul_action 0 l.value.binding_body.binding_body.binding_body.binding_body , trace $ cd.minimal_vertices aa --.lambda_body.app_fn.app_fn.app_arg.lambda_body.app_fn.app_arg.app_fn.lambda_body--find_gens' cd e l.type l.value 0 ""
 --   run_cmd print_div [`has_scalar,`mul_action]
 --   run_cmd print_reachable `has_scalar
 --   run_cmd print_reachable `mul_action
 --   run_cmd print_dag
 
-lemma aa2 (G : Type) [add_comm_semigroup G] (x : G) : G := x + x
-
--- run_cmd do e ← get_env, l← e.get `aa2, trace l.value
--- run_cmd do e ← get_env, l← e.get `aa2, l.value.mfold () (λ a b c, do is_instance_chain b a >>= guardb >> trace a <|> skip)
--- run_cmd do e ← get_env, l← e.get `aa2, let a := l.value.lambda_body.app_fn.app_fn.app_arg,trace a, trace $ get_instance_chains `add_comm_semigroup 1 a (pure mk_rb_set)
--- run_cmd do e ← get_env, l← e.get `aa2, let a := l.value.lambda_body.app_fn.app_fn.app_arg.get_app_fn.const_name,
---              trace a,
---             t← e.get a, trace t,
---             (l, tgt) ← return t.type.pi_binders,
---             trace l,
---             trace tgt,
---             -- guard (l.tail.all $ λ b, b.info = binder_info.inst_implicit),
---             -- guard (tgt.get_app_args.head.is_var && l.ilast.type.get_app_args.head.is_var),
---             let src := to_string l.ilast.type.erase_annotations.get_app_fn.const_name,
---             let tgt := to_string tgt.erase_annotations.get_app_fn.const_name,
---             trace tgt
--- #print aa2
--- run_cmd do e ← get_env, l← e.get `aa2, trace $ l.value.lambda_body.app_fn.app_fn
--- run_cmd do e ← get_env, l← e.get `aa2, trace $ is_instance_chain 1 l.value.lambda_body.app_fn.app_fn.app_fn.app_arg
--- run_cmd do e ← get_env, l← e.get `aa2, trace $ get_instance_chains `add_comm_semigroup 1 l.value.lambda_body (pure mk_rb_set)
--- run_cmd do trace $ get_instance_chains `add_comm_monoid 0 `(λ (x : nat), @aa2 _ (@add_comm_monoid.to_add_comm_semigroup _ %%(var 0)) x = x + x) (return mk_rb_set)
 -- find the typeclass generalisations possible in a given decl, using old method
 -- input should be the type and then the body
 -- meta def find_gens (env : environment) : expr → expr → ℕ → string → tactic (option string)
@@ -727,6 +696,23 @@ lemma abs_sum_le_sum_abs [linear_ordered_field α] {f : β → α} {s : finset �
   abs (∑ x in s, f x) ≤ ∑ x in s, abs (f x) :=
 finset.le_sum_of_subadditive _ abs_zero abs_add s f
 
+universes u v w
+set_option pp.all true
+lemma mem_orbit_self
+{α : Type u} {β : Type v} [monoid α] [mul_action α β]
+(b : β) : b ∈ mul_action.orbit α b :=
+⟨1, mul_action.one_smul _⟩
+--     #print mem_orbit_self
+-- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mem_orbit_self,trace l.value.binding_body.binding_body.binding_body.binding_body
+-- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mem_orbit_self, aa ← get_instance_chains `mul_action 0 l.value.binding_body.binding_body.binding_body.binding_body , trace $ cd.minimal_vertices aa --.lambda_body.app_fn.app_fn.app_arg.lambda_body.app_fn.app_arg.app_fn.lambda_body--find_gens' cd e l.type l.value 0 ""
+ variables {s s₁ s₂ : finset α} {a : α} {b : β}  {f g : α → β}
+
+
+section semiring
+variables [semiring β]
+
+lemma sum_mul [add_comm_monoid β] [has_mul β]: (∑ x in s, f x) * b = ∑ x in s, f x * b :=
+(s.sum_hom (λ x, x * b)).symm
 end examples
 
 set_option pp.all true

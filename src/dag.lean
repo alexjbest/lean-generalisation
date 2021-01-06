@@ -4,6 +4,11 @@ variables (T : Type) [has_lt T] [decidable_rel ((<) : T → T → Prop)]
 meta def dag : Type := native.rb_lmap T T
 
 namespace dag
+-- private meta def reflect_dag {X Y : Type} [has_reflect X] [has_reflect Y] : has_reflect (X × Y)
+-- | ns := `(id %%(r.mkp `(prod.mk [ ns.1, ns.2]) : X × Y)
+-- private meta def reflect_dag [has_reflect T] : has_reflect (dag T) | ns :=
+--  expr.mk_app `(native.rb_map.of_list) (list.reflect ((native.rb_map.fold ns [] (λ a b o, (a, b) :: o)))
+-- `(id %%(expr.mk_app `(Prop) $ ns.map (flip expr.const [])) : dag T)
 
 meta def mk : dag T := native.rb_lmap.mk T T
 variable {T}
