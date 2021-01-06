@@ -13,6 +13,7 @@ import meta.rb_map
 --import all
 
 
+
 declare_trace generalising
 open native
 set_option trace.generalising false
@@ -277,9 +278,15 @@ meta def get_instance_chains (cla : name) : ℕ → expr → tactic (native.rb_s
     (do
       generalising_trace $ "inst chain",
       guardb $ e.has_var_idx n, -- does the chain contain the instance we are generalising?
-      generalising_trace $ "contains " ++ to_string n,
-      tar ← target cla e n,
-      return $ mk_rb_set.insert tar) <|> return mk_rb_set
+      if e.get_app_fn.const_name.get_prefix ∉ banned_aliases -- does the instance chain end in a banned type alias?
+      then
+      do
+        generalising_trace $ "contains " ++ to_string n,
+        tar ← target cla e n,
+        return $ mk_rb_set.insert tar
+      else
+        return $ mk_rb_set.insert cla
+      ) <|> return mk_rb_set
   else
     match e with
     | (app a a_1)                     := union <$> get_instance_chains n a
@@ -550,13 +557,14 @@ section examples
 set_option pp.max_steps 30000
 set_option pp.max_depth 30000
 set_option pp.goal.max_hypotheses 10000
--- #print bad3pfbad'
--- set_option trace.generalising true
--- run_cmd do d ← get_decl `bad3pfbad',
---   cd ← dag_attr.get_cache,
---   e ← get_env,
---   trace $ find_gens' cd e d.type d.value 0 "",
-  -- return ()
+
+#print bad3pfbad'
+set_option trace.generalising true
+run_cmd do d ← get_decl `bad3pfbad',
+  cd ← dag_attr.get_cache,
+  e ← get_env,
+  trace $ find_gens' cd e d.type d.value 0 "",
+  return ()
 
   -- add_monoid
   lemma bad4 (G : Type*) [add_comm_group G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
@@ -597,6 +605,32 @@ set_option pp.goal.max_hypotheses 10000
     group,
   end
 
+def eval {M N: Type*} [monoid M] [comm_monoid N] : M →* (M →* N) →* N := (monoid_hom.id (M →* N)).flip
+
+#print eval
+set_option trace.generalising true
+run_cmd do d ← get_decl `eval,
+  cd ← dag_attr.get_cache,
+  e ← get_env,
+  trace $ find_gens' cd e d.type d.value 0 "",
+  return ()
+section
+-- TODO
+-- has_pow int and nat are different!
+-- solutions: add to dag separately? or treat the instance chain as shorter
+local attribute [semireducible] int.nonneg
+lemma one_lt_fpow' {K} [linear_ordered_field K] {p : K} (hp : 1 < p) :
+  ∀ z : ℤ, 0 < z → 1 < p ^ z
+| (int.of_nat n) h := one_lt_pow hp (nat.succ_le_of_lt (int.lt_of_coe_nat_lt_coe_nat h))
+
+#print one_lt_fpow'
+set_option trace.generalising true
+run_cmd do d ← get_decl `one_lt_fpow',
+  cd ← dag_attr.get_cache,
+  e ← get_env,
+  trace $ find_gens' cd e d.type d.value 0 "",
+  return ()
+  end
 open equiv.set equiv sum nat function set subtype
 
 @[simp] lemma sum_diff_subset_apply_inr' {α : Sort} {β : Sort} {γ : Sort}
@@ -674,6 +708,11 @@ else
   have habs : b - a ≤ c, by rwa [abs_of_neg (lt_of_not_ge hz), neg_sub] at h,
   have habs' : b ≤ c + a, from le_add_of_sub_right_le habs,
   sub_left_le_of_le_add habs'
+
+open_locale filter
+lemma map_at_bot_eq [nonempty α] [semilattice_inf α] {f : α → β} :
+  at_bot.map f = (⨅a, 𝓟 $ f '' {a' | a' ≤ a}) :=
+@map_at_top_eq (order_dual α) _ _ _ _
 
 open_locale big_operators
 lemma abs_sum_le_sum_abs [linear_ordered_field α] {f : β → α} {s : finset β} :
