@@ -1,25 +1,23 @@
-import algebra.group_power
 import dag
-import topology.metric_space.basic
-import algebra.ring
-import generalise
-import meta.expr
-import tactic.group
+import utils
 import tactic
-import algebra.char_p
-import algebra.category.Group
-import init.data.ordering.basic init.function init.meta.name init.meta.format init.control.monad
-import meta.rb_map
--- import all
 
+/-! # Generalisation linter
+
+This file defines a linter to find generalisations.
+-/
+
+open native
 
 declare_trace generalising
-open native
 set_option trace.generalising false
+
 /-- A shorthand for tracing when the `trace.generalising` option is set to true. -/
 meta def generalising_trace {α} [has_to_tactic_format α] (s : α) : tactic unit :=
 tactic.when_tracing `generalising (tactic.trace s)
 
+-- TODO use expr.occurs
+-- TODO bad7pibinder
 -- TODO better output (include variable names? copy pastable?)
 -- TODO better error messages and better tracing
 -- TODO dont pass env around as much
@@ -72,7 +70,7 @@ tactic.when_tracing `generalising (tactic.trace s)
 -- all the rfl ones maybe @rfl (blah) shouldn't blah or type of blah contain the tc  to_topological_space_prod prod.inv_mk
 -- subtype.mk_le_mk is also making use of defeq so it looks like inst doesnt really appear in the body, this should also be fixed by cheking the type as well as value
 -- ensure this works for things with random names distrib_lattice_of_linear_order
-open tactic declaration environment native
+open tactic declaration environment
 namespace native
 namespace rb_lmap
 open rb_map prod format
@@ -87,8 +85,6 @@ meta instance : has_to_format (rb_lmap key data) :=
 end
 end rb_lmap
 end native
-
-
 
 /- prints information about `decl` if it is an instance or a class. If `print_args` is true, it also prints
   arguments of the class as "instances" (like `topological_monoid -> monoid`). -/
@@ -125,7 +121,6 @@ do
             ) <|>
       skip
 
-set_option trace.generalising false
 /- class tree. -/
 meta def class_dag (env : environment) : tactic (dag name) :=
 do t ← env.mfold (dag.mk name)
@@ -136,22 +131,24 @@ do t ← env.mfold (dag.mk name)
       guard (l.tail.all $ λ b, (b.info = binder_info.inst_implicit) || (b.info = binder_info.implicit)),
       guard (tgt.get_app_args.head.is_var && l.ilast.type.get_app_args.head.is_var), -- TODO check these conditions
       guard l.head.type.is_sort,
-      -- generalising_trace name,
+      generalising_trace name,
       -- generalising_trace l,
-      -- generalising_trace tgt,
+      generalising_trace tgt,
       let src := l.ilast.type.erase_annotations.get_app_fn.const_name,
       let tgt := tgt.erase_annotations.get_app_fn.const_name,
       guard (src ≠ tgt),
+      generalising_trace src,
+      generalising_trace tgt,
       return (a.insert_edge src tgt)) <|>
       return a),
-  -- generalising_trace t,
   return t
+  -- set_option trace.generalising true
+  -- run_cmd (get_env >>= class_dag >>= trace)
 
-set_option pp.all true
+-- set_option pp.all true
 -- TODO
     -- #check mul_action.to_has_scalar -- want this
     -- #check ring_hom.has_coe_to_fun -- not this
-    set_option trace.generalising false
   -- run_cmd do decl ← get_decl `mul_action.to_has_scalar,
   -- #print nat.cast_coe
   -- run_cmd do decl ← get_decl `nat.cast_coe,
@@ -224,7 +221,6 @@ open tactic declaration environment expr
 meta def factors_through (names : list name) (tc : name) : tactic (list name) :=
 do
   pots ← names.mfilter (λ n, return (n.components.head = tc)),
-  generalising_trace ">>>>>>>>>>>>>>",
   generalising_trace pots,
   return names
 
@@ -271,8 +267,10 @@ do e ← get_env,
 
 open native.rb_set
 -- meta def trace_and_return (ss:string){X : Type*} [has_to_format X] (x : tactic X): tactic X := do l ←  x, trace ("out"++ss), trace l, return l
-meta def get_instance_chains (cla : name) : ℕ → expr → tactic (native.rb_set name)
-:= λ n e, do
+/-- Gets chains of instances containing variable n in the expr, varible should have type cla : name when instantiated.
+  TODO example
+  -/
+meta def get_instance_chains (cla : name) : ℕ → expr → tactic (native.rb_set name) := λ n e, do
   -- generalising_trace $ "considering " ++ to_string e ++ " " ++ to_string n,
   boo ← is_instance_chain n e,
   if boo then
@@ -389,7 +387,10 @@ meta def find_gens' (de : declaration) (cd : dag name) (env : environment) : exp
     guard (tty.get_app_fn.const_name.get_prefix ∉ banned_aliases), -- TODO check if this actually does anything
     generalising_trace ans,
     --  has_attribute `instance ts'.head.const_name >>
-    find_gens' tbody body (n + 1) (s ++ na.to_string ++ ": " ++ ty.get_app_fn.const_name.to_string ++ " ↝" ++ ans.fold "" (λ n ol, ol ++ " " ++ n.to_string) ++ "\n")) <|>
+    find_gens' tbody body (n + 1) (s ++ na.to_string ++ ": " ++
+      ty.get_app_fn.const_name.to_string ++ " ↝" ++
+      ((ans.to_list.map (name.to_string)).qsort (λ a b, a < b)).foldl (λ ol n, ol ++ " " ++ n) "" ++ -- sort the output
+      "\n")) <|>
   find_gens' tbody body (n + 1) s
   -- acc is the main logic, that will be folded over the type and the body
   -- let acc : expr → ℕ → list expr × bool → tactic (list expr × bool) := (λ ex le ⟨ol, us⟩, do
@@ -498,222 +499,6 @@ do curr_env ← get_env,
   cd ← class_dag curr_env,
   local_decls.mmap' (λ a, (do l ← print_gens cd a, ll ← l, trace a.to_name, trace ll) <|> skip)
 --  #print star_injective
-section examples
-  lemma good (G : Type*) [group G] (n : ℤ) (g : G) (h : g^(-n) = 1) : g^n = 1 :=
-  begin
-    rw [gpow_neg, inv_eq_one] at h,
-    exact h,
-  end
-
-  lemma good2 (G : Type*) [add_monoid G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
-  by rw [mul_nsmul, h, nsmul_zero]
-
-  -- monoid?
-  lemma bad (G : Type*) [group G] (n : ℕ) (g : G) (h : g^n = 1) : g^(2*n) = 1 :=
-  by rw [pow_mul', h, one_pow]
-
-  -- harder example as we have a diamond ?
-  -- #check ring.to_distrib
-  -- #check ring.to_semiring
-  -- add_monoid
-  lemma bad2diamond (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
-  by rw [mul_nsmul, h, nsmul_zero]
-
-  -- statement generalises but proof does not!! this one is hard then
-  -- add_monoid linter only finds semiring
-  lemma bad3pfbad (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
-  by simp only [nsmul_eq_mul] at h; simp only [nat.cast_bit0, nsmul_eq_mul, nat.cast_one, nat.cast_mul]; assoc_rewrite h; exact mul_zero 2
-  set_option pp.all true
-  lemma bad3pfbad' (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
-  by {rw [nsmul_eq_mul] at ⊢ h,  rw [nat.cast_mul, mul_assoc, h], exact mul_zero _}
-set_option pp.max_steps 30000
-set_option pp.max_depth 30000
-set_option pp.goal.max_hypotheses 10000
--- #print nat.cast_coe
--- #print bad3pfbad'
-set_option trace.generalising false
--- run_cmd do d ← get_decl `bad3pfbad',
---   cd ← dag_attr.get_cache,
---   e ← get_env,
---   trace $ find_gens' d cd e d.type d.value 0 "",
---   return ()
-
-  -- add_monoid
-  lemma bad4 (G : Type*) [add_comm_group G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
-  by rw [mul_nsmul, h, nsmul_zero]
-
-  -- add_monoid
-  lemma bad5 (G : Type*) [add_group G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
-  by rw [mul_nsmul, h, nsmul_zero]
-
-  -- this works without the second stage checking the body, but it has a diamond if we include the type
-  -- add_comm_semigroup
-  lemma bad6 (G : Type*) [add_comm_group G] (g h : G) : g + h = h + g := add_comm _ _
-  -- add_comm_semigroup
-  lemma bad8 (G H : Type*) [add_comm_group G] (g h : G) : g + h = h + g := add_comm _ _
-
-  -- TODO looks like some instance missed here with original version? possibly in the pi binder
-  -- add_comm_semigroup
-  lemma bad7pibinder (G : Type*) [add_comm_group G] (g h : G) : g + h = h + g ∧ ∀ g2, g2 + g = g + g2 :=
-  ⟨add_comm _ _,assume g2, add_comm _ _ ⟩
-  -- challenging example this is a projection but not an instance
-  lemma bad10 (G H : Type*) [has_mul G] [has_mul H] [fintype G] [fintype H] (h : G ≃* H) :
-  fintype.card G = fintype.card H := fintype.card_congr h.to_equiv
-  -- multiple tings
-  -- monoid H, fintypes not needed
-  lemma bad9 (G H : Type*) [monoid G] [group H] [fintype G] [fintype H] : (1^2 : G) = 1 ∧ (1^2 : H) = 1 :=
-  ⟨one_pow 2, one_pow 2⟩
-
-  -- group
-  lemma bad11 (G : Type*) [comm_group G] (n : ℤ) (g : G) (h : g^(-n) = 1) : g^n = 1 :=
-  begin
-    rw [gpow_neg, inv_eq_one] at h,
-    exact h,
-  end
-  -- set_option old_structure_cmd true
--- @[protect_proj] class linear_ordered_field' (α : Type*) extends linear_ordered_comm_ring α, field α
-  lemma bun (G: Group) (g :G) : g^2*g^2 = g^4 :=
-  begin
-    group,
-  end
-
-def eval {M N: Type*} [monoid M] [comm_monoid N] : M →* (M →* N) →* N := (monoid_hom.id (M →* N)).flip
-
--- #print eval
-set_option trace.generalising false
--- run_cmd do d ← get_decl `eval,
---   cd ← dag_attr.get_cache,
---   e ← get_env,
---   trace $ find_gens' d cd e d.type d.value 0 "",
---   return ()
-section
--- TODO
--- has_pow int and nat are different!
--- solutions: add to dag separately? or treat the instance chain as shorter
-local attribute [semireducible] int.nonneg
-lemma one_lt_fpow' {K} [linear_ordered_field K] {p : K} (hp : 1 < p) :
-  ∀ z : ℤ, 0 < z → 1 < p ^ z
-| (int.of_nat n) h := one_lt_pow hp (nat.succ_le_of_lt (int.lt_of_coe_nat_lt_coe_nat h))
-
--- #print one_lt_fpow'
-set_option trace.generalising false
--- run_cmd do d ← get_decl `one_lt_fpow',
---   cd ← dag_attr.get_cache,
---   e ← get_env,
---   trace $ find_gens' d cd e d.type d.value 0 "",
---   return ()
-  end
-open equiv.set equiv sum nat function set subtype
-
-@[simp] lemma sum_diff_subset_apply_inr' {α : Sort} {β : Sort} {γ : Sort}
-  {α} {s t : set α} (h : s ⊆ t) [decidable_pred s] (x : t \ s) :
-  equiv.set.sum_diff_subset h (sum.inr x) = inclusion (diff_subset t s) x := rfl
-  set_option pp.all false
-  -- #check equiv.set.sum_diff_subset
-  set_option pp.all true
-  -- #print sum_diff_subset_apply_inr'
-
-lemma supr_apply' {α : Type*} {β : α → Type*} {ι : Sort*} [Π i, has_Sup (β i)] {f : ι → Πa, β a}
-  {a : α} :
-  (⨆i, f i) a = (⨆i, f i a) :=
-@infi_apply α (λ i, order_dual (β i)) _ _ f a
-
-
-
-variables {α β γ :Type} {ι : Sort} {s : set α}
---none
-theorem exists_nat_ge' [linear_ordered_semiring α] [archimedean α] (x : α) :
-  ∃ n : ℕ, x ≤ n :=
-(exists_nat_gt x).imp $ λ n, le_of_lt
-
-theorem finset_le {r : α → α → Prop} [is_trans α r]
-  {ι} [hι : nonempty ι] {f : ι → α} (D : directed r f) (s : finset ι) :
-  ∃ z, ∀ i ∈ s, r (f i) (f z) :=
-show ∃ z, ∀ i ∈ s.1, r (f i) (f z), from
-multiset.induction_on s.1 (let ⟨z⟩ := hι in ⟨z, λ _, false.elim⟩) $
-λ i s ⟨j, H⟩, let ⟨k, h₁, h₂⟩ := D i j in
-⟨k, λ a h, or.cases_on (multiset.mem_cons.1 h)
-  (λ h, h.symm ▸ h₁)
-  (λ h, trans (H _ h) h₂)⟩
-
-lemma finite.bdd_below_bUnion [semilattice_inf α] [nonempty α] {I : set β} {S : β → set α} (H : finite I) :
-  (bdd_below (⋃i∈I, S i)) ↔ (∀i ∈ I, bdd_below (S i)) :=
-@finite.bdd_above_bUnion (order_dual α) _ _ _ _ _ H
-
-
-open filter
-variables  {ι' : Type }
-lemma unbounded_of_tendsto_at_top' [nonempty α] [semilattice_inf α] [preorder β] [no_top_order β]
-  {f : α → β} (h : tendsto f at_bot at_top) :
-  ¬ bdd_above (range f) :=
-@unbounded_of_tendsto_at_top (order_dual α) _ _ _ _ _ _ h
-
--- it looks like we only need has_pow here as has_pow is all that appears in the proof
--- however to_monoid and to_inv also appear in the statement, so should not show up
-theorem gpow_neg_succ_of_nat' {G : Type } [group G] (a : G) (n : ℕ) : a ^ -[1+n] = (a ^ n.succ)⁻¹ := rfl
--- #printgpow_neg_succ_of_nat
-
--- #print sum_diff_subset_apply_inr'
-
--- lemma char_p_iff_char_p' {K L : Type*} [division_ring K] [semiring L] [nontrivial L] (f : K →+* L) (p : ℕ) :
-lemma char_p_iff_char_p' {K L : Type*} [field K] [field L] (f : K →+* L) (p : ℕ) :
-  char_p K p ↔ char_p L p :=
-begin
-  split;
-  { introI _c, constructor, intro n,
-    rw [← @char_p.cast_eq_zero_iff _ _ p _c n, ← f.injective.eq_iff, f.map_nat_cast, f.map_zero] }
-end
-open nat subtype multiset
-
-lemma piecewise_piecewise_of_subset_left' {δ : α → Sort*} (s : finset α) (g f : Π (i : α), δ i) [Π (j : α), decidable (j ∈ s)] {s t : finset α} [Π i, decidable (i ∈ s)]
-  [Π i, decidable (i ∈ t)] (h : s ⊆ t) (f₁ f₂ g : Π a, δ a) :
-  s.piecewise (t.piecewise f₁ f₂) g = s.piecewise f₁ g :=
-s.piecewise_congr (λ i hi, finset.piecewise_eq_of_mem _ _ _ (h hi)) (λ _ _, rfl)
--- #check       piecewise_piecewise_of_subset_left'
-
-lemma sub_le_of_abs_sub_le_left' {c b a : α} [linear_ordered_ring α] (h : abs (a - b) ≤ c) : b - c ≤ a :=
-if hz : 0 ≤ a - b then
-  (calc
-      a ≥ b     : le_of_sub_nonneg hz
-    ... ≥ b - c : sub_le_self _ $ (abs_nonneg _).trans h)
-else
-  have habs : b - a ≤ c, by rwa [abs_of_neg (lt_of_not_ge hz), neg_sub] at h,
-  have habs' : b ≤ c + a, from le_add_of_sub_right_le habs,
-  sub_left_le_of_le_add habs'
-
-lemma inf_ind' [semilattice_inf α] [is_total α (≤)] (a b : α) {p : α → Prop} (ha : p a) (hb : p b) : p (a ⊓ b) :=
-@sup_ind (order_dual α) _ _ _ _ _ ha hb
--- #print inf_ind --TODO why is inst_2 removed
-
-
-open_locale filter
-lemma map_at_bot_eq [nonempty α] [semilattice_inf α] {f : α → β} :
-  at_bot.map f = (⨅a, 𝓟 $ f '' {a' | a' ≤ a}) :=
-@map_at_top_eq (order_dual α) _ _ _ _
-
-open_locale big_operators
-lemma abs_sum_le_sum_abs [linear_ordered_field α] {f : β → α} {s : finset β} :
-  abs (∑ x in s, f x) ≤ ∑ x in s, abs (f x) :=
-finset.le_sum_of_subadditive _ abs_zero abs_add s f
-
-universes u v w
-set_option pp.all true
-lemma mem_orbit_self
-{α : Type u} {β : Type v} [monoid α] [mul_action α β]
-(b : β) : b ∈ mul_action.orbit α b :=
-⟨1, mul_action.one_smul _⟩
---     #print mem_orbit_self
--- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mem_orbit_self,trace l.value.binding_body.binding_body.binding_body.binding_body
--- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mem_orbit_self, aa ← get_instance_chains `mul_action 0 l.value.binding_body.binding_body.binding_body.binding_body , trace $ cd.minimal_vertices aa --.lambda_body.app_fn.app_fn.app_arg.lambda_body.app_fn.app_arg.app_fn.lambda_body--find_gens' cd e l.type l.value 0 ""
- variables {s s₁ s₂ : finset α} {a : α} {b : β}  {f g : α → β}
-
-
-section semiring
-variables [semiring β]
-
-lemma sum_mul [add_comm_monoid β] [has_mul β]: (∑ x in s, f x) * b = ∑ x in s, f x * b :=
-(s.sum_hom (λ x, x * b)).symm
-end examples
 
 set_option pp.all true
 set_option trace.generalising false
@@ -738,9 +523,9 @@ namespace linter
   is_fast := ff,
   auto_decls := ff }
 end linter
-set_option pp.all false
-#lint only generalisation_linter
-set_option pp.all true
+-- set_option pp.all false
+-- #lint only generalisation_linter
+-- set_option pp.all true
 -- meta def aaa :=
 -- do l ← find_ancestors `integral_domain (const `int []),
 -- generalising_trace l,

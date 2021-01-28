@@ -1,5 +1,9 @@
 import meta.expr
 
+/-! Authors : Patrick Massot, Mario Carneiro, Bryan Gin-ge Chen, mathlib contributors
+https://github.com/leanprover-community/leancrawler/blob/master/src/leancrawler/deps.lean
+ -/
+
 namespace level
 meta def size : level → ℕ
 | (succ l)     := size l + 1
