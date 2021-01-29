@@ -2,7 +2,7 @@
 
 /- The `generalisation_linter` linter reports: -/
 /- typeclass generalisations may be possible: -/
-#print lint_tests.btest /- _inst_1: ordered_ring ↝ has_add has_mul preorder
+#print lint_tests.btest /- _inst_1: ordered_ring ↝ has_add has_mul has_zero preorder
  -/
 #print lint_tests.char_ne_one /- _inst_1: integral_domain ↝ nontrivial semiring
  -/
@@ -44,4 +44,6 @@ _inst_2: field ↝ nontrivial semiring
 #print lint_tests.abs_sum_le_sum_abs /- _inst_1: linear_ordered_field ↝ linear_ordered_add_comm_group
  -/
 #print lint_tests.sum_mul /- _inst_1: semiring ↝ add_comm_monoid has_mul is_add_monoid_hom
+ -/
+#print lint_tests.is_closed_singleton /- _inst_2: t2_space ↝ t1_space
  -/

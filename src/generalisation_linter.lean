@@ -86,6 +86,39 @@ end
 end rb_lmap
 end native
 
+open expr
+/-- A bound class is what we will search through, most commonly this is just a name of a class
+    e.g. `ring` but sometimes we wish to distinguish bound arguments, e.g. `has_pow α ℕ` should
+    be distinct from `has_pow α ℤ`.
+-/
+@[derive decidable_eq]
+meta structure bound_class :=
+(name : name)
+(bindings : list expr)
+-- TODO instance arguments should also be replaced here?
+-- currently t2_space #0 topology_from_metric ≠ t2_space #0 topology_from_some_other_method
+meta def expr.to_bound_class (e : expr) : bound_class :=
+⟨e.get_app_fn.const_name, e.get_app_args.map
+  (λ e, (e.replace (λ e n, match e with
+    | var n := some (var 0)
+    | e := none
+    end)))⟩
+meta def declaration.to_bound_class (d : declaration) : bound_class :=
+  d.type.erase_annotations.pi_binders.snd.to_bound_class
+
+meta def name.to_bound_class (n : name) : tactic bound_class := declaration.to_bound_class <$> get_decl n
+namespace bound_class
+-- it is important that this lt is total otherwise it seems rb_map misbehaves
+meta instance : has_lt bound_class := ⟨λ b₁ b₂, b₁.name < b₂.name ∨ (b₁.name = b₂.name ∧ (list.lex (λ e e', e < e') b₁.bindings b₂.bindings))⟩
+meta instance : decidable_rel ((<) : bound_class → bound_class → Prop) := by apply_instance
+meta instance : has_to_format bound_class := ⟨λ bi, bi.name.to_string ++ " "
+  ++ " ".intercalate (bi.bindings.map (has_to_string.to_string)) ⟩
+meta instance : has_to_string bound_class := ⟨λ bi, bi.name.to_string
+-- ++ " " ++ " ".intercalate (bi.bindings.map (expr.to_string)) -- TMI most of the time
+⟩
+
+end bound_class
+
 /- prints information about `decl` if it is an instance or a class. If `print_args` is true, it also prints
   arguments of the class as "instances" (like `topological_monoid -> monoid`). -/
 meta def print_item_yaml (env : environment) (print_args : bool) (decl : declaration)
@@ -122,8 +155,8 @@ do
       skip
 
 /- class tree. -/
-meta def class_dag (env : environment) : tactic (dag name) :=
-do t ← env.mfold (dag.mk name)
+meta def class_dag (env : environment) : tactic (dag bound_class) :=
+do t ← env.mfold (dag.mk bound_class)
   (λ decl a, let name := decl.to_name in do
     tactic.has_attribute `instance name >> (do
       (l, tgt) ← return decl.type.pi_binders,
@@ -133,9 +166,10 @@ do t ← env.mfold (dag.mk name)
       guard l.head.type.is_sort,
       generalising_trace name,
       -- generalising_trace l,
-      generalising_trace tgt,
-      let src := l.ilast.type.erase_annotations.get_app_fn.const_name,
-      let tgt := tgt.erase_annotations.get_app_fn.const_name,
+      -- generalising_trace tgt,
+      -- generalising_trace decl.to_bound_class,
+      let src := l.ilast.type.to_bound_class,
+      let tgt := decl.to_bound_class,
       guard (src ≠ tgt),
       generalising_trace src,
       generalising_trace tgt,
@@ -143,6 +177,7 @@ do t ← env.mfold (dag.mk name)
       return a),
   return t
   -- set_option trace.generalising true
+  -- run_cmd (get_env >>= class_dag)
   -- run_cmd (get_env >>= class_dag >>= trace)
 
 -- set_option pp.all true
@@ -174,31 +209,36 @@ do t ← env.mfold (dag.mk name)
 
 meta def print_dag : tactic unit := do c ← get_env, class_dag c >>= trace
 -- run_cmd print_dag
-meta def print_div (l : list name) : tactic unit :=
+meta def print_div (l : list bound_class) : tactic unit :=
 do c ← get_env,
   class_dag c >>= (λ d, trace $ d.minimal_vertices (native.rb_set.of_list l))
-    --`division_ring, `nontrivial, `has_one])
--- run_cmd print_div [ `linear_order, `linear_ordered_add_comm_group, `ordered_ring ]
--- run_cmd print_div [ `has_add, `has_zero, `add_monoid, `has_zero, `has_add,`add_monoid ]
+-- run_cmd print_div [ ⟨`linear_order,[var 0]⟩, ⟨`linear_ordered_add_comm_group,[var 0]⟩,
+--   ⟨`ordered_ring ,[var 0]⟩ ]
+-- run_cmd print_div [ ⟨`has_add,[var 0]⟩, ⟨ `has_zero,[var 0]⟩, ⟨ `add_monoid,[var 0]⟩,
+--   ⟨ `has_zero,[var 0]⟩, ⟨ `has_add,[var 0]⟩, ⟨`add_monoid ,[var 0]⟩]
+-- run_cmd print_div [ ⟨`has_pow,[var 0, `(int)]⟩,
+-- ⟨`has_pow,[var 0, `(nat)]⟩,
+-- ⟨`monoid,[var 0]⟩]
+-- #eval to_bool $ (⟨`has_pow,[var 0, `(int)]⟩ :bound_class) < ⟨`has_pow,[var 0, `(nat)]⟩
 
 open dag
 
-meta def print_reachable (n : name) : tactic unit :=
+meta def print_reachable (n : bound_class) : tactic unit :=
 do
   c ← get_env,
   -- d ← get_decl a,
   t ← class_dag c,
   trace (reachable n t),
   return ()
-meta def print_tos_reachable (n : name) : tactic unit :=
+meta def print_tos_reachable (n : bound_class) : tactic unit :=
 do
   c ← get_env,
   -- d ← get_decl a,
   t ← class_dag c,
   trace $ topological_sort (reachable n t),
   return ()
--- run_cmd print_reachable `linear_ordered_ring
--- run_cmd print_tos_reachable `linear_ordered_ring
+-- run_cmd print_reachable ⟨`linear_ordered_ring, [var 0]⟩
+-- run_cmd print_tos_reachable ⟨`linear_ordered_ring, [var 0]⟩
 /-- prints information about unary classes and forgetful instances in the environment.
   It only prints instances and classes that have at most 1 argument that is not a type-class argument
   (within square brackets), and the instances can only be forgetful instances (where the conclusion
@@ -224,10 +264,11 @@ do
   generalising_trace pots,
   return names
 
--- These types aliases are banned as they look like they could be generalisations, i.e. why
--- assume `has_add α` when all you need is `has_add (order_dual α)`, but in these cases
--- the classes are equivalent, likewise with prod we have addition on the prod iff addition
--- on each component so most often we do not gain anything by removing these.
+/- These types aliases are banned as they look like they could be generalisations, i.e. why
+   assume `has_add α` when all you need is `has_add (order_dual α)`, but in these cases
+   the classes are equivalent, likewise with prod we have addition on the prod iff addition
+   on each component so most often we do not gain anything by removing these.
+-/
 def banned_aliases : list name := [`order_dual, `multiplicative, `additive, `prod]
 
 set_option pp.all true
@@ -247,30 +288,32 @@ meta def is_instance_chain : ℕ → expr → tactic bool := λ n e, do
   set_option trace.generalising false
 
 -- set_option profiler true
-meta def target (cla : name) (t : expr) (n : ℕ) : tactic name :=
+meta def target (cla : bound_class) (t : expr) (n : ℕ) : tactic bound_class :=
 do e ← get_env,
   generalising_trace "tgt",
   generalising_trace t,
-  (do m ← t.match_var,
+  (do m ← t.match_var, -- if this is just a variable (i.e. chain of length 0 return)
     guardb (n = m),
     return cla) <|> (do
   t ← e.get t.get_app_fn.const_name,
-  (l, tgt) ← return t.type.pi_binders,
-  generalising_trace l,
-  generalising_trace tgt,
+  return t.to_bound_class
+  -- (l, tgt) ← return t.type.pi_binders,
+  -- generalising_trace l,
+  -- generalising_trace tgt,
   -- guard (l.tail.all $ λ b, b.info = binder_info.inst_implicit),
   -- guard (tgt.get_app_args.head.is_var && l.ilast.type.get_app_args.head.is_var),
-  let src := l.ilast.type.erase_annotations.get_app_fn.const_name,
-  let tgt := tgt.erase_annotations.get_app_fn.const_name,
-  generalising_trace tgt,
-  return tgt)
+  -- let src := l.ilast.type.erase_annotations.get_app_fn.const_name,
+  -- let tgt := tgt.erase_annotations.get_app_fn.const_name,
+  -- generalising_trace tgt,
+  -- return tgt
+  )
 
 open native.rb_set
 -- meta def trace_and_return (ss:string){X : Type*} [has_to_format X] (x : tactic X): tactic X := do l ←  x, trace ("out"++ss), trace l, return l
 /-- Gets chains of instances containing variable n in the expr, varible should have type cla : name when instantiated.
   TODO example
   -/
-meta def get_instance_chains (cla : name) : ℕ → expr → tactic (native.rb_set name) := λ n e, do
+meta def get_instance_chains (cla : bound_class) : ℕ → expr → tactic (native.rb_set bound_class) := λ n e, do
   -- generalising_trace $ "considering " ++ to_string e ++ " " ++ to_string n,
   boo ← is_instance_chain n e,
   if boo then
@@ -359,7 +402,7 @@ meta def get_instance_chains (cla : name) : ℕ → expr → tactic (native.rb_s
 -- find the typeclass generalisations possible in a given decl
 -- input should be the type and then the body
 -- TODO env not needed?
-meta def find_gens' (de : declaration) (cd : dag name) (env : environment) : expr → expr → ℕ → string → tactic (option string)
+meta def find_gens' (de : declaration) (cd : dag bound_class) (env : environment) : expr → expr → ℕ → string → tactic (option string)
 -- we match the binders on the type and body simultaneously
 | (pi tna binder_info.inst_implicit tty tbody) (lam na binder_info.inst_implicit ty body) n s := do
   -- We are now trying to generalise `tna` which is of type `tty`
@@ -370,8 +413,8 @@ meta def find_gens' (de : declaration) (cd : dag name) (env : environment) : exp
     -- generalising_trace $ "body " ++ to_string body,
     -- generalising_trace "n ",
     -- generalising_trace n,
-    ou  ← get_instance_chains tty.get_app_fn.const_name 0 body,
-    tou ← get_instance_chains tty.get_app_fn.const_name 0 tbody,
+    ou  ← get_instance_chains tty.to_bound_class 0 body,
+    tou ← get_instance_chains tty.to_bound_class 0 tbody,
     generalising_trace ou,
     generalising_trace tou,
     let ans := (λ u, (cd.minimal_vertices u).union $ u.filter (λ v, ¬ cd.contains v)) (ou.union tou),
@@ -381,7 +424,7 @@ meta def find_gens' (de : declaration) (cd : dag name) (env : environment) : exp
     --    (find_gens' tbody body (n + 1) (s ++ "unused_arg ? " ++ "\n" ++ ty.to_string ++ "\n" ++ ts'.to_string ++ "\n" ++ na.to_string)) <|>
     -- guard ((ts'.length = 0) && (¬us')) >>
     --   (find_gens' tbody body (n + 1) (s ++ "unused_arg ? " ++ "\n" ++ ty.to_string ++ "\n" ++ ts'.to_string ++ "\n" ++ na.to_string)) <|>
-    guard (¬ ans.contains tty.get_app_fn.const_name),
+    guard (¬ ans.contains tty.to_bound_class), -- this probably shouldn't happen?
     --  && (¬us')
     generalising_trace ans,
     guard (tty.get_app_fn.const_name.get_prefix ∉ banned_aliases), -- TODO check if this actually does anything
@@ -389,7 +432,7 @@ meta def find_gens' (de : declaration) (cd : dag name) (env : environment) : exp
     --  has_attribute `instance ts'.head.const_name >>
     find_gens' tbody body (n + 1) (s ++ na.to_string ++ ": " ++
       ty.get_app_fn.const_name.to_string ++ " ↝" ++
-      ((ans.to_list.map (name.to_string)).qsort (λ a b, a < b)).foldl (λ ol n, ol ++ " " ++ n) "" ++ -- sort the output
+      ((ans.to_list.map (to_string)).qsort (λ a b, a < b)).foldl (λ ol n, ol ++ " " ++ n) "" ++ -- sort the output
       "\n")) <|>
   find_gens' tbody body (n + 1) s
   -- acc is the main logic, that will be folded over the type and the body
@@ -421,7 +464,7 @@ meta def find_gens' (de : declaration) (cd : dag name) (env : environment) : exp
 | _ _ _ s := return (if s.length = 0 then none else s) -- done with binders so finish
 
 -- A mostly useless wrapping class that gets a bunch of debug info and calls find_gens'
-meta def print_gens (cd : dag name) (decl : declaration) : tactic (option string) :=
+meta def print_gens (cd : dag bound_class) (decl : declaration) : tactic (option string) :=
   guard decl.is_trusted >> (do -- ignore meta stuff
   env ← get_env,
   let name := decl.to_name,
@@ -476,9 +519,9 @@ meta def print_gens (cd : dag name) (decl : declaration) : tactic (option string
   ) <|> return none
 
 @[user_attribute]
-meta def dag_attr : user_attribute (dag name) unit := {
+meta def dag_attr : user_attribute (dag bound_class) unit := {
   name := "_dag",
-  descr := "(interal) attribute just to store the class dag",
+  descr := "(internal) attribute just to store the class dag",
   cache_cfg := ⟨λ _, (do e ← get_env, class_dag e), []⟩
 }
 

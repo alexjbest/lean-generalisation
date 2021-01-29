@@ -8,6 +8,7 @@ import algebra.group_power
 import algebra.algebra.basic
 import analysis.convex.basic
 import measure_theory.set_integral
+
 /-! Tests for generalisation linter, should produce test.expected.out -/
 namespace lint_tests
 section
@@ -26,8 +27,8 @@ end
 section
 
   lemma atest (α : Type*) [comm_monoid α] : (1 : α) * 1 = 1 ∧ ∀ a b : α, a * b = b * a := ⟨mul_one _, mul_comm⟩
-  lemma btest (α : Type*) [ordered_ring α] (a b : α) : 0 ≤ 0 ∧ a * b + b = a * b + b := ⟨eq.le rfl, rfl⟩
-  lemma btest' (α : Type*) [has_add α] [has_mul α] [preorder α] (a b : α) : 0 ≤ 0 ∧ a * b + b = a * b + b := ⟨eq.le rfl, rfl⟩
+  lemma btest (α : Type*) [ordered_ring α] (a b : α) : (0 : α) ≤ 0 ∧ a * b + b = a * b + b := ⟨eq.le rfl, rfl⟩
+  lemma btest' (α : Type*) [has_add α] [has_mul α] [has_zero α] [preorder α] (a b : α) : (0 : α) ≤ 0 ∧ a * b + b = a * b + b := ⟨eq.le rfl, rfl⟩
 
 end
 section
@@ -418,6 +419,14 @@ section
   -- this is weaker than semiring indeed as no mul identity needed
   lemma sum_mul : (∑ x in s, f x) * b = ∑ x in s, f x * b :=
   (s.sum_hom (λ x, x * b)).symm
+end
+
+section
+  universes u v
+  variables {α : Type u} {β : Type v} [topological_space α]
+  lemma is_closed_singleton [t2_space α] {x : α} : is_closed ({x} : set α) :=
+  t1_space.t1 x
+
 end
 
 #lint only generalisation_linter
