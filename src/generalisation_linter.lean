@@ -117,6 +117,9 @@ meta instance : has_to_string bound_class := ⟨λ bi, bi.name.to_string
 -- ++ " " ++ " ".intercalate (bi.bindings.map (expr.to_string)) -- TMI most of the time
 ⟩
 
+meta instance : inhabited bound_class := { default := { name := `no_meet_fake_name,
+  bindings := [] } }
+
 end bound_class
 
 /- prints information about `decl` if it is an instance or a class. If `print_args` is true, it also prints
@@ -171,8 +174,7 @@ do t ← env.mfold (dag.mk bound_class)
       let src := l.ilast.type.to_bound_class,
       let tgt := decl.to_bound_class,
       guard (src ≠ tgt),
-      generalising_trace src,
-      generalising_trace tgt,
+      generalising_trace $ has_to_format.to_format src ++ " → " ++ has_to_format.to_format tgt,
       return (a.insert_edge src tgt)) <|>
       return a),
   return t
@@ -212,8 +214,15 @@ meta def print_dag : tactic unit := do c ← get_env, class_dag c >>= trace
 meta def print_div (l : list bound_class) : tactic unit :=
 do c ← get_env,
   class_dag c >>= (λ d, trace $ d.minimal_vertices (native.rb_set.of_list l))
--- run_cmd print_div [ ⟨`linear_order,[var 0]⟩, ⟨`linear_ordered_add_comm_group,[var 0]⟩,
---   ⟨`ordered_ring ,[var 0]⟩ ]
+meta def print_div' (l : list bound_class) : tactic unit :=
+do c ← get_env,
+  class_dag c >>= (λ d, trace $ d.meets_of_components (native.rb_set.of_list l))
+-- run_cmd print_div' [ ⟨`linear_order,[var 0]⟩, ⟨`linear_ordered_add_comm_group,[var 0]⟩,
+  -- ⟨`ordered_ring ,[var 0]⟩ ]
+
+-- run_cmd print_div' [ ⟨`group,[var 0]⟩ ]
+-- #print noetherian_ring
+-- run_cmd print_div' [ ⟨`comm_semiring,[var 0]⟩,⟨`ring,[var 0]⟩,⟨`noetherian_ring,[var 0]⟩ ]
 -- run_cmd print_div [ ⟨`has_add,[var 0]⟩, ⟨ `has_zero,[var 0]⟩, ⟨ `add_monoid,[var 0]⟩,
 --   ⟨ `has_zero,[var 0]⟩, ⟨ `has_add,[var 0]⟩, ⟨`add_monoid ,[var 0]⟩]
 -- run_cmd print_div [ ⟨`has_pow,[var 0, `(int)]⟩,
@@ -417,7 +426,7 @@ meta def find_gens' (de : declaration) (cd : dag bound_class) (env : environment
     tou ← get_instance_chains tty.to_bound_class 0 tbody,
     generalising_trace ou,
     generalising_trace tou,
-    let ans := (λ u, (cd.minimal_vertices u).union $ u.filter (λ v, ¬ cd.contains v)) (ou.union tou),
+    let ans := (λ u, (cd.meets_of_components u).union $ u.filter (λ v, ¬ cd.contains v)) (ou.union tou),
     generalising_trace ans,
     -- do unused separety
     --  guard ((ans.size = 0) && (¬us')) >>

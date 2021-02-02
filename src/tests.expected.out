@@ -1,4 +1,4 @@
-/- Checking 48 declarations (plus 15 automatically generated ones) in the current file -/
+/- Checking 49 declarations (plus 15 automatically generated ones) in the current file -/
 
 /- The `generalisation_linter` linter reports: -/
 /- typeclass generalisations may be possible: -/
@@ -33,8 +33,6 @@ _inst_3: fintype ↝
 _inst_4: fintype ↝
  -/
 #print lint_tests.bad11 /- _inst_1: comm_group ↝ group
- -/
-#print lint_tests.one_lt_fpow /- _inst_1: linear_ordered_field ↝ linear_ordered_semiring
  -/
 #print lint_tests.char_p_iff_char_p /- _inst_1: field ↝ division_ring
 _inst_2: field ↝ nontrivial semiring
