@@ -1,4 +1,4 @@
-/- Checking 49 declarations (plus 15 automatically generated ones) in the current file -/
+/- Checking 53 declarations (plus 41 automatically generated ones) in the current file -/
 
 /- The `generalisation_linter` linter reports: -/
 /- typeclass generalisations may be possible: -/
@@ -44,4 +44,8 @@ _inst_2: field ↝ nontrivial semiring
 #print lint_tests.sum_mul /- _inst_1: semiring ↝ add_comm_monoid has_mul is_add_monoid_hom
  -/
 #print lint_tests.is_closed_singleton /- _inst_2: t2_space ↝ t1_space
+ -/
+#print lint_tests.aa /- _inst_1: lint_tests.bar ↝ lint_tests.foo
+ -/
+#print lint_tests.mn_tors_of_n_tors /- _inst_1: semiring ↝ add_monoid
  -/

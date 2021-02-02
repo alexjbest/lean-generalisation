@@ -1,12 +1,11 @@
 import generalisation_linter
 import algebra.associated
-import algebra.char_p
 import topology.metric_space.basic
 import algebra.ring
 import algebra.category.Group
 import algebra.group_power
 import algebra.algebra.basic
-import analysis.convex.basic
+import analysis.convex.integral
 import measure_theory.set_integral
 
 /-! Tests for generalisation linter, should produce test.expected.out -/
@@ -63,42 +62,59 @@ section
 end
 section
 
-  open measure_theory set filter
-  open_locale topological_space big_operators
+open measure_theory set filter
+open_locale topological_space big_operators
 
-  variables {α E : Type*} [measurable_space α] {μ : measure α}
-    [normed_group E] [normed_space ℝ E] [complete_space E]
-    [topological_space.second_countable_topology E] [measurable_space E] [borel_space E]
+variables {α E : Type*} [measurable_space α] {μ : measure α}
+  [normed_group E] [normed_space ℝ E] [complete_space E]
+  [topological_space.second_countable_topology E] [measurable_space E] [borel_space E]
+
+private lemma convex.smul_integral_mem_of_measurable
+  [finite_measure μ] {s : set E} (hs : convex s) (hsc : is_closed s)
+  (hμ : μ ≠ 0) {f : α → E} (hfs : ∀ᵐ x ∂μ, f x ∈ s) (hfi : integrable f μ) (hfm : measurable f) :
+  (μ univ).to_real⁻¹ • ∫ x, f x ∂μ ∈ s :=
+begin
+  rcases eq_empty_or_nonempty s with rfl|⟨y₀, h₀⟩, { refine (hμ _).elim, simpa using hfs },
+  rw ← hsc.closure_eq at hfs,
+  have hc : integrable (λ _, y₀) μ := integrable_const _,
+  set F : ℕ → simple_func α E := simple_func.approx_on f hfm s y₀ h₀,
+  have : tendsto (λ n, (F n).integral μ) at_top (𝓝 $ ∫ x, f x ∂μ),
+  { simp only [simple_func.integral_eq_integral _
+      (simple_func.integrable_approx_on hfm hfi h₀ hc _)],
+    exact tendsto_integral_of_l1 _ hfi
+      (eventually_of_forall $ simple_func.integrable_approx_on hfm hfi h₀ hc)
+      (simple_func.tendsto_approx_on_l1_edist hfm h₀ hfs (hfi.sub hc).2) },
+  refine hsc.mem_of_tendsto (tendsto_const_nhds.smul this) (eventually_of_forall $ λ n, _),
+  have : ∑ y in (F n).range, (μ ((F n) ⁻¹' {y})).to_real = (μ univ).to_real,
+    by rw [← (F n).sum_range_measure_preimage_singleton, @ennreal.to_real_sum _ _
+      (λ y, μ ((F n) ⁻¹' {y})) (λ _ _, (measure_lt_top _ _))],
+  rw [← this, simple_func.integral],
+  refine hs.center_mass_mem (λ _ _, ennreal.to_real_nonneg) _ _,
+  { rw [this, ennreal.to_real_pos_iff, pos_iff_ne_zero, ne.def, measure.measure_univ_eq_zero],
+    exact ⟨hμ, measure_ne_top _ _⟩ },
+  { simp only [simple_func.mem_range],
+    rintros _ ⟨x, rfl⟩,
+    exact simple_func.approx_on_mem hfm h₀ n x }
+end
 
   /-- If `μ` is a non-zero finite measure on `α`, `s` is a convex closed set in `E`, and `f` is an
   integrable function sending `μ`-a.e. points to `s`, then the average value of `f` belongs to `s`:
   `(μ univ).to_real⁻¹ • ∫ x, f x ∂μ ∈ s`. See also `convex.center_mass_mem` for a finite sum version
   of this lemma. -/
-  lemma convex.smul_integral_mem [finite_measure μ] {s : set E} (hs : convex s) (hsc : is_closed s)
-    (hμ : μ ≠ 0) {f : α → E} (hfs : ∀ᵐ x ∂μ, f x ∈ s) (hfi : integrable f μ) :
-    (μ univ).to_real⁻¹ • ∫ x, f x ∂μ ∈ s :=
-  begin
-    rcases eq_empty_or_nonempty s with rfl|⟨y₀, h₀⟩, { refine (hμ _).elim, simpa using hfs },
-    rw ← hsc.closure_eq at hfs,
-    have hc : integrable (λ _, y₀) μ := integrable_const _,
-    set F : ℕ → simple_func α E := simple_func.approx_on f hfi.measurable s y₀ h₀,
-    have : tendsto (λ n, (F n).integral μ) at_top (𝓝 $ ∫ x, f x ∂μ),
-    { simp only [simple_func.integral_eq_integral _ (simple_func.integrable_approx_on hfi h₀ hc _)],
-      exact tendsto_integral_of_l1 _ hfi
-        (eventually_of_forall $ simple_func.integrable_approx_on hfi h₀ hc)
-        (simple_func.tendsto_approx_on_l1_edist hfi.1 h₀ hfs (hfi.sub hc).2) },
-    refine hsc.mem_of_tendsto (tendsto_const_nhds.smul this) (eventually_of_forall $ λ n, _),
-    have : ∑ y in (F n).range, (μ ((F n) ⁻¹' {y})).to_real = (μ univ).to_real,
-      by rw [← (F n).sum_range_measure_preimage_singleton, @ennreal.to_real_sum _ _
-        (λ y, μ ((F n) ⁻¹' {y})) (λ _ _, (measure_lt_top _ _))],
-    rw [← this, simple_func.integral],
-    refine hs.center_mass_mem (λ _ _, ennreal.to_real_nonneg) _ _,
-    { rw [this, ennreal.to_real_pos_iff, zero_lt_iff_ne_zero, ne.def, measure.measure_univ_eq_zero],
-      exact ⟨hμ, measure_ne_top _ _⟩ },
-    { simp only [simple_func.mem_range],
-      rintros _ ⟨x, rfl⟩,
-      exact simple_func.approx_on_mem hfi.1 h₀ n x }
-  end
+lemma convex.smul_integral_mem
+  [finite_measure μ] {s : set E} (hs : convex s) (hsc : is_closed s)
+  (hμ : μ ≠ 0) {f : α → E} (hfs : ∀ᵐ x ∂μ, f x ∈ s) (hfi : integrable f μ) :
+  (μ univ).to_real⁻¹ • ∫ x, f x ∂μ ∈ s :=
+begin
+  have : ∀ᵐ (x : α) ∂μ, hfi.ae_measurable.mk f x ∈ s,
+  { filter_upwards [hfs, hfi.ae_measurable.ae_eq_mk],
+    assume a ha h,
+    rwa ← h },
+  convert convex.smul_integral_mem_of_measurable hs hsc hμ this
+    (hfi.congr hfi.ae_measurable.ae_eq_mk) (hfi.ae_measurable.measurable_mk) using 2,
+  apply integral_congr_ae,
+  exact hfi.ae_measurable.ae_eq_mk
+end
 
 end
 
@@ -117,7 +133,7 @@ section
   have h : ∃ n : ℕ, x < y ^ n, from pow_unbounded_of_one_lt _ hy,
   by classical; exact let n := nat.find h in
     have hn  : x < y ^ n, from nat.find_spec h,
-    have hnp : 0 < n,     from nat.pos_iff_ne_zero.2 (λ hn0,
+    have hnp : 0 < n,     from pos_iff_ne_zero.2 (λ hn0,
       by rw [hn0, pow_zero] at hn; exact (not_le_of_gt hn hx)),
     have hnsp : nat.pred n + 1 = n,     from nat.succ_pred_eq_of_pos hnp,
     have hltn : nat.pred n < n,         from nat.pred_lt (ne_of_gt hnp),
@@ -276,6 +292,8 @@ section
   -- it looks like we only need has_pow here as has_pow is all that appears in the proof
   -- however to_monoid and to_inv also appear in the statement, so should not show up
   theorem gpow_neg_succ_of_nat {G : Type } [group G] (a : G) (n : ℕ) : a ^ -[1+n] = (a ^ n.succ)⁻¹ := rfl
+  -- set_option pp.all true
+  -- #print gpow_neg_succ_of_nat
 end
 
 section
@@ -310,8 +328,8 @@ section
       ... ≥ b - c : sub_le_self _ $ (abs_nonneg _).trans h)
   else
     have habs : b - a ≤ c, by rwa [abs_of_neg (lt_of_not_ge hz), neg_sub] at h,
-    have habs' : b ≤ c + a, from le_add_of_sub_right_le habs,
-    sub_left_le_of_le_add habs'
+    have habs' : b ≤ c + a, from sub_le_iff_le_add.mp habs,
+    sub_le.mp habs
 
 end
 
@@ -427,6 +445,22 @@ section
   lemma is_closed_singleton [t2_space α] {x : α} : is_closed ({x} : set α) :=
   t1_space.t1 x
 
+end
+
+section
+
+class foo (X : Type) :=
+(f : X → X)
+class bar (X : Type) extends foo X :=
+(h : f ∘ f = f)
+end
+
+section
+
+lemma aa (X : Type) [bar X] : (foo.f : X → X) = foo.f := rfl
+
+lemma mn_tors_of_n_tors {X : Type*} [semiring X] (m n : ℕ) (x : X) (h : n •ℕ x = 0) :
+  (m * n) •ℕ x = 0 := by rw [mul_nsmul, h, nsmul_zero]
 end
 
 #lint only generalisation_linter

@@ -16,6 +16,16 @@ set_option trace.generalising false
 meta def generalising_trace {α} [has_to_tactic_format α] (s : α) : tactic unit :=
 tactic.when_tracing `generalising (tactic.trace s)
 
+-- TODO check
+-- +++ b/src/topology/algebra/ordered.lean
+-- @@ -1630,8 +1630,8 @@ funext $ assume f, map_eq_comap_of_inverse (funext neg_neg) (funext neg_neg)
+
+--  section topological_add_group
+
+-- -variables [topological_space α] [ordered_add_comm_group α] [topological_add_group α]
+-- -
+-- +variables [topological_space α] [add_group α] [topological_add_group α]
+-- +#check order_closed_topology
 -- TODO use expr.occurs
 -- TODO bad7pibinder
 -- TODO better output (include variable names? copy pastable?)
