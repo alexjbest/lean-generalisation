@@ -247,14 +247,14 @@ do
   c ← get_env,
   -- d ← get_decl a,
   t ← class_dag c,
-  trace (reachable n t),
+  trace (reachable t n),
   return ()
 meta def print_tos_reachable (n : bound_class) : tactic unit :=
 do
   c ← get_env,
   -- d ← get_decl a,
   t ← class_dag c,
-  trace $ topological_sort (reachable n t),
+  trace $ topological_sort (reachable t n),
   return ()
 -- run_cmd print_reachable ⟨`linear_ordered_ring, [var 0]⟩
 -- run_cmd print_tos_reachable ⟨`linear_ordered_ring, [var 0]⟩
