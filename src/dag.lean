@@ -37,15 +37,30 @@ meta instance : has_to_format (dag T) :=
               to_fmt "]"⟩
 meta instance : has_repr (dag T) := ⟨λ s, (has_to_format.to_format s).to_string⟩
 
-/-- Take the sub-graph of things reachable from name-/
+
+open native
+/-- Depth first search used for topological sorting. -/
+meta def dfs (d : dag T) : T → (list T × rb_set T) → (list T × rb_set T)
+| v stavis :=
+  (λ a : list T × rb_set T, (v :: a.fst, a.snd))
+    ((d.find v).foldl
+      (λ stavis' w,
+        if stavis'.snd.contains w then
+          stavis'
+        else
+          dfs w stavis')
+      (stavis.fst, stavis.snd.insert v))
+-- #eval (((((dag.mk ℕ).insert_vertex 3).insert_edge 2 1).insert_edge 1 3).dfs 1 [] (rb_map.mk _ _)).fst
+/-- Take the sub-graph of things reachable from -/
 -- TODO is this inefficient?
-meta def reachable : T → dag T → dag T :=
-λ n t,
-  (t.find n).foldl
-  (λ old ins,
-    (native.rb_map.fold (reachable ins t) old
-      (λ k d a, a.insert_edges (d.map (λ v, (k, v))))).insert_edge n ins)
-  ((dag.mk T).insert_vertex n)
+meta def reachable (d : dag T) (v : T) : dag T :=
+(d.dfs v ([], mk_rb_map)).fst.foldl (λ ol w, rb_map.insert ol w $ d.find w) (dag.mk T)
+-- | [] c := c
+-- | (n :: S) c := (d.find n).foldl
+--   (λ old ins,
+--     (native.rb_map.fold (reachable ins) old
+--       (λ k d a, a.insert_edges (d.map (λ v, (k, v))))).insert_edge n ins)
+--   ((dag.mk T).insert_vertex n)
 /- Take the sub-graph of things reachable from a list of names-/
 -- meta def reachable'_core (orig : dag T) : list T → native.rb_map T bool → dag T → dag T
 -- | (h :: l) vis d := (orig.find h).foldl (λ o w, reachable'_core l vis d) (vis.insert h tt)
@@ -59,21 +74,9 @@ meta def reachable : T → dag T → dag T :=
 --     (native.rb_map.fold (reachable ins t) old
 --       (λ k d a, native.rb_map.insert a k d)).insert n ins)
 --   (dag.mk T)
-
-/-- Depth first search used for topological sorting. -/
-meta def dfs (d : dag T) : T → list T → native.rb_map T bool → (list T × native.rb_map T bool)
-| v stack visited :=
-  (λ a : list T × native.rb_map T bool, (v :: a.fst, a.snd))
-    ((d.find v).foldl
-      (λ ⟨sta, vis⟩ w,
-        if (vis.find w).get_or_else ff then
-          (sta, vis)
-        else
-          dfs w sta vis)
-      (stack, visited.insert v tt))
--- #eval (((((dag.mk ℕ).insert_vertex 3).insert_edge 2 1).insert_edge 2 3).dfs 2 [] (native.rb_map.mk _ _)).fst
 open native
 
+-- TODO change to rb_set?
 meta def minimal_vertices_dfs (d : dag T) : T → rb_map T bool → rb_map T bool → (rb_map T bool × rb_map T bool)
 | v minimals visited :=
   -- (λ a : native.rb_map T bool × native.rb_map T bool, (a.fst.insert, a.snd))
@@ -87,20 +90,20 @@ meta def minimal_vertices_dfs (d : dag T) : T → rb_map T bool → rb_map T boo
 --#eval to_string (((((dag.mk ℕ).insert_vertex 3).insert_edge 2 1).insert_edge 2 3).minimal_vertices_dfs 1 (native.rb_map.mk _ _) (native.rb_map.mk _ _)).fst
 
 /-- Return the list of minimal vertices in a dag -/
-meta def minimal_vertices (d : dag T) (start : native.rb_set T) : native.rb_set T :=
-  native.rb_map.fold
+meta def minimal_vertices (d : dag T) (start : native.rb_set T) : rb_set T :=
+  rb_map.fold
   (start.fold
     ((-- minimal vertices
-      d.vertices.foldl (λ ol t, native.rb_map.insert ol t tt) (native.rb_map.mk T bool),
+      d.vertices.foldl (λ ol t, rb_map.insert ol t tt) (rb_map.mk T bool),
       -- visited
-      d.vertices.foldl (λ ol t, native.rb_map.insert ol t ff) (native.rb_map.mk T bool)) :
-      native.rb_map T bool × native.rb_map T bool)
-    (λ (v : T) (minsvis : native.rb_map T bool × native.rb_map T bool),
+      d.vertices.foldl (λ ol t, rb_map.insert ol t ff) (rb_map.mk T bool)) :
+      rb_map T bool × rb_map T bool)
+    (λ (v : T) (minsvis : rb_map T bool × rb_map T bool),
       if (minsvis.2.find v).get_or_else ff then
         minsvis
       else
         minimal_vertices_dfs d v minsvis.1 minsvis.2)
-  ).fst (native.rb_map.mk _ _) (λ w b ol, if b && start.contains w then ol.insert w else ol)
+  ).fst (rb_map.mk _ _) (λ w b ol, if b && start.contains w then ol.insert w else ol)
 
 meta def merge_el (S : list (list T)) : option (list T) → option (list T) → list (list T)
 | none _ := S
@@ -110,6 +113,7 @@ meta def merge (S : list (list T)) (u v : T) : list (list T) :=
 merge_el S (S.find (λ s : list T, u ∈ s))
            (S.find (λ s : list T, v ∈ s))
 
+variable [inhabited T]
 meta def minimal_vertices_components_dfs (d : dag T) (t : T) : T → rb_map T bool → rb_map T T
   → list (list T) → (rb_map T bool × rb_map T T × list (list T))
 | v minimals visited components :=
@@ -118,7 +122,7 @@ meta def minimal_vertices_components_dfs (d : dag T) (t : T) : T → rb_map T bo
         let fcomps' := merge fcomps t w in
         if h : vis.contains w then
           -- TODO could replace with find_def w
-          (mins.insert w ff, vis, merge fcomps' t (option.get (sorry : (vis.find w).is_some)))
+          (mins.insert w ff, vis, merge fcomps' t (vis.ifind w))
         else
           minimal_vertices_components_dfs w (mins.insert w ff) vis fcomps')
       (minimals, visited.insert v t, components))
@@ -159,12 +163,12 @@ meta def minimal_vertices_with_components (d : dag T) (start : native.rb_set T) 
 /-- Return a topological sort of the DAG. -/
 meta def topological_sort (d : dag T) : list T :=
   (native.rb_map.fold d
-    (([] : list T), d.vertices.foldl (λ ol t, native.rb_map.insert ol t ff) (native.rb_map.mk T bool))
-    (λ v es ⟨stack, vis⟩,
-      if (vis.find v).get_or_else ff then
-        ⟨stack, vis⟩
+    (([] : list T), mk_rb_set)
+    (λ v es stavis,
+      if stavis.snd.contains v then
+        stavis
       else
-        dfs d v stack vis)
+        d.dfs v stavis)
   ).fst
 -- meta def topological_sort' (d : dag T) [has_to_string T]:tactic unit :=
 -- do
