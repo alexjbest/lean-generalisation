@@ -1,0 +1,3026 @@
+WARNING types not equal
+/- Checking 24689 declarations (plus 21688 automatically generated ones) in mathlib (only in imported files) -/
+
+/- The `generalisation_linter` linter reports: -/
+/- typeclass generalisations may be possible: -/
+-- algebra\archimedean.lean
+#print pow_unbounded_of_one_lt /- _inst_1: linear_ordered_ring ↝ ordered_add_comm_group linear_ordered_semiring
+ -/
+#print exists_int_gt /- _inst_1: linear_ordered_ring ↝ has_coe_t linear_ordered_semiring
+ -/
+#print sub_floor_div_mul_nonneg /- _inst_1: linear_ordered_field ↝ group_with_zero has_coe_t linear_ordered_ring
+ -/
+#print sub_floor_div_mul_lt /- _inst_1: linear_ordered_field ↝ group_with_zero has_coe_t linear_ordered_ring
+ -/
+#print exists_rat_gt /- _inst_1: linear_ordered_field ↝ has_coe_t division_ring linear_ordered_semiring
+ -/
+#print exists_rat_lt /- _inst_1: linear_ordered_field ↝ has_coe_t linear_ordered_ring division_ring
+ -/
+#print round /- _inst_1: linear_ordered_field ↝ linear_ordered_ring has_div
+ -/
+
+-- algebra\big_operators\basic.lean
+#print ring_hom.map_multiset_prod /- _inst_1: comm_semiring ↝ has_coe_to_fun comm_monoid semiring
+_inst_2: comm_semiring ↝ has_coe_to_fun comm_monoid semiring
+ -/
+#print ring_hom.map_prod /- _inst_1: comm_semiring ↝ has_coe_to_fun comm_monoid semiring
+_inst_2: comm_semiring ↝ has_coe_to_fun comm_monoid semiring
+ -/
+#print finset.prod_extend_by_one /- _inst_2: decidable_eq ↝ decidable
+ -/
+#print finset.sum_extend_by_zero /- _inst_2: decidable_eq ↝ decidable
+ -/
+#print finset.prod_add_prod_eq /- _inst_1: comm_semiring ↝ comm_monoid distrib
+ -/
+#print finset.prod_inv_distrib /- _inst_1: comm_group ↝ has_inv is_group_hom comm_monoid
+ -/
+#print finset.sum_neg_distrib /- _inst_1: add_comm_group ↝ add_comm_monoid has_neg is_add_group_hom
+ -/
+#print finset.gsmul_sum /- _inst_1: add_comm_group ↝ add_comm_monoid add_group
+ -/
+#print finset.prod_eq_zero /- _inst_1: comm_monoid_with_zero ↝ comm_monoid mul_zero_class
+ -/
+#print finset.prod_eq_zero_iff /- _inst_1: comm_monoid_with_zero ↝ monoid_with_zero comm_monoid
+ -/
+#print finset.prod_inv_distrib' /- _inst_1: comm_group_with_zero ↝ group_with_zero comm_monoid_with_zero
+ -/
+#print int.coe_prod /- _inst_1: comm_ring ↝ has_coe_t ring comm_semiring
+ -/
+#print units.coe_prod /- _inst_1: comm_monoid ↝ comm_group has_coe
+ -/
+
+-- algebra\big_operators\intervals.lean
+#print finset.sum_Ico_eq_add_neg /- _inst_2: add_comm_group ↝ add_comm_monoid add_group
+ -/
+#print finset.prod_Ico_eq_mul_inv /- _inst_2: comm_group ↝ group comm_monoid
+ -/
+
+-- algebra\big_operators\order.lean
+#print finset.abs_sum_le_sum_abs /- _inst_1: linear_ordered_field ↝ linear_ordered_add_comm_group
+ -/
+#print finset.abs_prod /- _inst_1: linear_ordered_comm_ring ↝ comm_monoid linear_ordered_ring
+ -/
+#print finset.exists_lt_of_sum_lt /- _inst_1: linear_ordered_cancel_add_comm_monoid ↝ ordered_add_comm_monoid linear_order
+ -/
+#print finset.exists_le_of_sum_le /- _inst_1: linear_ordered_cancel_add_comm_monoid ↝ linear_order ordered_cancel_add_comm_monoid
+ -/
+#print finset.exists_pos_of_sum_zero_of_exists_nonzero /- _inst_1: linear_ordered_cancel_add_comm_monoid ↝ linear_order ordered_cancel_add_comm_monoid
+ -/
+#print finset.prod_nonneg /- _inst_1: linear_ordered_comm_ring ↝ comm_monoid ordered_semiring
+ -/
+#print finset.prod_pos /- _inst_1: linear_ordered_comm_ring ↝ nontrivial comm_monoid ordered_semiring
+ -/
+
+-- algebra\big_operators\ring.lean
+#print finset.sum_mul /- _inst_1: semiring ↝ add_comm_monoid has_mul
+ -/
+#print finset.mul_sum /- _inst_1: semiring ↝ add_comm_monoid has_mul
+ -/
+#print finset.sum_div /- _inst_1: division_ring ↝ group_with_zero semiring
+ -/
+#print finset.prod_sum /- _inst_1: comm_semiring ↝ comm_monoid semiring
+ -/
+#print finset.sum_mul_sum /- _inst_1: comm_semiring ↝ semiring
+ -/
+#print finset.prod_pow_eq_pow_sum /- _inst_1: comm_semiring ↝ comm_monoid
+ -/
+
+-- algebra\char_p.lean
+#print char_p.int_cast_eq_zero_iff /- _inst_1: ring ↝ has_coe_t add_group semiring
+ -/
+#print add_pow_char_of_commute /- _inst_1: ring ↝ has_coe_t semiring add_left_cancel_semigroup
+ -/
+#print add_pow_char /- _inst_1: comm_ring ↝ comm_semigroup ring
+ -/
+#print add_pow_char_pow /- _inst_1: comm_ring ↝ comm_semigroup ring
+ -/
+#print sub_pow_char /- _inst_1: comm_ring ↝ comm_semigroup ring
+ -/
+#print sub_pow_char_pow /- _inst_1: comm_ring ↝ comm_semigroup ring
+ -/
+#print char_p.neg_one_ne_one /- _inst_1: ring ↝ has_coe_t add_group semiring
+ -/
+#print ring_hom.char_p_iff_char_p /- _inst_1: field ↝ has_coe_t has_coe_to_fun division_ring
+_inst_2: field ↝ nontrivial has_coe_t has_coe_to_fun semiring
+ -/
+#print frobenius_inj /- _inst_1: integral_domain ↝ has_coe_to_fun comm_ring no_zero_divisors
+ -/
+#print char_p.char_p_to_char_zero /- _inst_1: ring ↝ has_coe_t add_left_cancel_monoid semiring
+ -/
+#print char_p.cast_eq_mod /- _inst_1: ring ↝ has_coe_t semiring
+ -/
+#print char_p.char_ne_one /- _inst_1: integral_domain ↝ nontrivial has_coe_t semiring
+ -/
+#print char_p.char_is_prime_of_two_le /- _inst_1: integral_domain ↝ has_coe_t no_zero_divisors semiring
+ -/
+#print char_p.false_of_nontrivial_of_char_one /- _inst_3: char_p ↝ subsingleton
+ -/
+#print char_p_of_ne_zero /- _inst_1: comm_ring ↝ has_coe_t ring
+ -/
+#print char_p_of_prime_pow_injective /- _inst_1: comm_ring ↝ has_coe_t ring
+ -/
+
+-- algebra\char_zero.lean
+#print char_zero_of_inj_zero /- _inst_1: add_left_cancel_monoid ↝ add_monoid has_coe_t add_left_cancel_semigroup
+ -/
+#print half_add_self /- _inst_1: division_ring ↝ group_with_zero semiring
+ -/
+
+-- algebra\divisibility.lean
+#print monoid_has_dvd /- _inst_1: monoid ↝ has_mul
+ -/
+#print dvd.intro /- _inst_1: monoid ↝ has_dvd has_mul
+ -/
+#print exists_eq_mul_right_of_dvd /- _inst_1: monoid ↝ has_dvd has_mul
+ -/
+#print dvd.elim /- _inst_1: monoid ↝ has_dvd has_mul
+ -/
+#print dvd_trans /- _inst_1: monoid ↝ semigroup has_dvd
+ -/
+#print dvd.intro_left /- _inst_1: comm_monoid ↝ monoid comm_semigroup
+ -/
+#print exists_eq_mul_left_of_dvd /- _inst_1: comm_monoid ↝ monoid comm_semigroup
+ -/
+#print dvd_mul_left /- _inst_1: comm_monoid ↝ monoid comm_semigroup
+ -/
+#print dvd_mul_of_dvd_right /- _inst_1: comm_monoid ↝ monoid comm_semigroup
+ -/
+#print dvd_of_mul_left_dvd /- _inst_1: comm_monoid ↝ monoid comm_semigroup
+ -/
+#print eq_zero_of_zero_dvd /- _inst_1: monoid_with_zero ↝ monoid mul_zero_class
+ -/
+#print dvd_zero /- _inst_1: monoid_with_zero ↝ monoid mul_zero_class
+ -/
+#print mul_dvd_mul_iff_right /- _inst_1: comm_cancel_monoid_with_zero ↝ cancel_monoid_with_zero comm_semigroup
+ -/
+#print units.coe_dvd /- _inst_1: monoid ↝ group has_coe
+ -/
+#print units.dvd_mul_right /- _inst_1: monoid ↝ group has_coe
+ -/
+#print units.mul_right_dvd /- _inst_1: monoid ↝ group has_coe
+ -/
+#print units.dvd_mul_left /- _inst_1: comm_monoid ↝ monoid comm_semigroup has_coe
+ -/
+#print units.mul_left_dvd /- _inst_1: comm_monoid ↝ monoid comm_semigroup has_coe
+ -/
+#print dvd_not_unit /- _inst_1: comm_monoid_with_zero ↝ monoid has_zero
+ -/
+
+-- algebra\field.lean
+#print division_ring_has_div /- _inst_1: division_ring ↝ has_inv has_mul
+ -/
+#print inverse_eq_has_inv /- _inst_1: division_ring ↝ group_with_zero ring
+ -/
+#print inv_eq_one_div /- _inst_1: division_ring ↝ group_with_zero
+ -/
+#print mul_div_assoc' /- _inst_1: division_ring ↝ group_with_zero
+ -/
+#print one_div_neg_one_eq_neg_one /- _inst_1: division_ring ↝ group_with_zero ring
+ -/
+#print neg_div /- _inst_1: division_ring ↝ group_with_zero ring
+ -/
+#print div_add_div_same /- _inst_1: division_ring ↝ has_inv distrib has_div
+ -/
+#print one_div_mul_add_mul_one_div_eq_one_div_add_one_div /- _inst_1: division_ring ↝ group_with_zero add_comm_semigroup distrib
+ -/
+#print one_div_mul_sub_mul_one_div_eq_one_div_add_one_div /- _inst_1: division_ring ↝ group_with_zero ring
+ -/
+#print add_div_eq_mul_add_div /- _inst_1: division_ring ↝ group_with_zero distrib
+ -/
+#print one_div_add_one_div /- _inst_1: field ↝ add_comm_semigroup distrib comm_group_with_zero
+ -/
+#print div_add_div /- _inst_1: field ↝ division_ring comm_group_with_zero
+ -/
+#print ring_hom.map_units_inv /- _inst_2: division_ring ↝ group_with_zero semiring has_coe
+ -/
+#print ring_hom.map_ne_zero /- _inst_1: division_ring ↝ group_with_zero has_coe_to_fun semiring
+ -/
+#print ring_hom.map_eq_zero /- _inst_1: division_ring ↝ group_with_zero has_coe_to_fun semiring
+ -/
+#print ring_hom.map_inv /- _inst_1: division_ring ↝ group_with_zero has_coe_to_fun semiring
+_inst_4: division_ring ↝ group_with_zero has_coe_to_fun semiring
+ -/
+#print ring_hom.map_div /- _inst_1: division_ring ↝ group_with_zero has_coe_to_fun semiring
+_inst_4: division_ring ↝ group_with_zero has_coe_to_fun semiring
+ -/
+
+-- algebra\field_power.lean
+#print ring_hom.map_fpow /- _inst_1: division_ring ↝ group_with_zero has_coe_to_fun semiring
+_inst_2: division_ring ↝ group_with_zero has_coe_to_fun semiring
+ -/
+#print neg_fpow_bit0 /- _inst_1: division_ring ↝ group_with_zero ring
+ -/
+#print neg_fpow_bit1 /- _inst_1: division_ring ↝ group_with_zero ring
+ -/
+#print one_lt_fpow /- _inst_1: linear_ordered_field ↝ linear_ordered_semiring
+ -/
+#print rat.cast_fpow /- _inst_1: field ↝ has_coe_t division_ring
+ -/
+
+-- algebra\floor.lean
+#print abs_sub_lt_one_of_floor_eq_floor /- _inst_3: linear_ordered_comm_ring ↝ has_coe_t linear_ordered_ring comm_ring
+ -/
+
+-- algebra\group\basic.lean
+#print neg_unique /- _inst_1: add_comm_monoid ↝ add_monoid add_comm_semigroup
+ -/
+#print inv_unique /- _inst_1: comm_monoid ↝ monoid comm_semigroup
+ -/
+#print eq_zero_of_add_self_left_cancel /- _inst_1: add_left_cancel_monoid ↝ add_monoid add_left_cancel_semigroup
+ -/
+#print eq_one_of_mul_self_left_cancel /- _inst_1: left_cancel_monoid ↝ left_cancel_semigroup monoid
+ -/
+#print eq_one_of_left_cancel_mul_self /- _inst_1: left_cancel_monoid ↝ left_cancel_semigroup monoid
+ -/
+#print eq_zero_of_left_cancel_add_self /- _inst_1: add_left_cancel_monoid ↝ add_monoid add_left_cancel_semigroup
+ -/
+#print eq_one_of_mul_self_right_cancel /- _inst_1: right_cancel_monoid ↝ right_cancel_semigroup monoid
+ -/
+#print eq_zero_of_add_self_right_cancel /- _inst_1: add_right_cancel_monoid ↝ add_monoid add_right_cancel_semigroup
+ -/
+#print eq_zero_of_right_cancel_add_self /- _inst_1: add_right_cancel_monoid ↝ add_monoid add_right_cancel_semigroup
+ -/
+#print eq_one_of_right_cancel_mul_self /- _inst_1: right_cancel_monoid ↝ right_cancel_semigroup monoid
+ -/
+#print add_self_iff_eq_zero /- _inst_1: add_group ↝ add_monoid add_left_cancel_semigroup
+ -/
+#print mul_self_iff_eq_one /- _inst_1: group ↝ left_cancel_semigroup monoid
+ -/
+#print mul_left_eq_self /- _inst_1: group ↝ right_cancel_semigroup monoid
+ -/
+#print add_left_eq_self /- _inst_1: add_group ↝ add_monoid add_right_cancel_semigroup
+ -/
+#print mul_right_eq_self /- _inst_1: group ↝ left_cancel_semigroup monoid
+ -/
+#print add_right_eq_self /- _inst_1: add_group ↝ add_monoid add_left_cancel_semigroup
+ -/
+#print zero_sub /- _inst_1: add_group ↝ has_sub add_monoid has_neg
+ -/
+#print sub_left_inj /- _inst_1: add_group ↝ has_sub add_right_cancel_semigroup has_neg
+ -/
+#print neg_add /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print mul_inv /- _inst_1: comm_group ↝ comm_semigroup group
+ -/
+#print sub_add_eq_sub_sub /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print neg_add_eq_sub /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print sub_add_eq_add_sub /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print sub_sub /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print sub_add /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print add_sub_add_left_eq_sub /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print eq_sub_of_add_eq' /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print sub_eq_of_eq_add' /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print eq_add_of_sub_eq' /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print add_eq_of_eq_sub' /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print sub_sub_self /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print add_sub_comm /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print sub_eq_sub_add_sub /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print neg_neg_sub_neg /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print sub_eq_neg_add /- _inst_1: add_comm_group ↝ has_sub add_comm_semigroup has_neg
+ -/
+#print eq_sub_iff_add_eq' /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print sub_eq_iff_eq_add' /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print sub_right_comm /- _inst_1: add_comm_group ↝ has_sub add_comm_semigroup has_neg
+ -/
+#print sub_add_add_cancel /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print sub_add_sub_cancel' /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print sub_sub_sub_cancel_left /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+
+-- algebra\group\commute.lean
+#print commute.units_inv_right /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_commute.units_neg_right /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print add_commute.units_neg_right_iff /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print commute.units_inv_right_iff /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_commute.units_neg_left /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print commute.units_inv_left /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_commute.units_neg_left_iff /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print commute.units_inv_left_iff /- _inst_1: monoid ↝ group has_coe
+ -/
+#print commute.units_coe /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_commute.units_coe /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print commute.units_of_coe /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_commute.units_of_coe /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print commute.units_coe_iff /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_commute.units_coe_iff /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print add_neg_cancel_comm /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print mul_inv_cancel_comm /- _inst_1: comm_group ↝ comm_semigroup group
+ -/
+#print add_neg_cancel_comm_assoc /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print mul_inv_cancel_comm_assoc /- _inst_1: comm_group ↝ comm_semigroup group
+ -/
+#print neg_add_cancel_comm /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print inv_mul_cancel_comm /- _inst_1: comm_group ↝ comm_semigroup group
+ -/
+#print inv_mul_cancel_comm_assoc /- _inst_1: comm_group ↝ comm_semigroup group
+ -/
+#print neg_add_cancel_comm_assoc /- _inst_1: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+
+-- algebra\group\conj.lean
+#print is_conj /- _inst_1: group ↝ has_inv has_mul
+ -/
+#print is_conj_iff_eq /- _inst_3: comm_group ↝ comm_semigroup group
+ -/
+
+-- algebra\group\defs.lean
+#print algebra.sub /- _inst_1: add_group ↝ has_neg has_add
+ -/
+#print sub_eq_add_neg /- _inst_1: add_group ↝ has_sub has_neg has_add
+ -/
+
+-- algebra\group\hom.lean
+#print mul_hom.inhabited /- _inst_2: monoid ↝ has_one has_mul
+ -/
+#print add_hom.inhabited /- _inst_2: add_monoid ↝ has_zero has_add
+ -/
+#print monoid_hom.eval /- _inst_3: monoid ↝ comm_monoid
+ -/
+#print add_monoid_hom.eval /- _inst_3: add_monoid ↝ add_comm_monoid
+ -/
+#print monoid_hom.eval_apply /- _inst_3: monoid ↝ has_coe_to_fun comm_monoid
+ -/
+#print add_monoid_hom.eval_apply /- _inst_3: add_monoid ↝ add_comm_monoid has_coe_to_fun
+ -/
+#print add_monoid_hom.add_comm_group /- _inst_3: add_monoid ↝ add_comm_monoid has_neg
+ -/
+#print monoid_hom.comm_group /- _inst_3: monoid ↝ has_inv comm_monoid
+ -/
+
+-- algebra\group\semiconj.lean
+#print add_semiconj_by.add_right /- _inst_1: add_semigroup ↝ has_add is_associative
+ -/
+#print semiconj_by.mul_right /- _inst_1: semigroup ↝ is_associative has_mul
+ -/
+#print add_semiconj_by.units_neg_right /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print semiconj_by.units_inv_right /- _inst_1: monoid ↝ group has_coe
+ -/
+#print semiconj_by.units_inv_right_iff /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_semiconj_by.units_neg_right_iff /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print semiconj_by.units_inv_symm_left /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_semiconj_by.units_neg_symm_left /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print add_semiconj_by.units_neg_symm_left_iff /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print semiconj_by.units_inv_symm_left_iff /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_semiconj_by.units_coe /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print semiconj_by.units_coe /- _inst_1: monoid ↝ group has_coe
+ -/
+#print semiconj_by.units_of_coe /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_semiconj_by.units_of_coe /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print add_semiconj_by.units_coe_iff /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print semiconj_by.units_coe_iff /- _inst_1: monoid ↝ group has_coe
+ -/
+#print units.mk_semiconj_by /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.mk_semiconj_by /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+
+-- algebra\group\units.lean
+#print units.coe_mul /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.coe_add /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print add_units.coe_zero /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.coe_one /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.coe_eq_zero /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.coe_eq_one /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.coe_neg /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.coe_inv /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.neg_add /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.inv_mul /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.add_neg /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.mul_inv /- _inst_1: monoid ↝ group has_coe
+ -/
+#print units.inv_mul_of_eq /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.neg_add_of_eq /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.mul_inv_of_eq /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.add_neg_of_eq /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.mul_inv_cancel_left /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.add_neg_cancel_left /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print add_units.neg_add_cancel_left /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.inv_mul_cancel_left /- _inst_1: monoid ↝ group has_coe
+ -/
+#print units.mul_inv_cancel_right /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.add_neg_cancel_right /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.inv_mul_cancel_right /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.neg_add_cancel_right /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print add_units.inhabited /- _inst_1: add_monoid ↝ add_group
+ -/
+#print units.inhabited /- _inst_1: monoid ↝ group
+ -/
+#print units.mul_right_inj /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.add_right_inj /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print add_units.add_left_inj /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.mul_left_inj /- _inst_1: monoid ↝ group has_coe
+ -/
+#print units.eq_mul_inv_iff_mul_eq /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.eq_add_neg_iff_add_eq /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print add_units.eq_neg_add_iff_add_eq /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.eq_inv_mul_iff_mul_eq /- _inst_1: monoid ↝ group has_coe
+ -/
+#print units.inv_mul_eq_iff_eq_mul /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.neg_add_eq_iff_eq_add /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print add_units.add_neg_eq_iff_eq_add /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.mul_inv_eq_iff_eq_mul /- _inst_1: monoid ↝ group has_coe
+ -/
+#print units.inv_eq_of_mul_eq_one /- _inst_1: monoid ↝ group has_coe
+ -/
+#print units.inv_unique /- _inst_1: monoid ↝ group has_coe
+ -/
+#print divp /- _inst_1: monoid ↝ group has_coe
+ -/
+#print divp_one /- _inst_1: monoid ↝ group
+ -/
+#print divp_assoc /- _inst_1: monoid ↝ group has_coe
+ -/
+#print divp_inv /- _inst_1: monoid ↝ group has_coe
+ -/
+#print divp_mul_cancel /- _inst_1: monoid ↝ group has_coe
+ -/
+#print mul_divp_cancel /- _inst_1: monoid ↝ group has_coe
+ -/
+#print divp_left_inj /- _inst_1: monoid ↝ group
+ -/
+#print divp_divp_eq_divp_mul /- _inst_1: monoid ↝ group has_coe
+ -/
+#print one_divp /- _inst_1: monoid ↝ group has_coe
+ -/
+#print divp_eq_divp_iff /- _inst_1: comm_monoid ↝ monoid comm_semigroup has_coe
+ -/
+#print divp_mul_divp /- _inst_1: comm_monoid ↝ comm_semigroup group
+ -/
+#print is_add_unit_zero /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print is_unit_one /- _inst_1: monoid ↝ group has_coe
+ -/
+#print units.is_unit_mul_units /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.is_add_unit_add_add_units /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print is_unit.mul /- _inst_1: monoid ↝ group has_coe
+ -/
+
+-- algebra\group\units_hom.lean
+#print add_units.map /- _inst_1: add_monoid ↝ has_coe_to_fun add_group
+_inst_2: add_monoid ↝ has_coe_to_fun add_group
+ -/
+#print units.map /- _inst_1: monoid ↝ has_coe_to_fun group
+_inst_2: monoid ↝ has_coe_to_fun group
+ -/
+#print add_units.coe_map /- _inst_1: add_monoid ↝ add_group has_coe
+_inst_2: add_monoid ↝ add_group has_coe
+ -/
+#print units.coe_map /- _inst_1: monoid ↝ group has_coe
+_inst_2: monoid ↝ group has_coe
+ -/
+#print units.map_comp /- _inst_1: monoid ↝ group
+_inst_2: monoid ↝ group
+_inst_3: monoid ↝ group
+ -/
+#print add_units.map_comp /- _inst_1: add_monoid ↝ add_group
+_inst_2: add_monoid ↝ add_group
+_inst_3: add_monoid ↝ add_group
+ -/
+#print add_units.map_id /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.map_id /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.coe_hom /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.coe_hom /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.coe_hom_apply /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.coe_hom_apply /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.lift_right /- _inst_2: add_monoid ↝ add_group has_coe
+ -/
+#print units.lift_right /- _inst_2: monoid ↝ group has_coe
+ -/
+#print units.coe_lift_right /- _inst_2: monoid ↝ group has_coe
+ -/
+#print add_units.coe_lift_right /- _inst_2: add_monoid ↝ add_group has_coe
+ -/
+#print units.mul_lift_right_inv /- _inst_2: monoid ↝ group has_coe
+ -/
+#print add_units.add_lift_right_neg /- _inst_2: add_monoid ↝ add_group has_coe
+ -/
+#print units.lift_right_inv_mul /- _inst_2: monoid ↝ group has_coe
+ -/
+#print add_units.lift_right_neg_add /- _inst_2: add_monoid ↝ add_group has_coe
+ -/
+#print monoid_hom.to_hom_units /- _inst_2: monoid ↝ has_coe_to_fun group
+ -/
+#print add_monoid_hom.to_hom_units /- _inst_2: add_monoid ↝ has_coe_to_fun add_group
+ -/
+#print monoid_hom.coe_to_hom_units /- _inst_2: monoid ↝ group has_coe
+ -/
+#print is_add_unit.map /- _inst_1: add_monoid ↝ add_group has_coe
+_inst_2: add_monoid ↝ has_coe_to_fun add_group
+ -/
+#print is_unit.map /- _inst_1: monoid ↝ group has_coe
+_inst_2: monoid ↝ has_coe_to_fun group
+ -/
+#print is_add_unit.lift_right /- _inst_2: add_monoid ↝ add_group has_coe
+ -/
+#print is_unit.lift_right /- _inst_2: monoid ↝ group has_coe
+ -/
+#print is_add_unit.coe_lift_right /- _inst_2: add_monoid ↝ add_group has_coe
+ -/
+#print is_unit.coe_lift_right /- _inst_2: monoid ↝ group has_coe
+ -/
+#print is_add_unit.add_lift_right_neg /- _inst_2: add_monoid ↝ add_group has_coe
+ -/
+#print is_unit.mul_lift_right_inv /- _inst_2: monoid ↝ group has_coe
+ -/
+#print is_add_unit.lift_right_neg_add /- _inst_2: add_monoid ↝ add_group has_coe
+ -/
+#print is_unit.lift_right_inv_mul /- _inst_2: monoid ↝ group has_coe
+ -/
+
+-- algebra\group\with_one.lean
+#print with_zero.nontrivial /- _inst_1: nonempty ↝ nontrivial
+ -/
+#print with_one.nontrivial /- _inst_1: nonempty ↝ nontrivial
+ -/
+#print with_one.lift /- _inst_1: semigroup ↝ monoid has_coe_to_fun
+ -/
+#print with_zero.lift /- _inst_1: add_semigroup ↝ add_monoid has_coe_to_fun
+ -/
+#print with_one.lift_coe /- _inst_1: semigroup ↝ monoid has_coe_to_fun
+ -/
+#print with_zero.lift_coe /- _inst_1: add_semigroup ↝ add_monoid has_coe_to_fun
+ -/
+#print with_one.lift_one /- _inst_1: semigroup ↝ monoid
+ -/
+#print with_zero.lift_zero /- _inst_1: add_semigroup ↝ add_monoid
+ -/
+#print with_one.lift_unique /- _inst_1: semigroup ↝ monoid
+ -/
+#print with_zero.lift_unique /- _inst_1: add_semigroup ↝ add_monoid
+ -/
+#print with_zero.map /- _inst_1: add_semigroup ↝ add_monoid
+_inst_2: add_semigroup ↝ add_monoid
+ -/
+#print with_one.map /- _inst_1: semigroup ↝ monoid
+_inst_2: semigroup ↝ monoid
+ -/
+#print with_zero.coe_mul /- _inst_1: has_mul ↝ mul_zero_class
+ -/
+#print with_zero.zero_mul /- _inst_1: has_mul ↝ mul_zero_class
+ -/
+#print with_zero.mul_zero /- _inst_1: has_mul ↝ mul_zero_class
+ -/
+#print with_zero.div_coe /- _inst_1: group ↝ group_with_zero
+ -/
+
+-- algebra\group_power\basic.lean
+#print monoid.has_pow /- _inst_1: monoid ↝ has_one has_mul
+ -/
+#print monoid.pow_eq_has_pow /- _inst_1: monoid ↝ has_one has_mul has_pow
+ -/
+#print pow_zero /- _inst_1: monoid ↝ has_one has_pow
+ -/
+#print zero_nsmul /- _inst_3: add_monoid ↝ has_zero has_add
+ -/
+#print pow_succ /- _inst_1: monoid ↝ has_mul has_pow
+ -/
+#print succ_nsmul /- _inst_3: add_monoid ↝ has_zero has_add
+ -/
+#print pow_ite /- _inst_1: monoid ↝ has_pow
+ -/
+#print ite_pow /- _inst_1: monoid ↝ has_pow
+ -/
+#print mul_pow /- _inst_1: comm_monoid ↝ monoid comm_semigroup
+ -/
+#print dvd_pow /- _inst_1: comm_monoid ↝ monoid
+ -/
+#print gpow_coe_nat /- _inst_1: group ↝ has_pow
+ -/
+#print gpow_of_nat /- _inst_1: group ↝ has_pow
+ -/
+#print gpow_neg_succ_of_nat /- _inst_1: group ↝ has_inv has_pow
+ -/
+#print gpow_zero /- _inst_1: group ↝ has_one has_pow
+ -/
+#print gpow_one /- _inst_1: group ↝ monoid
+ -/
+#print gpow_neg_one /- _inst_1: group ↝ has_inv monoid
+ -/
+#print mul_gpow /- _inst_1: comm_group ↝ comm_semigroup group
+ -/
+#print zero_pow /- _inst_1: monoid_with_zero ↝ has_one mul_zero_class has_pow
+ -/
+#print pow_two_sub_pow_two /- _inst_1: comm_ring ↝ comm_semigroup ring
+ -/
+#print eq_or_eq_neg_of_pow_two_eq_pow_two /- _inst_1: integral_domain ↝ comm_ring no_zero_divisors
+ -/
+#print pow_eq_zero /- _inst_1: monoid_with_zero ↝ monoid mul_zero_class
+ -/
+#print pow_abs /- _inst_1: linear_ordered_comm_ring ↝ linear_ordered_ring
+ -/
+#print gsmul_nonneg /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+
+-- algebra\group_power\lemmas.lean
+#print units.coe_pow /- _inst_1: monoid ↝ group has_coe
+ -/
+#print gsmul_pos /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print gsmul_le_gsmul_iff /- _inst_1: linear_ordered_add_comm_group ↝ ordered_add_comm_group
+ -/
+#print gsmul_lt_gsmul_iff /- _inst_1: linear_ordered_add_comm_group ↝ ordered_add_comm_group
+ -/
+#print nsmul_le_nsmul_iff /- _inst_1: linear_ordered_add_comm_group ↝ ordered_cancel_add_comm_monoid
+ -/
+#print nsmul_lt_nsmul_iff /- _inst_1: linear_ordered_add_comm_group ↝ ordered_cancel_add_comm_monoid
+ -/
+#print nsmul_eq_mul' /- _inst_1: semiring ↝ add_monoid monoid has_coe_t distrib mul_zero_class
+ -/
+#print bit0_mul /- _inst_1: ring ↝ distrib add_group
+ -/
+#print mul_bit0 /- _inst_1: ring ↝ distrib add_group
+ -/
+#print semiconj_by.units_gpow_right /- _inst_1: monoid ↝ group has_coe
+ -/
+#print commute.units_gpow_right /- _inst_1: monoid ↝ group has_coe
+ -/
+#print commute.units_gpow_left /- _inst_1: monoid ↝ group has_coe
+ -/
+#print units.conj_pow /- _inst_1: monoid ↝ group has_coe
+ -/
+#print units.conj_pow' /- _inst_1: monoid ↝ group has_coe
+ -/
+
+-- algebra\group_with_zero\basic.lean
+#print zero_ne_one /- _inst_1: monoid_with_zero ↝ monoid mul_zero_class
+ -/
+#print group_with_zero.has_div /- _inst_1: group_with_zero ↝ has_inv has_mul
+ -/
+#print units.mul_left_eq_zero /- _inst_1: monoid_with_zero ↝ group mul_zero_class has_coe
+ -/
+#print units.mul_right_eq_zero /- _inst_1: monoid_with_zero ↝ group mul_zero_class has_coe
+ -/
+#print eq_zero_of_zero_eq_one /- _inst_1: monoid_with_zero ↝ monoid mul_zero_class
+ -/
+#print div_eq_mul_inv /- _inst_1: group_with_zero ↝ has_inv has_mul has_div
+ -/
+#print one_div /- _inst_1: group_with_zero ↝ has_inv monoid has_div
+ -/
+#print zero_div /- _inst_1: group_with_zero ↝ has_inv mul_zero_class has_div
+ -/
+#print mul_div_assoc /- _inst_1: group_with_zero ↝ semigroup has_inv has_div
+ -/
+#print mul_inv' /- _inst_1: comm_group_with_zero ↝ group_with_zero comm_semigroup
+ -/
+#print one_div_mul_one_div /- _inst_1: comm_group_with_zero ↝ group_with_zero comm_semigroup
+ -/
+#print div_mul_right /- _inst_1: comm_group_with_zero ↝ group_with_zero comm_semigroup
+ -/
+#print mul_div_cancel_left_of_imp /- _inst_1: comm_group_with_zero ↝ group_with_zero comm_semigroup
+ -/
+#print mul_div_cancel_of_imp' /- _inst_1: comm_group_with_zero ↝ group_with_zero comm_semigroup
+ -/
+#print mul_div_cancel' /- _inst_1: comm_group_with_zero ↝ group_with_zero comm_semigroup
+ -/
+#print mul_div_mul_left /- _inst_1: comm_group_with_zero ↝ group_with_zero comm_semigroup
+ -/
+#print div_mul_eq_mul_div /- _inst_1: comm_group_with_zero ↝ group_with_zero comm_semigroup
+ -/
+#print div_div_eq_mul_div /- _inst_1: comm_group_with_zero ↝ group_with_zero
+ -/
+#print ne_zero_of_one_div_ne_zero /- _inst_1: comm_group_with_zero ↝ group_with_zero
+ -/
+#print eq_zero_of_one_div_eq_zero /- _inst_1: comm_group_with_zero ↝ group_with_zero
+ -/
+#print div_eq_inv_mul /- _inst_1: comm_group_with_zero ↝ has_inv comm_semigroup has_div
+ -/
+#print mul_div_right_comm /- _inst_1: comm_group_with_zero ↝ group_with_zero comm_semigroup
+ -/
+#print mul_div_comm /- _inst_1: comm_group_with_zero ↝ group_with_zero comm_semigroup
+ -/
+#print div_mul_div_cancel /- _inst_1: comm_group_with_zero ↝ group_with_zero
+ -/
+#print div_eq_div_iff /- _inst_1: comm_group_with_zero ↝ group_with_zero comm_semigroup
+ -/
+#print monoid_hom.map_units_inv /- _inst_1: monoid ↝ group has_coe
+ -/
+
+-- algebra\group_with_zero\power.lean
+#print zero_pow' /- _inst_1: monoid_with_zero ↝ has_one mul_zero_class has_pow
+ -/
+#print pow_eq_zero' /- _inst_1: monoid_with_zero ↝ monoid mul_zero_class
+ -/
+#print fpow_coe_nat /- _inst_1: group_with_zero ↝ has_pow
+ -/
+#print fpow_of_nat /- _inst_1: group_with_zero ↝ has_pow
+ -/
+#print fpow_neg_succ_of_nat /- _inst_1: group_with_zero ↝ has_inv has_pow
+ -/
+#print fpow_zero /- _inst_1: group_with_zero ↝ has_one has_pow
+ -/
+#print fpow_one /- _inst_1: group_with_zero ↝ monoid
+ -/
+#print fpow_neg_one /- _inst_1: group_with_zero ↝ has_inv monoid
+ -/
+#print mul_fpow /- _inst_2: comm_group_with_zero ↝ group_with_zero comm_semigroup
+ -/
+#print div_pow /- _inst_1: comm_group_with_zero ↝ group_with_zero comm_monoid
+ -/
+
+-- algebra\iterate_hom.lean
+#print ring_hom.iterate_map_sub /- _inst_1: ring ↝ has_coe_to_fun add_group semiring
+ -/
+#print ring_hom.iterate_map_neg /- _inst_1: ring ↝ has_coe_to_fun add_group semiring
+ -/
+#print ring_hom.iterate_map_gsmul /- _inst_1: ring ↝ has_coe_to_fun add_group semiring
+ -/
+
+-- algebra\linear_ordered_comm_group_with_zero.lean
+#print one_le_pow_of_one_le' /- _inst_1: linear_ordered_comm_group_with_zero ↝ ordered_comm_monoid
+ -/
+#print pow_le_one_of_le_one /- _inst_1: linear_ordered_comm_group_with_zero ↝ ordered_comm_monoid
+ -/
+#print le_of_le_mul_right /- _inst_1: linear_ordered_comm_group_with_zero ↝ ordered_comm_monoid group_with_zero
+ -/
+#print inv_lt_inv'' /- _inst_1: linear_ordered_comm_group_with_zero ↝ group_with_zero ordered_comm_group
+ -/
+#print inv_le_inv'' /- _inst_1: linear_ordered_comm_group_with_zero ↝ group_with_zero ordered_comm_group
+ -/
+
+-- algebra\module\basic.lean
+#print module /- _inst_1: ring ↝ semiring
+_inst_2: add_comm_group ↝ add_comm_monoid
+ -/
+#print smul_eq_zero /- _inst_4: division_ring ↝ group_with_zero ring has_coe
+ -/
+#print smul_eq_mul /- _inst_1: semiring ↝ has_scalar has_mul
+ -/
+#print vector_space /- _inst_1: field ↝ semiring
+_inst_2: add_comm_group ↝ add_comm_monoid
+ -/
+#print gsmul_eq_smul /- _inst_1: add_comm_group ↝ add_comm_monoid module add_group
+ -/
+
+-- algebra\order.lean
+#print ge_iff_le /- _inst_1: preorder ↝ has_le
+ -/
+#print gt_iff_lt /- _inst_1: preorder ↝ has_lt
+ -/
+#print cmp_eq_cmp_symm /- _inst_1: linear_order ↝ decidable preorder
+_inst_2: linear_order ↝ decidable preorder
+ -/
+
+-- algebra\ordered_field.lean
+#print inv_pos /- _inst_1: linear_ordered_field ↝ group_with_zero linear_ordered_semiring
+ -/
+#print add_halves /- _inst_1: linear_ordered_field ↝ ordered_semiring division_ring comm_group_with_zero
+ -/
+#print add_self_div_two /- _inst_1: linear_ordered_field ↝ group_with_zero ordered_semiring
+ -/
+#print mul_sub_mul_div_mul_neg_iff /- _inst_1: linear_ordered_field ↝ field ordered_add_comm_group
+ -/
+#print mul_sub_mul_div_mul_nonpos_iff /- _inst_1: linear_ordered_field ↝ field ordered_add_comm_group
+ -/
+#print mul_self_inj_of_nonneg /- _inst_1: linear_ordered_field ↝ ordered_add_comm_group integral_domain
+ -/
+#print abs_div /- _inst_1: linear_ordered_field ↝ group_with_zero linear_ordered_ring
+ -/
+#print abs_inv /- _inst_1: linear_ordered_field ↝ group_with_zero linear_ordered_ring
+ -/
+
+-- algebra\ordered_group.lean
+#print inv_le_inv' /- _inst_1: ordered_comm_group ↝ ordered_comm_monoid group
+ -/
+#print neg_le_neg /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print inv_lt_inv' /- _inst_1: ordered_comm_group ↝ ordered_cancel_comm_monoid group
+ -/
+#print neg_lt_neg /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print mul_le_of_le_inv_mul /- _inst_1: ordered_comm_group ↝ ordered_comm_monoid group
+ -/
+#print add_le_of_le_neg_add /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print le_neg_add_of_add_le /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print le_inv_mul_of_mul_le /- _inst_1: ordered_comm_group ↝ ordered_comm_monoid group
+ -/
+#print le_add_of_neg_add_le /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print le_mul_of_inv_mul_le /- _inst_1: ordered_comm_group ↝ ordered_comm_monoid group
+ -/
+#print inv_mul_le_of_le_mul /- _inst_1: ordered_comm_group ↝ ordered_comm_monoid group
+ -/
+#print neg_add_le_of_le_add /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print mul_lt_of_lt_inv_mul /- _inst_1: ordered_comm_group ↝ ordered_cancel_comm_monoid group
+ -/
+#print add_lt_of_lt_neg_add /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print lt_neg_add_of_add_lt /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print lt_inv_mul_of_mul_lt /- _inst_1: ordered_comm_group ↝ ordered_cancel_comm_monoid group
+ -/
+#print lt_mul_of_inv_mul_lt /- _inst_1: ordered_comm_group ↝ ordered_cancel_comm_monoid group
+ -/
+#print lt_add_of_neg_add_lt /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print inv_mul_lt_of_lt_mul /- _inst_1: ordered_comm_group ↝ ordered_cancel_comm_monoid group
+ -/
+#print neg_add_lt_of_lt_add /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print inv_le_inv_iff /- _inst_1: ordered_comm_group ↝ ordered_cancel_comm_monoid group
+ -/
+#print neg_le_neg_iff /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print neg_le_iff_add_nonneg /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print inv_le_iff_one_le_mul /- _inst_1: ordered_comm_group ↝ ordered_cancel_comm_monoid group
+ -/
+#print le_inv_iff_mul_le_one /- _inst_1: ordered_comm_group ↝ ordered_cancel_comm_monoid group
+ -/
+#print le_neg_iff_add_nonpos /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print neg_lt_neg_iff /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print inv_lt_inv_iff /- _inst_1: ordered_comm_group ↝ ordered_cancel_comm_monoid group
+ -/
+#print le_inv_mul_iff_mul_le /- _inst_1: ordered_comm_group ↝ ordered_cancel_comm_monoid group
+ -/
+#print le_neg_add_iff_add_le /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print neg_add_le_iff_le_add /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print inv_mul_le_iff_le_mul /- _inst_1: ordered_comm_group ↝ ordered_cancel_comm_monoid group
+ -/
+#print lt_neg_add_iff_add_lt /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print lt_inv_mul_iff_mul_lt /- _inst_1: ordered_comm_group ↝ ordered_cancel_comm_monoid group
+ -/
+#print neg_add_lt_iff_lt_add /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print inv_mul_lt_iff_lt_mul /- _inst_1: ordered_comm_group ↝ ordered_cancel_comm_monoid group
+ -/
+#print add_neg_le_add_neg_iff /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print div_le_div_iff' /- _inst_1: ordered_comm_group ↝ ordered_comm_monoid group
+ -/
+#print sub_nonneg_of_le /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print le_of_sub_nonneg /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print sub_nonpos_of_le /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print le_of_sub_nonpos /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print sub_pos_of_lt /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print lt_of_sub_pos /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print sub_neg_of_lt /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print lt_of_sub_neg /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print add_le_of_le_sub_left /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print le_sub_left_of_add_le /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print add_le_of_le_sub_right /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print le_sub_right_of_add_le /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print le_add_of_sub_left_le /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print sub_left_le_of_le_add /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print le_add_of_sub_right_le /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print sub_right_le_of_le_add /- _inst_1: ordered_add_comm_group ↝ ordered_add_comm_monoid add_group
+ -/
+#print sub_le_sub_right /- _inst_1: ordered_add_comm_group ↝ has_sub ordered_add_comm_monoid has_neg
+ -/
+#print add_lt_of_lt_sub_left /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print lt_sub_left_of_add_lt /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print add_lt_of_lt_sub_right /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print lt_sub_right_of_add_lt /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print lt_add_of_sub_left_lt /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print sub_left_lt_of_lt_add /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print lt_add_of_sub_right_lt /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print sub_right_lt_of_lt_add /- _inst_1: ordered_add_comm_group ↝ add_group ordered_cancel_add_comm_monoid
+ -/
+#print sub_lt_sub_right /- _inst_1: ordered_add_comm_group ↝ has_sub has_neg ordered_cancel_add_comm_monoid
+ -/
+#print sub_le_sub_iff_right /- _inst_1: ordered_add_comm_group ↝ has_sub has_neg ordered_cancel_add_comm_monoid
+ -/
+#print sub_lt_sub_iff_right /- _inst_1: ordered_add_comm_group ↝ has_sub has_neg ordered_cancel_add_comm_monoid
+ -/
+#print linear_ordered_add_comm_group.add_lt_add_left /- _inst_1: linear_ordered_add_comm_group ↝ ordered_add_comm_group
+ -/
+#print min_sub_sub_right /- _inst_1: linear_ordered_add_comm_group ↝ has_sub has_neg linear_ordered_cancel_add_comm_monoid
+ -/
+#print max_sub_sub_right /- _inst_1: linear_ordered_add_comm_group ↝ has_sub has_neg linear_ordered_cancel_add_comm_monoid
+ -/
+#print max_zero_sub_eq_self /- _inst_1: linear_ordered_add_comm_group ↝ linear_order ordered_add_comm_group
+ -/
+#print abs /- _inst_1: linear_ordered_add_comm_group ↝ linear_order has_neg
+ -/
+#print eq_zero_of_neg_eq /- _inst_1: linear_ordered_add_comm_group ↝ linear_order ordered_add_comm_group
+ -/
+#print exists_gt_zero /- _inst_1: linear_ordered_add_comm_group ↝ linear_order ordered_add_comm_group
+ -/
+
+-- algebra\ordered_monoid.lean
+#print with_zero.order_bot /- _inst_1: partial_order ↝ order_bot
+ -/
+#print with_zero.zero_le /- _inst_1: partial_order ↝ order_bot
+ -/
+#print with_zero.zero_lt_coe /- _inst_1: partial_order ↝ preorder
+ -/
+#print with_zero.coe_le_coe /- _inst_1: partial_order ↝ preorder
+ -/
+#print with_top.add_lt_top /- _inst_2: partial_order ↝ order_top
+ -/
+#print with_top.zero_lt_top /- _inst_1: ordered_add_comm_monoid ↝ has_zero partial_order
+ -/
+#print with_top.zero_lt_coe /- _inst_1: ordered_add_comm_monoid ↝ has_zero partial_order
+ -/
+#print with_bot.coe_eq_zero /- _inst_1: add_monoid ↝ has_zero
+ -/
+#print with_bot.bot_add /- _inst_1: ordered_add_comm_monoid ↝ add_semigroup
+ -/
+#print with_bot.add_bot /- _inst_1: ordered_add_comm_monoid ↝ add_semigroup
+ -/
+#print mul_le_of_le_one_of_le /- _inst_1: ordered_cancel_comm_monoid ↝ ordered_comm_monoid
+ -/
+#print add_le_of_nonpos_of_le /- _inst_1: ordered_cancel_add_comm_monoid ↝ ordered_add_comm_monoid
+ -/
+#print add_le_of_le_of_nonpos /- _inst_1: ordered_cancel_add_comm_monoid ↝ ordered_add_comm_monoid
+ -/
+#print mul_le_of_le_of_le_one /- _inst_1: ordered_cancel_comm_monoid ↝ ordered_comm_monoid
+ -/
+#print min_add_add_left /- _inst_1: linear_ordered_cancel_add_comm_monoid ↝ ordered_add_comm_monoid linear_order
+ -/
+#print min_add_add_right /- _inst_1: linear_ordered_cancel_add_comm_monoid ↝ ordered_add_comm_monoid linear_order
+ -/
+#print max_add_add_left /- _inst_1: linear_ordered_cancel_add_comm_monoid ↝ ordered_add_comm_monoid linear_order
+ -/
+#print max_add_add_right /- _inst_1: linear_ordered_cancel_add_comm_monoid ↝ ordered_add_comm_monoid linear_order
+ -/
+#print min_le_add_of_nonneg_right /- _inst_1: linear_ordered_cancel_add_comm_monoid ↝ ordered_add_comm_monoid linear_order
+ -/
+#print min_le_add_of_nonneg_left /- _inst_1: linear_ordered_cancel_add_comm_monoid ↝ ordered_add_comm_monoid linear_order
+ -/
+#print max_le_add_of_nonneg /- _inst_1: linear_ordered_cancel_add_comm_monoid ↝ ordered_add_comm_monoid linear_order
+ -/
+
+-- algebra\ordered_ring.lean
+#print zero_lt_one' /- _inst_1: linear_ordered_semiring ↝ nontrivial ordered_semiring
+ -/
+#print lt_of_mul_lt_mul_left /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print lt_of_mul_lt_mul_right /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print le_of_mul_le_mul_left /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print le_of_mul_le_mul_right /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print pos_and_pos_or_neg_and_neg_of_mul_pos /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print nonneg_and_nonneg_or_nonpos_and_nonpos_of_mul_nnonneg /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print nonneg_of_mul_nonneg_left /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print nonneg_of_mul_nonneg_right /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print neg_of_mul_neg_left /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print neg_of_mul_neg_right /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print nonpos_of_mul_nonpos_left /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print nonpos_of_mul_nonpos_right /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print mul_lt_mul_left /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print mul_lt_mul_right /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print nonpos_of_mul_nonneg_left /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print nonpos_of_mul_nonneg_right /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print neg_of_mul_pos_left /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print neg_of_mul_pos_right /- _inst_1: linear_ordered_semiring ↝ linear_order ordered_semiring
+ -/
+#print linear_ordered_semiring.to_no_top_order /- _inst_2: linear_ordered_semiring ↝ nontrivial ordered_semiring
+ -/
+#print monotone_mul_left_of_nonneg /- _inst_1: linear_ordered_semiring ↝ ordered_semiring
+ -/
+#print monotone_mul_right_of_nonneg /- _inst_1: linear_ordered_semiring ↝ ordered_semiring
+ -/
+#print monotone.mul /- _inst_1: linear_ordered_semiring ↝ ordered_semiring
+ -/
+#print strict_mono.mul_const /- _inst_2: preorder ↝ has_lt
+ -/
+#print strict_mono.const_mul /- _inst_2: preorder ↝ has_lt
+ -/
+#print strict_mono.mul_monotone /- _inst_1: linear_ordered_semiring ↝ ordered_semiring
+ -/
+#print monotone.mul_strict_mono /- _inst_1: linear_ordered_semiring ↝ ordered_semiring
+ -/
+#print strict_mono.mul /- _inst_1: linear_ordered_semiring ↝ ordered_semiring
+_inst_2: preorder ↝ has_lt
+ -/
+#print mul_le_mul_of_nonpos_left /- _inst_1: ordered_ring ↝ ordered_semiring ring ordered_add_comm_group
+ -/
+#print mul_le_mul_of_nonpos_right /- _inst_1: ordered_ring ↝ ordered_semiring ring ordered_add_comm_group
+ -/
+#print mul_lt_mul_of_neg_left /- _inst_1: ordered_ring ↝ ordered_semiring ring ordered_add_comm_group
+ -/
+#print mul_lt_mul_of_neg_right /- _inst_1: ordered_ring ↝ ordered_semiring ring ordered_add_comm_group
+ -/
+#print abs_one /- _inst_1: linear_ordered_ring ↝ linear_ordered_add_comm_group nontrivial ordered_semiring
+ -/
+#print abs_two /- _inst_1: linear_ordered_ring ↝ linear_ordered_add_comm_group nontrivial ordered_semiring
+ -/
+#print abs_mul /- _inst_1: linear_ordered_ring ↝ linear_ordered_add_comm_group cancel_monoid_with_zero ordered_semiring ring
+ -/
+#print abs_mul_abs_self /- _inst_1: linear_ordered_ring ↝ linear_ordered_add_comm_group ring
+ -/
+#print mul_pos_iff /- _inst_1: linear_ordered_ring ↝ ordered_ring linear_ordered_semiring
+ -/
+#print mul_nonneg_iff /- _inst_1: linear_ordered_ring ↝ ordered_ring linear_ordered_semiring
+ -/
+#print mul_self_nonneg /- _inst_1: linear_ordered_ring ↝ ordered_ring linear_order
+ -/
+#print gt_of_mul_lt_mul_neg_left /- _inst_1: linear_ordered_ring ↝ ring ordered_add_comm_group linear_ordered_semiring
+ -/
+#print neg_one_lt_zero /- _inst_1: linear_ordered_ring ↝ nontrivial ordered_semiring ordered_add_comm_group
+ -/
+#print le_of_mul_le_of_one_le /- _inst_1: linear_ordered_ring ↝ linear_ordered_semiring
+ -/
+#print nonneg_le_nonneg_of_squares_le /- _inst_1: linear_ordered_ring ↝ linear_order ordered_semiring
+ -/
+#print mul_le_mul_left_of_neg /- _inst_1: linear_ordered_ring ↝ ordered_ring linear_order
+ -/
+#print mul_le_mul_right_of_neg /- _inst_1: linear_ordered_ring ↝ ordered_ring linear_order
+ -/
+#print sub_one_lt /- _inst_1: linear_ordered_ring ↝ nontrivial ordered_semiring ordered_add_comm_group
+ -/
+#print mul_self_pos /- _inst_1: linear_ordered_ring ↝ ordered_ring linear_order
+ -/
+#print mul_self_le_mul_self_of_le_of_neg_le /- _inst_1: linear_ordered_ring ↝ linear_order ordered_semiring ring ordered_add_comm_group
+ -/
+#print nonneg_of_mul_nonpos_left /- _inst_1: linear_ordered_ring ↝ ordered_ring linear_order
+ -/
+#print nonneg_of_mul_nonpos_right /- _inst_1: linear_ordered_ring ↝ ordered_ring linear_order
+ -/
+#print pos_of_mul_neg_left /- _inst_1: linear_ordered_ring ↝ ordered_ring linear_order
+ -/
+#print pos_of_mul_neg_right /- _inst_1: linear_ordered_ring ↝ ordered_ring linear_order
+ -/
+#print sub_le_of_abs_sub_le_left /- _inst_1: linear_ordered_ring ↝ linear_ordered_add_comm_group decidable
+ -/
+#print sub_lt_of_abs_sub_lt_left /- _inst_1: linear_ordered_ring ↝ linear_ordered_add_comm_group decidable
+ -/
+#print max_mul_mul_le_max_mul_max /- _inst_1: linear_ordered_comm_ring ↝ comm_semigroup linear_order ordered_semiring
+ -/
+#print abs_sub_square /- _inst_1: linear_ordered_comm_ring ↝ comm_semigroup linear_ordered_ring
+ -/
+#print canonically_ordered_semiring.mul_le_mul /- _inst_1: canonically_ordered_comm_semiring ↝ canonically_ordered_add_monoid distrib
+ -/
+#print canonically_ordered_semiring.zero_lt_one /- _inst_1: canonically_ordered_comm_semiring ↝ canonically_ordered_add_monoid monoid_with_zero
+ -/
+#print canonically_ordered_semiring.mul_pos /- _inst_1: canonically_ordered_comm_semiring ↝ canonically_ordered_add_monoid no_zero_divisors mul_zero_class
+ -/
+#print with_top.nontrivial /- _inst_1: nonempty ↝ nontrivial
+ -/
+#print with_top.mul_def /- _inst_2: has_zero ↝ mul_zero_class
+_inst_3: has_mul ↝ mul_zero_class
+ -/
+#print with_top.mul_top /- _inst_2: has_zero ↝ mul_zero_class
+_inst_3: has_mul ↝ mul_zero_class
+ -/
+#print with_top.top_mul /- _inst_2: has_zero ↝ mul_zero_class
+_inst_3: has_mul ↝ mul_zero_class
+ -/
+#print with_top.top_mul_top /- _inst_2: has_zero ↝ mul_zero_class
+_inst_3: has_mul ↝ mul_zero_class
+ -/
+
+-- algebra\pointwise.lean
+#print set.fintype_mul /- _inst_2: decidable_eq ↝ fintype
+ -/
+#print set.fintype_add /- _inst_2: decidable_eq ↝ fintype
+ -/
+#print set.univ_inv /- _inst_1: group ↝ has_inv
+ -/
+#print set.univ_neg /- _inst_1: add_group ↝ has_neg
+ -/
+#print set.image_hom /- _inst_1: monoid ↝ has_coe_to_fun semiring
+_inst_2: monoid ↝ has_coe_to_fun semiring
+ -/
+#print mem_inv_smul_set_iff /- _inst_1: field ↝ group_with_zero has_scalar
+ -/
+
+-- algebra\ring\basic.lean
+#print one_add_one_eq_two /- _inst_1: semiring ↝ has_one has_add
+ -/
+#print two_mul /- _inst_1: semiring ↝ monoid distrib
+ -/
+#print distrib_three_right /- _inst_1: semiring ↝ distrib
+ -/
+#print mul_two /- _inst_1: semiring ↝ monoid distrib
+ -/
+#print mul_boole /- _inst_2: semiring ↝ monoid mul_zero_class
+ -/
+#print boole_mul /- _inst_2: semiring ↝ monoid mul_zero_class
+ -/
+#print even /- _inst_1: semiring ↝ has_one has_add has_mul
+ -/
+#print odd /- _inst_1: semiring ↝ has_one has_add has_mul
+ -/
+#print add_mul_self_eq /- _inst_1: comm_semiring ↝ comm_semigroup semiring
+ -/
+#print dvd_add /- _inst_1: comm_semiring ↝ monoid distrib
+ -/
+#print two_dvd_bit0 /- _inst_1: comm_semiring ↝ semiring
+ -/
+#print ring_hom.map_dvd /- _inst_1: comm_semiring ↝ has_coe_to_fun semiring
+_inst_2: comm_semiring ↝ has_coe_to_fun semiring
+ -/
+#print neg_mul_eq_neg_mul /- _inst_1: ring ↝ distrib add_group mul_zero_class
+ -/
+#print neg_mul_eq_mul_neg /- _inst_1: ring ↝ distrib add_group mul_zero_class
+ -/
+#print units.coe_neg /- _inst_1: ring ↝ monoid has_neg has_coe
+ -/
+#print units.coe_neg_one /- _inst_1: ring ↝ group has_neg has_coe
+ -/
+#print units.neg_inv /- _inst_1: ring ↝ group has_neg
+ -/
+#print units.neg_neg /- _inst_1: ring ↝ monoid add_group has_coe
+ -/
+#print ring_hom.map_neg /- _inst_1: ring ↝ add_group semiring has_coe
+_inst_2: ring ↝ add_group semiring has_coe
+ -/
+#print ring_hom.map_sub /- _inst_1: ring ↝ add_group semiring has_coe
+_inst_2: ring ↝ add_group semiring has_coe
+ -/
+#print ring_hom.injective_iff /- _inst_1: ring ↝ add_group semiring has_coe
+ -/
+#print dvd_neg_of_dvd /- _inst_1: comm_ring ↝ ring
+ -/
+#print neg_dvd_of_dvd /- _inst_1: comm_ring ↝ comm_semigroup ring
+ -/
+#print mul_self_sub_mul_self /- _inst_1: comm_ring ↝ comm_semigroup ring
+ -/
+#print Vieta_formula_quadratic /- _inst_1: comm_ring ↝ comm_semigroup ring
+ -/
+#print dvd_mul_sub_mul /- _inst_1: comm_ring ↝ ring comm_semiring
+ -/
+#print succ_ne_self /- _inst_1: ring ↝ add_monoid monoid_with_zero add_left_cancel_semigroup
+ -/
+#print pred_ne_self /- _inst_1: ring ↝ monoid_with_zero add_group
+ -/
+#print mul_self_eq_mul_self_iff /- _inst_1: integral_domain ↝ comm_ring no_zero_divisors
+ -/
+#print ring.inverse /- _inst_1: ring ↝ has_zero group has_coe
+ -/
+
+-- algebra\star\basic.lean
+#print star_neg /- _inst_1: ring ↝ add_group semiring has_star
+ -/
+#print star_sub /- _inst_1: ring ↝ add_group semiring has_star
+ -/
+#print star_bit0 /- _inst_1: ring ↝ add_right_cancel_semigroup semiring has_star
+ -/
+
+-- category_theory\category\default.lean
+#print category_theory.eq_whisker /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.has_hom
+ -/
+#print category_theory.whisker_eq /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.has_hom
+ -/
+#print category_theory.comp_dite /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.has_hom
+ -/
+#print category_theory.dite_comp /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.has_hom
+ -/
+#print category_theory.hom_of_le /- _inst_1: preorder ↝ has_le category_theory.has_hom
+ -/
+#print category_theory.le_of_hom /- _inst_1: preorder ↝ has_le category_theory.has_hom
+ -/
+
+-- category_theory\concrete_category\bundled_hom.lean
+#print category_theory.bundled_hom.bundled_hom_of_parent_projection /- _inst_1: category_theory.bundled_hom.parent_projection ↝
+ -/
+
+-- category_theory\endomorphism.lean
+#print category_theory.End /- _inst_1: category_theory.category_struct ↝ category_theory.has_hom
+ -/
+
+-- category_theory\filtered.lean
+#print category_theory.is_filtered_of_semilattice_sup_top /- _inst_2: semilattice_sup_top ↝ has_top category_theory.is_filtered_or_empty category_theory.small_category
+ -/
+#print category_theory.is_filtered.cocone_nonempty /- _inst_4: category_theory.fin_category ↝ auto_param
+ -/
+
+-- category_theory\full_subcategory.lean
+#print category_theory.induced_category /- _inst_1: category_theory.category ↝
+ -/
+
+-- category_theory\limits\creates.lean
+#print category_theory.has_limits_of_shape_of_has_limits_of_shape_creates_limits_of_shape /- _inst_4: category_theory.limits.has_limits_of_shape ↝ category_theory.limits.has_limit
+_inst_5: category_theory.creates_limits_of_shape ↝ category_theory.creates_limit
+ -/
+#print category_theory.has_limits_of_has_limits_creates_limits /- _inst_4: category_theory.limits.has_limits ↝ category_theory.limits.has_limits_of_shape
+_inst_5: category_theory.creates_limits ↝ category_theory.creates_limits_of_shape
+ -/
+#print category_theory.has_colimits_of_shape_of_has_colimits_of_shape_creates_colimits_of_shape /- _inst_4: category_theory.limits.has_colimits_of_shape ↝ category_theory.limits.has_colimit
+_inst_5: category_theory.creates_colimits_of_shape ↝ category_theory.creates_colimit
+ -/
+#print category_theory.has_colimits_of_has_colimits_creates_colimits /- _inst_4: category_theory.limits.has_colimits ↝ category_theory.limits.has_colimits_of_shape
+_inst_5: category_theory.creates_colimits ↝ category_theory.creates_colimits_of_shape
+ -/
+#print category_theory.creates_limit_of_reflects_iso /- _inst_4: category_theory.reflects_isomorphisms ↝ category_theory.reflects_isomorphisms
+ -/
+#print category_theory.preserves_limit_of_shape_of_creates_limits_of_shape_and_has_limits_of_shape /- _inst_4: category_theory.creates_limits_of_shape ↝ category_theory.limits.preserves_limit
+ -/
+#print category_theory.preserves_limits_of_creates_limits_and_has_limits /- _inst_4: category_theory.creates_limits ↝ category_theory.limits.preserves_limits_of_shape
+_inst_5: category_theory.limits.has_limits ↝ category_theory.limits.preserves_limits_of_shape
+ -/
+#print category_theory.creates_colimit_of_reflects_iso /- _inst_4: category_theory.reflects_isomorphisms ↝ category_theory.reflects_isomorphisms
+ -/
+#print category_theory.preserves_colimit_of_shape_of_creates_colimits_of_shape_and_has_colimits_of_shape /- _inst_4: category_theory.creates_colimits_of_shape ↝ category_theory.limits.preserves_colimit
+ -/
+#print category_theory.preserves_colimits_of_creates_colimits_and_has_colimits /- _inst_4: category_theory.creates_colimits ↝ category_theory.limits.preserves_colimits_of_shape
+_inst_5: category_theory.limits.has_colimits ↝ category_theory.limits.preserves_colimits_of_shape
+ -/
+#print category_theory.creates_limits_of_shape_of_nat_iso /- _inst_4: category_theory.creates_limits_of_shape ↝ category_theory.creates_limit
+ -/
+#print category_theory.creates_limits_of_nat_iso /- _inst_4: category_theory.creates_limits ↝ category_theory.creates_limits_of_shape
+ -/
+#print category_theory.creates_colimits_of_shape_of_nat_iso /- _inst_4: category_theory.creates_colimits_of_shape ↝ category_theory.creates_colimit
+ -/
+#print category_theory.creates_colimits_of_nat_iso /- _inst_4: category_theory.creates_colimits ↝ category_theory.creates_colimits_of_shape
+ -/
+#print category_theory.comp_creates_limits_of_shape /- _inst_4: category_theory.creates_limits_of_shape ↝ category_theory.creates_limit
+_inst_5: category_theory.creates_limits_of_shape ↝ category_theory.creates_limit
+ -/
+#print category_theory.comp_creates_limits /- _inst_4: category_theory.creates_limits ↝ category_theory.creates_limits_of_shape
+_inst_5: category_theory.creates_limits ↝ category_theory.creates_limits_of_shape
+ -/
+#print category_theory.comp_creates_colimits_of_shape /- _inst_4: category_theory.creates_colimits_of_shape ↝ category_theory.creates_colimit
+_inst_5: category_theory.creates_colimits_of_shape ↝ category_theory.creates_colimit
+ -/
+#print category_theory.comp_creates_colimits /- _inst_4: category_theory.creates_colimits ↝ category_theory.creates_colimits_of_shape
+_inst_5: category_theory.creates_colimits ↝ category_theory.creates_colimits_of_shape
+ -/
+
+-- category_theory\limits\limits.lean
+#print category_theory.limits.limit.map_pre' /- _inst_4: category_theory.limits.has_limits_of_shape ↝ category_theory.limits.has_limit
+ -/
+#print category_theory.limits.limit.map_post /- _inst_4: category_theory.limits.has_limits_of_shape ↝ category_theory.limits.has_limit
+_inst_6: category_theory.limits.has_limits_of_shape ↝ category_theory.limits.has_limit
+ -/
+#print category_theory.limits.has_limits_of_shape_of_equivalence /- _inst_5: category_theory.limits.has_limits_of_shape ↝ category_theory.limits.has_limit
+ -/
+#print category_theory.limits.colimit.pre_map' /- _inst_4: category_theory.limits.has_colimits_of_shape ↝ category_theory.limits.has_colimit
+ -/
+#print category_theory.limits.has_colimits_of_shape_of_equivalence /- _inst_5: category_theory.limits.has_colimits_of_shape ↝ category_theory.limits.has_colimit
+ -/
+
+-- category_theory\limits\preserves\basic.lean
+#print category_theory.limits.comp_preserves_limits_of_shape /- _inst_4: category_theory.limits.preserves_limits_of_shape ↝ category_theory.limits.preserves_limit
+_inst_5: category_theory.limits.preserves_limits_of_shape ↝ category_theory.limits.preserves_limit
+ -/
+#print category_theory.limits.comp_preserves_limits /- _inst_4: category_theory.limits.preserves_limits ↝ category_theory.limits.preserves_limits_of_shape
+_inst_5: category_theory.limits.preserves_limits ↝ category_theory.limits.preserves_limits_of_shape
+ -/
+#print category_theory.limits.comp_preserves_colimits_of_shape /- _inst_4: category_theory.limits.preserves_colimits_of_shape ↝ category_theory.limits.preserves_colimit
+_inst_5: category_theory.limits.preserves_colimits_of_shape ↝ category_theory.limits.preserves_colimit
+ -/
+#print category_theory.limits.comp_preserves_colimits /- _inst_4: category_theory.limits.preserves_colimits ↝ category_theory.limits.preserves_colimits_of_shape
+_inst_5: category_theory.limits.preserves_colimits ↝ category_theory.limits.preserves_colimits_of_shape
+ -/
+#print category_theory.limits.preserves_limits_of_shape_of_nat_iso /- _inst_4: category_theory.limits.preserves_limits_of_shape ↝ category_theory.limits.preserves_limit
+ -/
+#print category_theory.limits.preserves_limits_of_nat_iso /- _inst_4: category_theory.limits.preserves_limits ↝ category_theory.limits.preserves_limits_of_shape
+ -/
+#print category_theory.limits.preserves_colimits_of_shape_of_nat_iso /- _inst_4: category_theory.limits.preserves_colimits_of_shape ↝ category_theory.limits.preserves_colimit
+ -/
+#print category_theory.limits.preserves_colimits_of_nat_iso /- _inst_4: category_theory.limits.preserves_colimits ↝ category_theory.limits.preserves_colimits_of_shape
+ -/
+#print category_theory.limits.comp_reflects_limits_of_shape /- _inst_4: category_theory.limits.reflects_limits_of_shape ↝ category_theory.limits.reflects_limit
+ -/
+#print category_theory.limits.comp_reflects_limits /- _inst_4: category_theory.limits.reflects_limits ↝ category_theory.limits.reflects_limits_of_shape
+_inst_5: category_theory.limits.reflects_limits ↝ category_theory.limits.reflects_limits_of_shape
+ -/
+#print category_theory.limits.comp_reflects_colimits_of_shape /- _inst_4: category_theory.limits.reflects_colimits_of_shape ↝ category_theory.limits.reflects_colimit
+ -/
+#print category_theory.limits.comp_reflects_colimits /- _inst_4: category_theory.limits.reflects_colimits ↝ category_theory.limits.reflects_colimits_of_shape
+_inst_5: category_theory.limits.reflects_colimits ↝ category_theory.limits.reflects_colimits_of_shape
+ -/
+#print category_theory.limits.preserves_limits_of_reflects_of_preserves /- _inst_5: category_theory.limits.reflects_limits ↝ category_theory.limits.reflects_limits_of_shape
+ -/
+#print category_theory.limits.reflects_limits_of_shape_of_nat_iso /- _inst_4: category_theory.limits.reflects_limits_of_shape ↝ category_theory.limits.reflects_limit
+ -/
+#print category_theory.limits.reflects_limits_of_nat_iso /- _inst_4: category_theory.limits.reflects_limits ↝ category_theory.limits.reflects_limits_of_shape
+ -/
+#print category_theory.limits.preserves_colimits_of_reflects_of_preserves /- _inst_5: category_theory.limits.reflects_colimits ↝ category_theory.limits.reflects_colimits_of_shape
+ -/
+#print category_theory.limits.reflects_colimits_of_shape_of_nat_iso /- _inst_4: category_theory.limits.reflects_colimits_of_shape ↝ category_theory.limits.reflects_colimit
+ -/
+#print category_theory.limits.reflects_colimits_of_nat_iso /- _inst_4: category_theory.limits.reflects_colimits ↝ category_theory.limits.reflects_colimits_of_shape
+ -/
+
+-- category_theory\limits\shapes\images.lean
+#print category_theory.limits.image.map_hom_mk'_ι /- _inst_5: category_theory.limits.has_image ↝ category_theory.limits.has_image
+_inst_6: category_theory.limits.has_image ↝ category_theory.limits.has_image
+ -/
+
+-- category_theory\limits\shapes\kernels.lean
+#print category_theory.limits.has_kernel /- _inst_2: category_theory.limits.has_zero_morphisms ↝ has_zero
+ -/
+#print category_theory.limits.has_cokernel /- _inst_2: category_theory.limits.has_zero_morphisms ↝ has_zero
+ -/
+#print category_theory.limits.kernel_fork /- _inst_2: category_theory.limits.has_zero_morphisms ↝ has_zero
+ -/
+#print category_theory.limits.cokernel_cofork /- _inst_2: category_theory.limits.has_zero_morphisms ↝ has_zero
+ -/
+
+-- category_theory\limits\shapes\strong_epi.lean
+#print category_theory.strong_epi_comp /- _inst_2: category_theory.strong_epi ↝ category_theory.epi category_theory.arrow.has_lift
+_inst_3: category_theory.strong_epi ↝ category_theory.epi category_theory.arrow.has_lift
+ -/
+
+-- category_theory\limits\shapes\zero.lean
+#print category_theory.limits.id_zero /- _inst_3: category_theory.limits.has_zero_morphisms ↝ has_zero
+ -/
+#print category_theory.limits.zero_of_to_zero /- _inst_3: category_theory.limits.has_zero_morphisms ↝ has_zero
+ -/
+#print category_theory.limits.zero_of_from_zero /- _inst_3: category_theory.limits.has_zero_morphisms ↝ has_zero
+ -/
+
+-- category_theory\opposites.lean
+#print category_theory.op_comp /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+ -/
+#print category_theory.op_id /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+ -/
+#print category_theory.unop_comp /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+ -/
+#print category_theory.unop_id /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+ -/
+#print category_theory.unop_id_op /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+ -/
+#print category_theory.op_id_unop /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+ -/
+
+-- category_theory\preadditive\default.lean
+#print category_theory.preadditive.has_equalizers_of_has_kernels /- _inst_3: category_theory.limits.has_kernels ↝ category_theory.limits.has_kernel
+ -/
+#print category_theory.preadditive.has_coequalizers_of_has_cokernels /- _inst_3: category_theory.limits.has_cokernels ↝ category_theory.limits.has_cokernel
+ -/
+
+-- category_theory\products\basic.lean
+#print category_theory.prod_id /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+_inst_2: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+ -/
+#print category_theory.prod_comp /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+_inst_2: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+ -/
+#print category_theory.prod_id_fst /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+_inst_2: category_theory.category ↝ category_theory.category category_theory.has_hom
+ -/
+#print category_theory.prod_id_snd /- _inst_1: category_theory.category ↝ category_theory.category category_theory.has_hom
+_inst_2: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+ -/
+#print category_theory.prod_comp_fst /- _inst_1: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+_inst_2: category_theory.category ↝ category_theory.category category_theory.has_hom
+ -/
+#print category_theory.prod_comp_snd /- _inst_1: category_theory.category ↝ category_theory.category category_theory.has_hom
+_inst_2: category_theory.category ↝ category_theory.category_struct category_theory.category category_theory.has_hom
+ -/
+#print category_theory.uniform_prod /- _inst_1: category_theory.category ↝ category_theory.category
+_inst_2: category_theory.category ↝ category_theory.category
+ -/
+
+-- category_theory\yoneda.lean
+#print category_theory.prod_category_instance_1 /- _inst_1: category_theory.category ↝ category_theory.category
+ -/
+#print category_theory.prod_category_instance_2 /- _inst_1: category_theory.category ↝ category_theory.category
+ -/
+#print category_theory.yoneda_evaluation /- _inst_1: category_theory.category ↝ category_theory.category
+ -/
+
+-- control\applicative.lean
+#print comp.seq_mk /- _inst_1: applicative ↝ has_seq functor
+_inst_2: applicative ↝ has_seq
+ -/
+
+-- control\basic.lean
+#print fish /- _inst_3: monad ↝ has_bind
+ -/
+#print succeeds /- _inst_1: alternative ↝ has_orelse has_pure functor
+ -/
+#print mtry /- _inst_1: alternative ↝ has_orelse has_pure functor
+ -/
+
+-- control\functor.lean
+#print functor.comp.has_pure /- _inst_1: applicative ↝ has_pure
+_inst_2: applicative ↝ has_pure
+ -/
+#print functor.comp.run_pure /- _inst_1: applicative ↝ has_pure
+_inst_2: applicative ↝ has_pure
+ -/
+#print functor.comp.run_seq /- _inst_1: applicative ↝ has_seq functor
+_inst_2: applicative ↝ has_seq
+ -/
+
+-- control\traversable\instances.lean
+#print option.comp_traverse /- _inst_3: is_lawful_applicative ↝
+ -/
+#print list.comp_traverse /- _inst_3: is_lawful_applicative ↝
+ -/
+#print sum.comp_traverse /- _inst_3: is_lawful_applicative ↝
+ -/
+
+-- data\equiv\basic.lean
+#print equiv.subtype_equiv_codomain /- _inst_1: decidable_eq ↝ decidable
+ -/
+#print equiv.set.insert /- _inst_1: decidable_pred ↝ decidable
+ -/
+#print equiv.set.sum_compl /- _inst_1: decidable_pred ↝ decidable
+ -/
+#print equiv.set.sum_diff_subset /- _inst_1: decidable_pred ↝ decidable
+ -/
+#print equiv.set.union_sum_inter /- _inst_1: decidable_pred ↝ decidable
+ -/
+
+-- data\equiv\encodable\basic.lean
+#print encodable.subtype.encode_eq /- decP: decidable_pred ↝ encodable
+ -/
+#print directed.le_sequence /- _inst_3: preorder ↝ has_le
+ -/
+#print quotient.rep /- _inst_1: decidable_rel ↝ decidable_eq
+ -/
+
+-- data\equiv\mul_add.lean
+#print mul_aut.inhabited /- _inst_1: has_mul ↝ group
+ -/
+#print mul_aut.coe_mul /- _inst_1: has_mul ↝ has_coe_to_fun group
+ -/
+#print mul_aut.coe_one /- _inst_1: has_mul ↝ has_coe_to_fun group
+ -/
+#print mul_aut.mul_def /- _inst_1: has_mul ↝ group
+ -/
+#print mul_aut.one_def /- _inst_1: has_mul ↝ group
+ -/
+#print mul_aut.inv_def /- _inst_1: has_mul ↝ group
+ -/
+#print mul_aut.mul_apply /- _inst_1: has_mul ↝ has_coe_to_fun group
+ -/
+#print mul_aut.one_apply /- _inst_1: has_mul ↝ has_coe_to_fun group
+ -/
+#print mul_aut.apply_inv_self /- _inst_1: has_mul ↝ has_coe_to_fun group
+ -/
+#print mul_aut.inv_apply_self /- _inst_1: has_mul ↝ has_coe_to_fun group
+ -/
+#print mul_aut.to_perm /- _inst_1: has_mul ↝ group
+ -/
+#print units.map_equiv /- _inst_1: monoid ↝ group
+_inst_2: monoid ↝ group
+ -/
+#print add_units.add_left /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.mul_left /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.add_left_symm /- _inst_1: add_monoid ↝ add_group
+ -/
+#print units.mul_left_symm /- _inst_1: monoid ↝ group
+ -/
+#print add_units.add_right /- _inst_1: add_monoid ↝ add_group has_coe
+ -/
+#print units.mul_right /- _inst_1: monoid ↝ group has_coe
+ -/
+#print add_units.add_right_symm /- _inst_1: add_monoid ↝ add_group
+ -/
+#print units.mul_right_symm /- _inst_1: monoid ↝ group
+ -/
+
+-- data\equiv\ring.lean
+#print ring_equiv.trans_apply /- _inst_7: semiring ↝ has_coe_to_fun has_add has_mul
+_inst_8: semiring ↝ has_coe_to_fun has_add has_mul
+_inst_9: semiring ↝ has_coe_to_fun has_add has_mul
+ -/
+#print ring_equiv.map_mul /- _inst_1: semiring ↝ has_coe_to_fun has_add has_mul
+_inst_2: semiring ↝ has_coe_to_fun has_add has_mul
+ -/
+#print ring_equiv.map_one /- _inst_1: semiring ↝ monoid has_add has_coe
+_inst_2: semiring ↝ monoid has_add has_coe
+ -/
+#print ring_equiv.map_add /- _inst_1: semiring ↝ has_coe_to_fun has_add has_mul
+_inst_2: semiring ↝ has_coe_to_fun has_add has_mul
+ -/
+#print ring_equiv.map_zero /- _inst_1: semiring ↝ add_monoid has_mul has_coe
+_inst_2: semiring ↝ add_monoid has_mul has_coe
+ -/
+#print ring_equiv.map_eq_one_iff /- _inst_1: semiring ↝ monoid has_add has_coe
+_inst_2: semiring ↝ monoid has_add has_coe
+ -/
+#print ring_equiv.map_eq_zero_iff /- _inst_1: semiring ↝ add_monoid has_mul has_coe
+_inst_2: semiring ↝ add_monoid has_mul has_coe
+ -/
+#print ring_equiv.map_ne_one_iff /- _inst_1: semiring ↝ monoid has_add has_coe
+_inst_2: semiring ↝ monoid has_add has_coe
+ -/
+#print ring_equiv.map_ne_zero_iff /- _inst_1: semiring ↝ add_monoid has_mul has_coe
+_inst_2: semiring ↝ add_monoid has_mul has_coe
+ -/
+#print ring_equiv.map_neg /- _inst_1: ring ↝ add_group has_mul has_coe
+_inst_2: ring ↝ add_group has_mul has_coe
+ -/
+#print ring_equiv.map_sub /- _inst_1: ring ↝ add_group has_mul has_coe
+_inst_2: ring ↝ add_group has_mul has_coe
+ -/
+#print ring_aut.inhabited /- _inst_1: has_mul ↝ group
+ -/
+#print ring_aut.to_add_aut /- _inst_1: has_mul ↝ group
+ -/
+#print ring_aut.to_mul_aut /- _inst_1: has_mul ↝ group
+ -/
+#print ring_aut.to_perm /- _inst_1: has_mul ↝ group
+ -/
+
+-- data\finset\basic.lean
+#print finset.decidable_mem /- h: decidable_eq ↝ decidable
+ -/
+#print finset.decidable_mem' /- _inst_1: decidable_eq ↝ decidable
+ -/
+#print finset.insert_eq /- _inst_1: decidable_eq ↝ has_insert has_union
+ -/
+#print finset.sup_eq_union /- _inst_1: decidable_eq ↝ lattice has_union
+ -/
+#print finset.inf_eq_inter /- _inst_1: decidable_eq ↝ lattice has_inter
+ -/
+#print finset.inter_distrib_left /- _inst_1: decidable_eq ↝ distrib_lattice has_inter has_union
+ -/
+#print finset.inter_distrib_right /- _inst_1: decidable_eq ↝ distrib_lattice has_inter has_union
+ -/
+#print finset.union_distrib_left /- _inst_1: decidable_eq ↝ distrib_lattice has_inter has_union
+ -/
+#print finset.union_distrib_right /- _inst_1: decidable_eq ↝ distrib_lattice has_inter has_union
+ -/
+#print finset.union_eq_empty_iff /- _inst_1: decidable_eq ↝ semilattice_sup_bot has_union
+ -/
+#print finset.disjoint_iff_inter_eq_empty /- _inst_1: decidable_eq ↝ has_inter semilattice_inf_bot
+ -/
+#print finset.disjoint_empty_left /- _inst_1: decidable_eq ↝ semilattice_inf_bot
+ -/
+#print finset.disjoint_empty_right /- _inst_1: decidable_eq ↝ semilattice_inf_bot
+ -/
+#print finset.disjoint_self_iff_empty /- _inst_1: decidable_eq ↝ semilattice_inf_bot
+ -/
+#print finset.disjoint_filter_filter /- _inst_1: decidable_eq ↝ semilattice_inf_bot
+ -/
+#print finset.off_diag /- _inst_1: decidable_eq ↝ decidable
+ -/
+
+-- data\finset\lattice.lean
+#print finset.sup_lt_iff /- _inst_2: is_total ↝
+ -/
+#print finset.comp_sup_eq_sup_comp_of_is_total /- _inst_2: is_total ↝
+ -/
+#print finset.lt_inf_iff /- h: is_total ↝
+ -/
+#print finset.comp_inf_eq_inf_comp_of_is_total /- h: is_total ↝
+ -/
+#print finset.supr_option_to_finset /- _inst_1: complete_lattice ↝ has_Sup
+ -/
+
+-- data\finset\preimage.lean
+#print finset.sigma_preimage_mk /- _inst_1: decidable_eq ↝ decidable
+ -/
+
+-- data\finset\sort.lean
+#print finset.sort /- _inst_4: is_total ↝
+ -/
+#print finset.sort_sorted /- _inst_4: is_total ↝
+ -/
+#print finset.sort_eq /- _inst_4: is_total ↝
+ -/
+#print finset.sort_nodup /- _inst_4: is_total ↝
+ -/
+#print finset.sort_to_finset /- _inst_4: is_total ↝
+ -/
+#print finset.mem_sort /- _inst_4: is_total ↝
+ -/
+#print finset.length_sort /- _inst_4: is_total ↝
+ -/
+#print finset.sort_sorted_lt /- _inst_1: linear_order ↝ decidable partial_order
+ -/
+
+-- data\fintype\basic.lean
+#print finset.compl_eq_univ_sdiff /- _inst_2: decidable_eq ↝ boolean_algebra
+ -/
+#print fintype.decidable_bijective_fintype /- _inst_1: decidable_eq ↝ decidable_pred
+_inst_2: decidable_eq ↝ decidable_pred
+_inst_3: fintype ↝ decidable_pred
+_inst_4: fintype ↝ decidable_pred
+ -/
+#print unique.fintype /- _inst_1: unique ↝ inhabited subsingleton
+ -/
+#print univ_unique /- _inst_1: unique ↝ inhabited fintype
+ -/
+#print set_fintype /- _inst_2: decidable_pred ↝ decidable
+ -/
+#print quotient.fintype /- _inst_2: decidable_rel ↝ decidable_eq
+ -/
+#print fintype.card_equiv /- _inst_2: decidable_eq ↝ fintype
+ -/
+#print fintype.preorder.well_founded /- _inst_2: preorder ↝ has_lt is_irrefl is_trans
+ -/
+#print fintype.linear_order.is_well_order /- _inst_2: linear_order ↝ is_trichotomous preorder
+ -/
+#print infinite.nonempty /- _inst_1: infinite ↝ nonempty
+ -/
+#print trunc_sigma_of_exists /- _inst_2: decidable_pred ↝ fintype
+ -/
+
+-- data\indicator_function.lean
+#print set.indicator_prod_one /- _inst_1: monoid_with_zero ↝ monoid mul_zero_class
+ -/
+
+-- data\int\cast.lean
+#print int.cast_zero /- _inst_2: has_one ↝ has_coe_t
+_inst_3: has_add ↝ has_coe_t
+_inst_4: has_neg ↝ has_coe_t
+ -/
+#print int.cast_of_nat /- _inst_1: has_zero ↝ has_coe_t
+_inst_2: has_one ↝ has_coe_t
+_inst_3: has_add ↝ has_coe_t
+_inst_4: has_neg ↝ has_coe_t
+ -/
+#print int.cast_coe_nat /- _inst_1: has_zero ↝ has_coe_t
+_inst_2: has_one ↝ has_coe_t
+_inst_3: has_add ↝ has_coe_t
+_inst_4: has_neg ↝ has_coe_t
+ -/
+#print int.cast_neg_succ_of_nat /- _inst_1: has_zero ↝ has_coe_t
+ -/
+#print int.cast_one /- _inst_3: has_neg ↝ has_coe_t
+ -/
+#print int.cast_neg_of_nat /- _inst_2: has_one ↝ has_coe_t
+ -/
+#print int.cast_bit0 /- _inst_1: ring ↝ has_one has_coe_t add_group
+ -/
+#print int.cast_nonneg /- _inst_1: linear_ordered_ring ↝ has_coe_t ordered_add_comm_group linear_ordered_semiring
+ -/
+#print int.cast_min /- _inst_1: linear_ordered_comm_ring ↝ decidable has_coe_t linear_ordered_ring
+ -/
+#print int.cast_max /- _inst_1: linear_ordered_comm_ring ↝ decidable has_coe_t linear_ordered_ring
+ -/
+#print int.coe_int_dvd /- _inst_1: comm_ring ↝ has_coe_t ring comm_semiring
+ -/
+#print ring_hom.eq_int_cast /- _inst_1: ring ↝ has_coe_t add_group semiring
+ -/
+
+-- data\int\gcd.lean
+#print pow_gcd_eq_one /- _inst_1: monoid ↝ group has_coe
+ -/
+
+-- data\int\range.lean
+#print int.decidable_lt_lt /- _inst_1: decidable_pred ↝ decidable
+ -/
+#print int.decidable_lt_le /- _inst_1: decidable_pred ↝ decidable
+ -/
+
+-- data\list\basic.lean
+#print list.prod_nil /- _inst_1: monoid ↝ has_one has_mul
+ -/
+#print list.sum_nil /- _inst_1: add_monoid ↝ has_zero has_add
+ -/
+#print list.prod_ne_zero /- _inst_2: domain ↝ monoid_with_zero nontrivial no_zero_divisors
+ -/
+#print list.eq_of_sum_take_eq /- _inst_1: add_left_cancel_monoid ↝ add_monoid add_left_cancel_semigroup
+ -/
+#print list.length_pos_of_sum_pos /- _inst_1: ordered_cancel_add_comm_monoid ↝ add_monoid preorder
+ -/
+#print list.dvd_prod /- _inst_1: comm_monoid ↝ monoid comm_semigroup
+ -/
+#print list.exists_lt_of_sum_lt /- _inst_1: linear_ordered_cancel_add_comm_monoid ↝ ordered_add_comm_monoid decidable linear_order
+ -/
+#print list.alternating_prod_nil /- _inst_1: comm_group ↝ has_inv has_one has_mul
+ -/
+#print list.alternating_sum_nil /- _inst_1: add_comm_group ↝ has_zero has_neg has_add
+ -/
+#print list.alternating_sum_singleton /- _inst_1: add_comm_group ↝ has_zero has_neg has_add
+ -/
+#print list.alternating_prod_singleton /- _inst_1: comm_group ↝ has_inv has_one has_mul
+ -/
+#print list.alternating_prod_cons_cons /- _inst_1: comm_group ↝ has_inv has_one has_mul
+ -/
+#print list.alternating_sum_cons_cons' /- _inst_1: add_comm_group ↝ has_zero has_neg has_add
+ -/
+#print list.alternating_sum_cons_cons /- _inst_2: add_comm_group ↝ has_sub has_zero has_neg has_add
+ -/
+#print list.lex.is_strict_total_order /- _inst_1: is_strict_total_order' ↝ is_trichotomous is_asymm is_order_connected
+ -/
+#print list.insert_nil /- _inst_1: decidable_eq ↝ has_insert
+ -/
+#print list.insert.def /- _inst_1: decidable_eq ↝ decidable has_insert
+ -/
+#print list.nil_union /- _inst_1: decidable_eq ↝ has_union
+ -/
+#print list.cons_union /- _inst_1: decidable_eq ↝ has_insert has_union
+ -/
+#print list.inter_nil /- _inst_1: decidable_eq ↝ has_inter
+ -/
+
+-- data\list\defs.lean
+#print list.mfoldl_with_index /- _inst_1: monad ↝ has_pure has_bind
+ -/
+#print list.mfoldr_with_index /- _inst_1: monad ↝ has_pure has_bind
+ -/
+#print list.decidable_chain' /- _inst_1: decidable_rel ↝ decidable
+ -/
+#print list.nodup_decidable /- _inst_1: decidable_eq ↝ decidable
+ -/
+#print list.erase_dup /- _inst_1: decidable_eq ↝ decidable
+ -/
+
+-- data\list\forall2.lean
+#print list.rel_sum /- _inst_1: add_monoid ↝ has_zero has_add
+_inst_2: add_monoid ↝ has_zero has_add
+ -/
+#print list.rel_prod /- _inst_1: monoid ↝ has_one has_mul
+_inst_2: monoid ↝ has_one has_mul
+ -/
+
+-- data\list\min_max.lean
+#print list.argmax₂ /- _inst_1: linear_order ↝ decidable has_le
+ -/
+
+-- data\list\perm.lean
+#print list.perm.sum_eq' /- _inst_1: add_monoid ↝ add_semigroup has_zero
+ -/
+#print list.perm.prod_eq' /- _inst_1: monoid ↝ semigroup has_one
+ -/
+#print list.perm.sum_eq /- _inst_1: add_comm_monoid ↝ has_zero is_commutative has_add is_associative
+ -/
+#print list.perm.prod_eq /- _inst_1: comm_monoid ↝ has_one is_commutative is_associative has_mul
+ -/
+#print list.perm.inter_left /- _inst_1: decidable_eq ↝ decidable has_inter
+ -/
+
+-- data\list\sort.lean
+#print list.decidable_sorted /- _inst_1: decidable_rel ↝ decidable
+ -/
+#print list.sorted_ordered_insert /- _inst_2: is_total ↝
+ -/
+#print list.sorted_insertion_sort /- _inst_2: is_total ↝
+ -/
+#print list.sorted_merge /- _inst_2: is_total ↝
+ -/
+#print list.sorted_merge_sort /- _inst_2: is_total ↝
+ -/
+#print list.merge_sort_eq_self /- _inst_2: is_total ↝
+ -/
+
+-- data\multiset\basic.lean
+#print multiset.decidable_mem /- _inst_1: decidable_eq ↝ decidable
+ -/
+#print multiset.sum_map_mul_left /- _inst_1: semiring ↝ add_comm_monoid distrib mul_zero_class
+ -/
+#print multiset.sum_map_mul_right /- _inst_1: semiring ↝ add_comm_monoid distrib mul_zero_class
+ -/
+#print multiset.prod_ne_zero /- _inst_1: integral_domain ↝ monoid_with_zero nontrivial comm_monoid no_zero_divisors
+ -/
+#print multiset.prod_eq_zero /- _inst_1: comm_semiring ↝ comm_monoid mul_zero_class
+ -/
+#print multiset.prod_eq_zero_iff /- _inst_1: comm_cancel_monoid_with_zero ↝ monoid_with_zero comm_monoid no_zero_divisors
+ -/
+#print multiset.abs_sum_le_sum_abs /- _inst_1: linear_ordered_field ↝ linear_ordered_add_comm_group
+ -/
+#print multiset.decidable_exists_multiset /- _inst_1: decidable_pred ↝ decidable
+ -/
+#print multiset.sub_zero /- _inst_1: decidable_eq ↝ has_sub
+ -/
+#print multiset.union /- _inst_1: decidable_eq ↝ has_sub
+ -/
+#print multiset.union_def /- _inst_1: decidable_eq ↝ has_sub has_union
+ -/
+#print multiset.sup_eq_union /- _inst_1: decidable_eq ↝ lattice has_union
+ -/
+#print multiset.inf_eq_inter /- _inst_1: decidable_eq ↝ lattice has_inter
+ -/
+#print multiset.le_inter_iff /- _inst_1: decidable_eq ↝ lattice has_inter
+ -/
+#print multiset.union_le_iff /- _inst_1: decidable_eq ↝ lattice has_union
+ -/
+#print multiset.union_comm /- _inst_1: decidable_eq ↝ lattice has_union
+ -/
+#print multiset.inter_comm /- _inst_1: decidable_eq ↝ has_inter semilattice_inf_bot
+ -/
+#print multiset.union_le_union_left /- _inst_1: decidable_eq ↝ lattice has_union
+ -/
+
+-- data\multiset\finset_ops.lean
+#print multiset.ndinter /- _inst_1: decidable_eq ↝ decidable
+ -/
+
+-- data\multiset\nodup.lean
+#print multiset.nodup_decidable /- _inst_1: decidable_eq ↝ decidable
+ -/
+
+-- data\multiset\sort.lean
+#print multiset.sort /- _inst_4: is_total ↝
+ -/
+#print multiset.coe_sort /- _inst_4: is_total ↝
+ -/
+#print multiset.sort_sorted /- _inst_4: is_total ↝
+ -/
+#print multiset.sort_eq /- _inst_4: is_total ↝
+ -/
+#print multiset.mem_sort /- _inst_4: is_total ↝
+ -/
+#print multiset.length_sort /- _inst_4: is_total ↝
+ -/
+
+-- data\nat\cast.lean
+#print nat.cast_zero /- _inst_2: has_one ↝ has_coe_t
+_inst_3: has_add ↝ has_coe_t
+ -/
+#print nat.cast_add_one /- _inst_1: has_zero ↝ has_coe_t
+ -/
+#print nat.cast_succ /- _inst_1: has_zero ↝ has_coe_t
+ -/
+#print nat.cast_ite /- _inst_1: has_zero ↝ has_coe_t
+_inst_2: has_one ↝ has_coe_t
+_inst_3: has_add ↝ has_coe_t
+ -/
+#print nat.cast_two /- _inst_1: semiring ↝ add_monoid has_one has_coe_t
+ -/
+#print nat.cast_dvd /- _inst_1: field ↝ has_coe_t comm_group_with_zero semiring
+ -/
+#print nat.cast_commute /- _inst_1: semiring ↝ monoid has_coe_t distrib mul_zero_class
+ -/
+#print nat.strict_mono_cast /- _inst_1: linear_ordered_semiring ↝ nontrivial has_coe_t ordered_semiring
+ -/
+#print nat.abs_cast /- _inst_1: linear_ordered_comm_ring ↝ linear_ordered_add_comm_group has_coe_t linear_ordered_semiring
+ -/
+
+-- data\nat\choose\sum.lean
+#print add_pow /- _inst_1: comm_semiring ↝ has_coe_t comm_semigroup semiring
+ -/
+
+-- data\nat\prime.lean
+#print nat.monoid.prime_pow /- _inst_1: monoid ↝ has_pow
+ -/
+
+-- data\rat\cast.lean
+#print rat.cast_coe /- _inst_1: division_ring ↝ has_coe_t has_div
+ -/
+#print rat.cast_of_int /- _inst_1: division_ring ↝ add_monoid group_with_zero has_coe_t
+ -/
+#print rat.cast_commute /- _inst_1: division_ring ↝ group_with_zero has_coe_t ring
+ -/
+#print rat.cast_mk_of_ne_zero /- _inst_1: division_ring ↝ group_with_zero has_coe_t ring
+ -/
+#print rat.cast_neg /- _inst_1: division_ring ↝ has_inv has_coe_t ring
+ -/
+
+-- data\real\cau_seq.lean
+#print is_absolute_value.abv_one /- _inst_4: domain ↝ nontrivial ring
+ -/
+#print is_absolute_value.abv_inv /- _inst_4: field ↝ group_with_zero domain
+ -/
+#print is_cau_seq /- _inst_1: linear_ordered_field ↝ has_lt has_zero
+_inst_2: ring ↝ has_sub
+ -/
+#print cau_seq.add_apply /- _inst_3: is_absolute_value ↝ has_add
+ -/
+#print cau_seq.inhabited /- _inst_3: is_absolute_value ↝ has_zero
+ -/
+#print cau_seq.zero_apply /- _inst_3: is_absolute_value ↝ has_zero
+ -/
+#print cau_seq.one_apply /- _inst_3: is_absolute_value ↝ has_one
+ -/
+#print cau_seq.mul_apply /- _inst_3: is_absolute_value ↝ has_mul
+ -/
+#print cau_seq.neg_apply /- _inst_3: is_absolute_value ↝ has_neg
+ -/
+#print cau_seq.sub_apply /- _inst_3: is_absolute_value ↝ ring
+ -/
+#print cau_seq.not_lim_zero_of_not_congr_zero /- _inst_3: is_absolute_value ↝ setoid ring
+ -/
+#print cau_seq.one_not_equiv_zero /- _inst_2: integral_domain ↝ setoid nontrivial ring
+ -/
+
+-- data\real\cau_seq_completion.lean
+#print cau_seq.completion.Cauchy /- _inst_2: comm_ring ↝ setoid ring
+_inst_3: is_absolute_value ↝ setoid
+ -/
+#print cau_seq.completion.cau_seq_zero_ne_one /- _inst_2: field ↝ setoid nontrivial ring
+ -/
+
+-- data\set\finite.lean
+#print set.decidable_mem_of_fintype /- _inst_1: decidable_eq ↝ decidable
+ -/
+#print set.fintype_inter /- _inst_2: decidable_pred ↝ fintype
+ -/
+#print set.fintype_subset /- _inst_2: decidable_pred ↝ fintype
+ -/
+#print set.fintype_map /- _inst_1: decidable_eq ↝ fintype
+ -/
+#print set.fintype_bUnion /- _inst_1: decidable_eq ↝ fintype
+ -/
+
+-- data\set\intervals\basic.lean
+#print set.Ioo /- _inst_1: preorder ↝ has_lt
+ -/
+#print set.Ico /- _inst_1: preorder ↝ has_lt has_le
+ -/
+#print set.Iio /- _inst_1: preorder ↝ has_lt
+ -/
+#print set.Icc /- _inst_1: preorder ↝ has_le
+ -/
+#print set.Iic /- _inst_1: preorder ↝ has_le
+ -/
+#print set.Ioc /- _inst_1: preorder ↝ has_lt has_le
+ -/
+#print set.Ici /- _inst_1: preorder ↝ has_le
+ -/
+#print set.Ioi /- _inst_1: preorder ↝ has_lt
+ -/
+#print set.Iio_inter_Iio /- _inst_2: is_total ↝
+ -/
+#print set.Ioi_inter_Ioi /- _inst_2: is_total ↝
+ -/
+#print set.Icc_inter_Icc /- _inst_1: lattice ↝ semilattice_inf semilattice_sup
+ -/
+#print set.Ico_inter_Ico /- _inst_1: lattice ↝ semilattice_inf semilattice_sup
+ht: is_total ↝
+ -/
+#print set.Ioc_inter_Ioc /- _inst_1: lattice ↝ semilattice_inf semilattice_sup
+ht: is_total ↝
+ -/
+#print set.Ioo_inter_Ioo /- _inst_1: lattice ↝ semilattice_inf semilattice_sup
+ht: is_total ↝
+ -/
+#print set.nonempty_Ico_sdiff /- _inst_1: linear_ordered_add_comm_group ↝ linear_order ordered_cancel_add_comm_monoid
+ -/
+
+-- data\set\intervals\surj_on.lean
+#print surj_on_Ioo_of_monotone_surjective /- _inst_2: partial_order ↝ preorder
+ -/
+#print surj_on_Ioi_of_monotone_surjective /- _inst_2: partial_order ↝ preorder
+ -/
+
+-- data\support.lean
+#print function.support_inv /- _inst_1: division_ring ↝ group_with_zero
+ -/
+
+-- data\vector2.lean
+#print vector.traverse_def /- _inst_3: is_lawful_applicative ↝
+ -/
+
+-- deprecated\group.lean
+#print is_add_hom.add /- _inst_4: add_semigroup ↝ has_add
+ -/
+#print is_mul_hom.mul /- _inst_4: semigroup ↝ has_mul
+ -/
+#print add_equiv.is_add_hom /- _inst_1: add_monoid ↝ has_coe_to_fun has_add
+_inst_2: add_monoid ↝ has_coe_to_fun has_add
+ -/
+#print mul_equiv.is_mul_hom /- _inst_1: monoid ↝ has_coe_to_fun has_mul
+_inst_2: monoid ↝ has_coe_to_fun has_mul
+ -/
+#print is_add_monoid_hom.map_add /- _inst_3: is_add_monoid_hom ↝ is_add_hom
+ -/
+#print is_monoid_hom.map_mul /- _inst_3: is_monoid_hom ↝ is_mul_hom
+ -/
+#print is_add_monoid_hom.is_add_monoid_hom_mul_left /- _inst_1: semiring ↝ add_monoid distrib mul_zero_class
+ -/
+#print is_add_monoid_hom.is_add_monoid_hom_mul_right /- _inst_1: semiring ↝ add_monoid distrib mul_zero_class
+ -/
+#print is_group_hom.to_is_monoid_hom /- _inst_3: is_group_hom ↝ is_mul_hom
+ -/
+#print is_add_group_hom.to_is_add_monoid_hom /- _inst_3: is_add_group_hom ↝ is_add_hom
+ -/
+#print is_group_hom.map_one /- _inst_3: is_group_hom ↝ is_monoid_hom
+ -/
+#print is_add_group_hom.map_zero /- _inst_3: is_add_group_hom ↝ is_add_monoid_hom
+ -/
+#print is_group_hom.comp /- _inst_3: is_group_hom ↝ is_mul_hom
+_inst_5: is_group_hom ↝ is_mul_hom
+ -/
+#print is_add_group_hom.comp /- _inst_3: is_add_group_hom ↝ is_add_hom
+_inst_5: is_add_group_hom ↝ is_add_hom
+ -/
+#print is_add_group_hom.add /- _inst_5: add_comm_group ↝ add_group
+_inst_6: is_add_group_hom ↝ is_add_hom
+_inst_7: is_add_group_hom ↝ is_add_hom
+ -/
+#print is_group_hom.mul /- _inst_5: comm_group ↝ group
+_inst_6: is_group_hom ↝ is_mul_hom
+_inst_7: is_group_hom ↝ is_mul_hom
+ -/
+#print is_group_hom.inv /- _inst_5: comm_group ↝ group
+_inst_6: is_group_hom ↝ is_mul_hom
+ -/
+#print is_add_group_hom.neg /- _inst_5: add_comm_group ↝ add_group
+_inst_6: is_add_group_hom ↝ is_add_hom
+ -/
+#print ring_hom.is_add_group_hom /- _inst_1: ring ↝ has_coe_to_fun add_group semiring
+_inst_2: ring ↝ has_coe_to_fun add_group semiring
+ -/
+#print is_add_group_hom.sub /- _inst_2: add_comm_group ↝ add_group
+ -/
+#print units.map' /- _inst_1: monoid ↝ group
+_inst_2: monoid ↝ group
+ -/
+#print units.coe_map' /- _inst_1: monoid ↝ group has_coe
+_inst_2: monoid ↝ group has_coe
+ -/
+#print units.coe_is_monoid_hom /- _inst_1: monoid ↝ group has_coe
+ -/
+#print additive.is_add_group_hom /- _inst_3: is_group_hom ↝ is_mul_hom
+ -/
+#print multiplicative.is_group_hom /- _inst_3: is_add_group_hom ↝ is_add_hom
+ -/
+
+-- group_theory\group_action\basic.lean
+#print mul_action.orbit /- _inst_2: mul_action ↝ has_scalar
+ -/
+#print mul_action.stabilizer_carrier /- _inst_2: mul_action ↝ has_scalar
+ -/
+#print mul_action.fixed_points /- _inst_2: mul_action ↝ has_scalar
+ -/
+#print mul_action.fixed_by /- _inst_2: mul_action ↝ has_scalar
+ -/
+
+-- group_theory\group_action\defs.lean
+#print smul_comm_class_self /- _inst_1: comm_monoid ↝ has_scalar monoid comm_semigroup
+ -/
+#print ite_smul /- _inst_2: mul_action ↝ has_scalar
+ -/
+#print smul_ite /- _inst_2: mul_action ↝ has_scalar
+ -/
+
+-- group_theory\group_action\group.lean
+#print units.inv_smul_smul /- _inst_1: monoid ↝ has_scalar group has_coe
+ -/
+#print units.smul_inv_smul /- _inst_1: monoid ↝ has_scalar group has_coe
+ -/
+#print units.smul_perm_hom /- _inst_1: monoid ↝ has_scalar group has_coe
+ -/
+#print units.smul_left_cancel /- _inst_1: monoid ↝ has_scalar group has_coe
+ -/
+#print units.smul_eq_iff_eq_inv_smul /- _inst_1: monoid ↝ has_scalar group has_coe
+ -/
+#print units.smul_eq_zero /- _inst_1: monoid ↝ mul_action group has_coe
+ -/
+
+-- group_theory\order_of_element.lean
+#print conj_injective /- _inst_1: group ↝ left_cancel_semigroup has_inv right_cancel_semigroup
+ -/
+#print card_eq_card_quotient_mul_card_subgroup /- _inst_4: decidable_pred ↝ fintype
+ -/
+
+-- group_theory\quotient_group.lean
+#print quotient_add_group.mk' /- nN: add_subgroup.normal ↝ add_group
+ -/
+#print quotient_group.mk' /- nN: subgroup.normal ↝ group
+ -/
+#print quotient_group.ker_mk /- nN: subgroup.normal ↝ group
+ -/
+#print quotient_add_group.ker_mk /- nN: add_subgroup.normal ↝ add_group
+ -/
+#print quotient_add_group.coe_zero /- nN: add_subgroup.normal ↝ add_group
+ -/
+#print quotient_group.coe_one /- nN: subgroup.normal ↝ group
+ -/
+#print quotient_add_group.coe_add /- nN: add_subgroup.normal ↝ add_group
+ -/
+#print quotient_group.coe_mul /- nN: subgroup.normal ↝ group
+ -/
+#print quotient_group.coe_inv /- nN: subgroup.normal ↝ group
+ -/
+#print quotient_add_group.coe_neg /- nN: add_subgroup.normal ↝ add_group
+ -/
+#print quotient_group.coe_pow /- nN: subgroup.normal ↝ group
+ -/
+#print quotient_group.coe_gpow /- nN: subgroup.normal ↝ group
+ -/
+#print quotient_add_group.lift /- nN: add_subgroup.normal ↝ add_group
+ -/
+#print quotient_group.lift /- nN: subgroup.normal ↝ group
+ -/
+#print quotient_group.lift_mk /- nN: subgroup.normal ↝ group
+ -/
+#print quotient_add_group.lift_mk /- nN: add_subgroup.normal ↝ add_group
+ -/
+#print quotient_group.lift_mk' /- nN: subgroup.normal ↝ group
+ -/
+#print quotient_add_group.lift_mk' /- nN: add_subgroup.normal ↝ add_group
+ -/
+#print quotient_add_group.lift_quot_mk /- nN: add_subgroup.normal ↝ add_group
+ -/
+#print quotient_group.lift_quot_mk /- nN: subgroup.normal ↝ group
+ -/
+#print quotient_group.map /- nN: subgroup.normal ↝ group
+_inst_3: subgroup.normal ↝ group
+ -/
+#print quotient_add_group.map /- nN: add_subgroup.normal ↝ add_group
+_inst_3: add_subgroup.normal ↝ add_group
+ -/
+
+-- group_theory\subgroup.lean
+#print subgroup.multiset_prod_mem /- _inst_3: comm_group ↝ group comm_monoid
+ -/
+#print add_subgroup.multiset_sum_mem /- _inst_3: add_comm_group ↝ add_comm_monoid add_group
+ -/
+#print subgroup.prod_mem /- _inst_3: comm_group ↝ group comm_monoid
+ -/
+#print add_subgroup.sum_mem /- _inst_3: add_comm_group ↝ add_comm_monoid add_group
+ -/
+#print add_subgroup.normal_of_comm /- _inst_3: add_comm_group ↝ add_comm_semigroup add_group
+ -/
+#print subgroup.normal_of_comm /- _inst_3: comm_group ↝ comm_semigroup group
+ -/
+#print monoid_hom.eq_of_eq_on_top /- _inst_3: group ↝ monoid has_coe_to_fun
+ -/
+#print add_monoid_hom.eq_of_eq_on_top /- _inst_3: add_group ↝ add_monoid has_coe_to_fun
+ -/
+
+-- logic\basic.lean
+#print coe_coe /- _inst_1: has_coe ↝ has_lift_t
+_inst_2: has_coe_t ↝ has_lift_t
+ -/
+#print coe_fn_coe_trans /- _inst_1: has_coe ↝ has_lift_t has_coe_to_fun
+_inst_2: has_coe_t_aux ↝ has_coe_to_fun
+ -/
+#print coe_fn_coe_base /- _inst_1: has_coe ↝ has_lift_t has_coe_to_fun
+ -/
+#print coe_sort_coe_trans /- _inst_1: has_coe ↝ has_lift_t has_coe_to_sort
+_inst_2: has_coe_t_aux ↝ has_coe_to_sort
+ -/
+#print coe_sort_coe_base /- _inst_1: has_coe ↝ has_lift_t has_coe_to_sort
+ -/
+
+-- order\basic.lean
+#print monotone /- _inst_1: preorder ↝ has_le
+_inst_2: preorder ↝ has_le
+ -/
+#print as_linear_order.linear_order /- _inst_2: is_total ↝
+ -/
+
+-- order\bounded_lattice.lean
+#print top_sup_eq /- _inst_1: semilattice_sup_top ↝ order_top semilattice_sup
+ -/
+#print sup_top_eq /- _inst_1: semilattice_sup_top ↝ order_top semilattice_sup
+ -/
+#print bot_sup_eq /- _inst_1: semilattice_sup_bot ↝ semilattice_sup order_bot
+ -/
+#print sup_bot_eq /- _inst_1: semilattice_sup_bot ↝ semilattice_sup order_bot
+ -/
+#print sup_eq_bot_iff /- _inst_1: semilattice_sup_bot ↝ semilattice_sup order_bot
+ -/
+#print top_inf_eq /- _inst_1: semilattice_inf_top ↝ semilattice_inf order_top
+ -/
+#print inf_top_eq /- _inst_1: semilattice_inf_top ↝ semilattice_inf order_top
+ -/
+#print inf_eq_top_iff /- _inst_1: semilattice_inf_top ↝ semilattice_inf order_top
+ -/
+#print bot_inf_eq /- _inst_1: semilattice_inf_bot ↝ semilattice_inf order_bot
+ -/
+#print inf_bot_eq /- _inst_1: semilattice_inf_bot ↝ semilattice_inf order_bot
+ -/
+#print inf_eq_bot_iff_le_compl /- _inst_1: bounded_distrib_lattice ↝ semilattice_sup_bot distrib_lattice semilattice_inf_top
+ -/
+#print eq_bot_of_bot_eq_top /- _inst_1: bounded_lattice ↝ order_top order_bot
+ -/
+#print eq_top_of_bot_eq_top /- _inst_1: bounded_lattice ↝ order_top order_bot
+ -/
+#print subsingleton_of_top_le_bot /- _inst_1: bounded_lattice ↝ order_top order_bot
+ -/
+#print with_bot.coe_le /- _inst_1: partial_order ↝ preorder
+ -/
+#print with_bot.coe_lt_coe /- _inst_1: partial_order ↝ preorder
+ -/
+#print with_bot.well_founded_lt /- _inst_1: partial_order ↝ order_bot
+ -/
+#print with_top.coe_le_coe /- _inst_1: partial_order ↝ preorder
+ -/
+#print with_top.le_coe_iff /- _inst_1: partial_order ↝ order_top
+ -/
+#print with_top.coe_le_iff /- _inst_1: partial_order ↝ order_top
+ -/
+#print with_top.lt_iff_exists_coe /- _inst_1: partial_order ↝ order_top
+ -/
+#print with_top.coe_lt_coe /- _inst_1: partial_order ↝ preorder
+ -/
+#print with_top.coe_lt_top /- _inst_1: partial_order ↝ preorder
+ -/
+#print with_top.coe_inf /- _inst_1: semilattice_inf ↝ semilattice_inf_top
+ -/
+#print with_top.coe_sup /- _inst_1: semilattice_sup ↝ semilattice_sup_top
+ -/
+#print with_top.well_founded_lt /- _inst_1: partial_order ↝ order_top
+ -/
+#print with_top.lt_iff_exists_coe_btwn /- _inst_3: no_top_order ↝ densely_ordered
+ -/
+#print disjoint /- _inst_1: semilattice_inf_bot ↝ has_bot has_le has_inf
+ -/
+#print disjoint_sup_left /- _inst_1: bounded_distrib_lattice ↝ semilattice_sup_bot distrib_lattice semilattice_inf_bot
+ -/
+#print disjoint_sup_right /- _inst_1: bounded_distrib_lattice ↝ semilattice_sup_bot distrib_lattice semilattice_inf_bot
+ -/
+#print is_compl.le_left_iff /- _inst_1: bounded_distrib_lattice ↝ bounded_lattice distrib_lattice
+ -/
+#print is_compl.sup_inf /- _inst_1: bounded_distrib_lattice ↝ bounded_lattice distrib_lattice
+ -/
+
+-- order\bounds.lean
+#print upper_bounds /- _inst_1: preorder ↝ has_le
+ -/
+#print lower_bounds /- _inst_1: preorder ↝ has_le
+ -/
+#print is_glb.exists_between_self_add /- _inst_1: linear_ordered_add_comm_group ↝ linear_order ordered_cancel_add_comm_monoid
+ -/
+#print is_lub.exists_between_sub_self /- _inst_1: linear_ordered_add_comm_group ↝ linear_order ordered_add_comm_group
+ -/
+
+-- order\complete_boolean_algebra.lean
+#print compl_infi /- _inst_1: complete_boolean_algebra ↝ boolean_algebra complete_lattice
+ -/
+
+-- order\complete_lattice.lean
+#print Inf_lt_iff /- _inst_1: complete_linear_order ↝ complete_lattice linear_order
+ -/
+#print lt_Sup_iff /- _inst_1: complete_linear_order ↝ complete_lattice linear_order
+ -/
+
+-- order\conditionally_complete_lattice.lean
+#print exists_lt_of_lt_cSup /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice linear_order
+ -/
+#print exists_lt_of_cInf_lt /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice linear_order
+ -/
+#print cSup_intro' /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice
+ -/
+#print with_top.is_glb_Inf /- _inst_1: conditionally_complete_linear_order_bot ↝ conditionally_complete_lattice order_bot
+ -/
+#print with_top.coe_Inf /- _inst_1: conditionally_complete_linear_order_bot ↝ complete_linear_order
+ -/
+#print Sup_within_of_ord_connected /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice
+ -/
+#print Inf_within_of_ord_connected /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice
+ -/
+
+-- order\filter\at_top_bot.lean
+#print filter.tendsto_at_top_of_monotone_of_subseq /- _inst_3: filter.ne_bot ↝ filter.ne_bot
+ -/
+#print filter.tendsto_at_bot_of_monotone_of_subseq /- _inst_3: filter.ne_bot ↝ filter.ne_bot
+ -/
+
+-- order\filter\basic.lean
+#print filter.eventually_eq.div /- _inst_1: group_with_zero ↝ has_inv has_mul has_div
+ -/
+#print filter.eventually_eq.sub /- _inst_1: add_group ↝ has_sub has_neg has_add
+ -/
+
+-- order\filter\interval.lean
+#print filter.tendsto_Icc_pure_pure /- _inst_2: partial_order ↝ preorder set.ord_connected
+ -/
+#print filter.tendsto_Ico_pure_bot /- _inst_2: partial_order ↝ preorder
+ -/
+#print filter.tendsto_Ioc_pure_bot /- _inst_2: partial_order ↝ preorder
+ -/
+#print filter.tendsto_Ioo_pure_bot /- _inst_2: partial_order ↝ preorder filter.tendsto_Ixx_class
+ -/
+
+-- order\filter\pointwise.lean
+#print filter.mem_add /- _inst_1: add_monoid ↝ has_add
+ -/
+#print filter.mem_mul /- _inst_1: monoid ↝ has_mul
+ -/
+#print filter.add_mem_add /- _inst_1: add_monoid ↝ has_add
+ -/
+#print filter.mul_mem_mul /- _inst_1: monoid ↝ has_mul
+ -/
+#print filter.mul_le_mul /- _inst_1: monoid ↝ has_mul
+ -/
+#print filter.add_le_add /- _inst_1: add_monoid ↝ has_add
+ -/
+#print filter.ne_bot.add /- _inst_1: add_monoid ↝ has_add
+ -/
+#print filter.ne_bot.mul /- _inst_1: monoid ↝ has_mul
+ -/
+#print filter.map_add /- _inst_1: add_monoid ↝ has_add
+ -/
+#print filter.map_mul /- _inst_1: monoid ↝ has_mul
+ -/
+#print filter.comap_mul_comap_le /- _inst_1: monoid ↝ has_mul
+_inst_2: monoid ↝ has_mul
+ -/
+#print filter.comap_add_comap_le /- _inst_1: add_monoid ↝ has_add
+_inst_2: add_monoid ↝ has_add
+ -/
+
+-- order\filter\ultrafilter.lean
+#print filter.is_ultrafilter_hyperfilter /- _inst_1: infinite ↝ filter.ne_bot
+ -/
+
+-- order\galois_connection.lean
+#print galois_connection /- _inst_1: preorder ↝ has_le
+_inst_2: preorder ↝ has_le
+ -/
+#print galois_connection.u_l_u_eq_u /- _inst_2: partial_order ↝ preorder
+ -/
+#print galois_connection.l_u_l_eq_l /- _inst_1: partial_order ↝ preorder
+ -/
+#print galois_connection.l_unique /- _inst_1: partial_order ↝ preorder
+ -/
+#print galois_connection.u_unique /- _inst_2: partial_order ↝ preorder
+ -/
+#print galois_insertion.strict_mono_u /- _inst_2: partial_order ↝ preorder
+ -/
+
+-- order\lattice.lean
+#print sup_ind /- _inst_2: is_total ↝
+ -/
+#print sup_lt_iff /- _inst_2: is_total ↝
+ -/
+#print le_sup_iff /- _inst_1: semilattice_sup ↝ linear_order
+_inst_2: is_total ↝ linear_order
+ -/
+#print lt_sup_iff /- _inst_1: semilattice_sup ↝ linear_order
+_inst_2: is_total ↝ linear_order
+ -/
+#print inf_ind /- _inst_2: is_total ↝
+ -/
+#print lt_inf_iff /- _inst_2: is_total ↝
+ -/
+#print inf_le_iff /- _inst_2: is_total ↝
+ -/
+#print sup_inf_le /- _inst_1: lattice ↝ semilattice_inf semilattice_sup
+ -/
+#print le_inf_sup /- _inst_1: lattice ↝ semilattice_inf semilattice_sup
+ -/
+#print inf_sup_self /- _inst_1: lattice ↝ semilattice_inf semilattice_sup
+ -/
+#print sup_inf_self /- _inst_1: lattice ↝ semilattice_inf semilattice_sup
+ -/
+#print monotone.map_sup /- _inst_2: is_total ↝
+ -/
+#print monotone.map_inf /- _inst_2: is_total ↝
+ -/
+
+-- order\liminf_limsup.lean
+#print filter.Limsup /- _inst_1: conditionally_complete_lattice ↝ has_Inf has_le
+ -/
+#print filter.Liminf /- _inst_1: conditionally_complete_lattice ↝ has_Sup has_le
+ -/
+#print filter.liminf_le_limsup /- _inst_1: complete_lattice ↝ conditionally_complete_lattice order_top order_bot
+_inst_2: filter.ne_bot ↝ filter.ne_bot
+ -/
+
+-- order\rel_classes.lean
+#print is_total.swap /- _inst_1: is_total ↝
+ -/
+#print is_preorder.swap /- _inst_1: is_preorder ↝ is_trans is_refl
+ -/
+#print is_strict_order.swap /- _inst_1: is_strict_order ↝ is_irrefl is_trans
+ -/
+#print is_partial_order.swap /- _inst_1: is_partial_order ↝ is_antisymm is_preorder
+ -/
+#print is_total_preorder.swap /- _inst_1: is_total_preorder ↝ is_preorder
+ -/
+#print is_linear_order.swap /- _inst_1: is_linear_order ↝ is_partial_order
+ -/
+#print ge.is_refl /- _inst_1: preorder ↝ has_le is_refl
+ -/
+#print ge.is_trans /- _inst_1: preorder ↝ has_le is_trans
+ -/
+#print has_le.le.is_preorder /- _inst_1: preorder ↝ has_le is_trans is_refl
+ -/
+#print ge.is_preorder /- _inst_1: preorder ↝ has_le is_trans is_refl
+ -/
+#print gt.is_irrefl /- _inst_1: preorder ↝ has_lt is_irrefl
+ -/
+#print gt.is_trans /- _inst_1: preorder ↝ has_lt is_trans
+ -/
+#print gt.is_asymm /- _inst_1: preorder ↝ has_lt is_asymm
+ -/
+#print has_lt.lt.is_antisymm /- _inst_1: preorder ↝ has_lt is_asymm
+ -/
+#print gt.is_antisymm /- _inst_1: preorder ↝ has_lt is_asymm
+ -/
+#print has_lt.lt.is_strict_order /- _inst_1: preorder ↝ has_lt is_irrefl is_trans
+ -/
+#print gt.is_strict_order /- _inst_1: preorder ↝ has_lt is_irrefl is_trans
+ -/
+#print preorder.is_total_preorder /- _inst_1: preorder ↝ has_le is_trans
+_inst_2: is_total ↝
+ -/
+#print ge.is_antisymm /- _inst_1: partial_order ↝ is_antisymm has_le
+ -/
+#print has_le.le.is_partial_order /- _inst_1: partial_order ↝ is_antisymm has_le is_trans is_refl
+ -/
+#print ge.is_partial_order /- _inst_1: partial_order ↝ is_antisymm has_le is_trans is_refl
+ -/
+#print ge.is_total /- _inst_1: linear_order ↝ has_le
+ -/
+#print linear_order.is_total_preorder /- _inst_1: linear_order ↝ has_le
+ -/
+#print ge.is_total_preorder /- _inst_1: linear_order ↝ has_le
+ -/
+#print has_le.le.is_linear_order /- _inst_1: linear_order ↝ is_antisymm has_le is_refl
+ -/
+#print ge.is_linear_order /- _inst_1: linear_order ↝ is_antisymm has_le is_refl
+ -/
+#print gt.is_trichotomous /- _inst_1: linear_order ↝ is_trichotomous has_lt
+ -/
+#print order_dual.is_total_le /- _inst_2: is_total ↝
+ -/
+#print is_strict_total_order'.swap /- _inst_1: is_strict_total_order' ↝ is_trichotomous is_strict_order
+ -/
+#print has_lt.lt.is_strict_total_order' /- _inst_1: linear_order ↝ is_trichotomous has_lt is_irrefl is_trans
+ -/
+#print is_order_connected_of_is_strict_total_order' /- _inst_1: is_strict_total_order' ↝ is_trichotomous is_trans
+ -/
+#print is_strict_total_order_of_is_strict_total_order' /- _inst_1: is_strict_total_order' ↝ is_trichotomous is_asymm is_order_connected
+ -/
+#print has_lt.lt.is_strict_total_order /- _inst_1: linear_order ↝ has_lt is_strict_total_order'
+ -/
+#print has_lt.lt.is_order_connected /- _inst_1: linear_order ↝ has_lt is_strict_total_order'
+ -/
+#print has_lt.lt.is_incomp_trans /- _inst_1: linear_order ↝ has_lt is_strict_weak_order
+ -/
+#print has_lt.lt.is_strict_weak_order /- _inst_1: linear_order ↝ has_lt is_strict_weak_order
+ -/
+#print is_extensional_of_is_strict_total_order' /- _inst_1: is_strict_total_order' ↝ is_trichotomous is_irrefl
+ -/
+#print is_well_order.is_strict_total_order /- _inst_1: is_well_order ↝ is_strict_total_order
+ -/
+#print is_well_order.is_extensional /- _inst_1: is_well_order ↝ is_extensional
+ -/
+#print is_well_order.is_trichotomous /- _inst_1: is_well_order ↝ is_trichotomous
+ -/
+#print is_well_order.is_trans /- _inst_1: is_well_order ↝ is_trans
+ -/
+#print is_well_order.is_irrefl /- _inst_1: is_well_order ↝ is_irrefl
+ -/
+#print is_well_order.is_asymm /- _inst_1: is_well_order ↝ is_asymm
+ -/
+#print is_well_order.linear_order /- _inst_1: is_well_order ↝ is_strict_total_order'
+ -/
+
+-- order\rel_iso.lean
+#print rel_embedding.is_total /- _inst_1: is_total ↝
+ -/
+#print rel_embedding.is_preorder /- _inst_1: is_preorder ↝ is_trans is_refl
+ -/
+#print rel_embedding.is_partial_order /- _inst_1: is_partial_order ↝ is_antisymm is_preorder
+ -/
+#print rel_embedding.is_linear_order /- _inst_1: is_linear_order ↝ is_partial_order
+ -/
+#print rel_embedding.is_strict_order /- _inst_1: is_strict_order ↝ is_irrefl is_trans
+ -/
+#print rel_embedding.is_strict_total_order' /- _inst_1: is_strict_total_order' ↝ is_trichotomous is_strict_order
+ -/
+#print order_embedding.map_le_iff /- _inst_1: preorder ↝ has_le
+_inst_2: preorder ↝ has_le
+ -/
+
+-- order\zorn.lean
+#print zorn.chain.total /- _inst_1: preorder ↝ has_le is_refl
+ -/
+
+-- tactic\abel.lean
+#print tactic.abel.term /- _inst_1: add_comm_monoid ↝ has_zero has_add
+ -/
+#print tactic.abel.termg /- _inst_1: add_comm_group ↝ add_group
+ -/
+#print tactic.abel.smul /- _inst_1: add_comm_monoid ↝ has_zero has_add
+ -/
+#print tactic.abel.smulg /- _inst_1: add_comm_group ↝ add_group
+ -/
+#print tactic.abel.unfold_sub /- _inst_1: add_group ↝ has_sub has_neg has_add
+ -/
+
+-- tactic\cancel_denoms.lean
+#print cancel_factors.mul_subst /- _inst_1: comm_ring ↝ comm_semigroup
+ -/
+#print cancel_factors.div_subst /- _inst_1: field ↝ comm_group_with_zero
+ -/
+#print cancel_factors.cancel_factors_eq_div /- _inst_1: field ↝ group_with_zero comm_semigroup
+ -/
+#print cancel_factors.add_subst /- _inst_1: ring ↝ distrib add_right_cancel_semigroup
+ -/
+#print cancel_factors.cancel_factors_eq /- _inst_1: linear_ordered_field ↝ group_with_zero comm_semigroup ordered_semiring
+ -/
+
+-- tactic\linarith\lemmas.lean
+#print linarith.eq_of_eq_of_eq /- _inst_1: ordered_semiring ↝ add_monoid
+ -/
+#print linarith.le_of_eq_of_le /- _inst_1: ordered_semiring ↝ add_monoid has_le
+ -/
+#print linarith.lt_of_eq_of_lt /- _inst_1: ordered_semiring ↝ add_monoid has_lt
+ -/
+#print linarith.le_of_le_of_eq /- _inst_1: ordered_semiring ↝ add_monoid has_le
+ -/
+#print linarith.lt_of_lt_of_eq /- _inst_1: ordered_semiring ↝ add_monoid has_lt
+ -/
+#print linarith.mul_eq /- _inst_1: ordered_semiring ↝ has_lt mul_zero_class
+ -/
+#print linarith.mul_zero_eq /- _inst_1: semiring ↝ mul_zero_class
+ -/
+#print linarith.zero_mul_eq /- _inst_1: semiring ↝ mul_zero_class
+ -/
+
+-- tactic\monotonicity\lemmas.lean
+#print lt_of_mul_lt_mul_neg_right /- _inst_1: linear_ordered_ring ↝ ring ordered_add_comm_group linear_ordered_semiring
+ -/
+
+-- tactic\norm_num.lean
+#print norm_num.zero_succ /- _inst_1: semiring ↝ add_monoid has_one
+ -/
+#print norm_num.one_succ /- _inst_1: semiring ↝ has_one has_add
+ -/
+#print norm_num.bit0_succ /- _inst_1: semiring ↝ has_one has_add
+ -/
+#print norm_num.bit1_succ /- _inst_1: semiring ↝ has_one add_comm_semigroup
+ -/
+#print norm_num.zero_adc /- _inst_1: semiring ↝ add_monoid has_one
+ -/
+#print norm_num.adc_zero /- _inst_1: semiring ↝ add_monoid has_one
+ -/
+#print norm_num.one_add /- _inst_1: semiring ↝ has_one add_comm_semigroup
+ -/
+#print norm_num.add_bit0_bit0 /- _inst_1: semiring ↝ add_comm_semigroup
+ -/
+#print norm_num.add_bit0_bit1 /- _inst_1: semiring ↝ has_one add_comm_semigroup
+ -/
+#print norm_num.add_bit1_bit0 /- _inst_1: semiring ↝ has_one add_comm_semigroup
+ -/
+#print norm_num.add_bit1_bit1 /- _inst_1: semiring ↝ has_one add_comm_semigroup
+ -/
+#print norm_num.adc_one_one /- _inst_1: semiring ↝ has_one has_add
+ -/
+#print norm_num.adc_bit0_one /- _inst_1: semiring ↝ has_one add_comm_semigroup
+ -/
+#print norm_num.adc_one_bit0 /- _inst_1: semiring ↝ has_one add_comm_semigroup
+ -/
+#print norm_num.adc_bit1_one /- _inst_1: semiring ↝ has_one add_comm_semigroup
+ -/
+#print norm_num.adc_one_bit1 /- _inst_1: semiring ↝ has_one add_comm_semigroup
+ -/
+#print norm_num.adc_bit0_bit0 /- _inst_1: semiring ↝ has_one add_comm_semigroup
+ -/
+#print norm_num.adc_bit1_bit0 /- _inst_1: semiring ↝ has_one add_comm_semigroup
+ -/
+#print norm_num.adc_bit0_bit1 /- _inst_1: semiring ↝ has_one add_comm_semigroup
+ -/
+#print norm_num.adc_bit1_bit1 /- _inst_1: semiring ↝ has_one add_comm_semigroup
+ -/
+#print norm_num.bit0_mul /- _inst_1: semiring ↝ distrib
+ -/
+#print norm_num.mul_bit0' /- _inst_1: semiring ↝ distrib
+ -/
+#print norm_num.mul_bit1_bit1 /- _inst_1: semiring ↝ monoid add_comm_semigroup distrib
+ -/
+#print norm_num.ne_zero_of_pos /- _inst_1: ordered_add_comm_group ↝ preorder has_zero
+ -/
+#print norm_num.clear_denom_div /- _inst_1: division_ring ↝ group_with_zero
+ -/
+#print norm_num.nonneg_pos /- _inst_1: ordered_cancel_add_comm_monoid ↝ preorder has_zero
+ -/
+#print norm_num.nat_cast_zero /- _inst_1: semiring ↝ has_one has_coe_t has_zero has_add
+ -/
+#print norm_num.nat_cast_one /- _inst_1: semiring ↝ add_monoid has_one has_coe_t
+ -/
+#print norm_num.nat_cast_bit0 /- _inst_1: semiring ↝ add_monoid has_one has_coe_t
+ -/
+#print norm_num.nat_cast_bit1 /- _inst_1: semiring ↝ add_monoid has_one has_coe_t
+ -/
+#print norm_num.int_cast_zero /- _inst_1: ring ↝ has_one has_coe_t has_zero has_neg has_add
+ -/
+#print norm_num.int_cast_one /- _inst_1: ring ↝ add_monoid has_one has_coe_t has_neg
+ -/
+#print norm_num.int_cast_neg /- _inst_1: ring ↝ has_one has_coe_t add_group
+ -/
+#print norm_num.nat_cast_ne /- _inst_1: semiring ↝ add_monoid has_one has_coe_t
+ -/
+#print norm_num.int_cast_ne /- _inst_1: ring ↝ has_one has_coe_t add_group
+ -/
+#print norm_num.clear_denom_add /- _inst_1: division_ring ↝ cancel_monoid_with_zero distrib
+ -/
+#print norm_num.clear_denom_simple_nat /- _inst_1: division_ring ↝ monoid_with_zero nontrivial
+ -/
+#print norm_num.clear_denom_simple_div /- _inst_1: division_ring ↝ group_with_zero
+ -/
+#print norm_num.clear_denom_mul /- _inst_1: field ↝ cancel_monoid_with_zero comm_semigroup
+ -/
+#print norm_num.inv_one /- _inst_1: division_ring ↝ group_with_zero
+ -/
+#print norm_num.inv_one_div /- _inst_1: division_ring ↝ group_with_zero
+ -/
+#print norm_num.div_eq /- _inst_1: division_ring ↝ has_inv has_mul has_div
+ -/
+#print norm_num.sub_pos /- _inst_1: add_group ↝ has_sub has_neg has_add
+ -/
+
+-- tactic\ring.lean
+#print tactic.ring.horner /- _inst_1: comm_semiring ↝ has_add has_mul has_pow
+ -/
+#print tactic.ring.horner_neg /- _inst_1: comm_ring ↝ ring comm_semiring
+ -/
+#print tactic.ring.pow_succ /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring.subst_into_pow /- _inst_1: monoid ↝ has_pow
+ -/
+#print tactic.ring.unfold_sub /- _inst_1: add_group ↝ has_sub has_neg has_add
+ -/
+#print tactic.ring.unfold_div /- _inst_1: division_ring ↝ has_inv has_mul has_div
+ -/
+#print tactic.ring.add_neg_eq_sub /- _inst_1: add_group ↝ has_sub has_neg has_add
+ -/
+
+-- tactic\ring_exp.lean
+#print tactic.ring_exp.sum_congr /- _inst_1: comm_semiring ↝ is_commutative has_add
+ -/
+#print tactic.ring_exp.prod_congr /- _inst_1: comm_semiring ↝ is_commutative has_mul
+ -/
+#print tactic.ring_exp.exp_congr /- _inst_1: comm_semiring ↝ has_pow
+ -/
+#print tactic.ring_exp.base_to_exp_pf /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.exp_to_prod_pf /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.prod_to_sum_pf /- _inst_1: comm_semiring ↝ add_monoid
+ -/
+#print tactic.ring_exp.atom_to_sum_pf /- _inst_1: comm_semiring ↝ add_monoid monoid
+ -/
+#print tactic.ring_exp.mul_coeff_pf_one_mul /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.mul_coeff_pf_mul_one /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.add_overlap_pf /- _inst_1: comm_semiring ↝ distrib
+ -/
+#print tactic.ring_exp.add_overlap_pf_zero /- _inst_1: comm_semiring ↝ distrib mul_zero_class
+ -/
+#print tactic.ring_exp.add_pf_z_sum /- _inst_1: comm_semiring ↝ add_monoid
+ -/
+#print tactic.ring_exp.add_pf_sum_z /- _inst_1: comm_semiring ↝ add_monoid
+ -/
+#print tactic.ring_exp.add_pf_sum_overlap /- _inst_1: comm_semiring ↝ is_commutative has_add is_associative
+ -/
+#print tactic.ring_exp.add_pf_sum_overlap_zero /- _inst_1: comm_semiring ↝ add_monoid is_commutative
+ -/
+#print tactic.ring_exp.add_pf_sum_lt /- _inst_1: comm_semiring ↝ is_commutative has_add is_associative
+ -/
+#print tactic.ring_exp.add_pf_sum_gt /- _inst_1: comm_semiring ↝ is_commutative has_add is_associative
+ -/
+#print tactic.ring_exp.mul_pf_c_c /- _inst_1: comm_semiring ↝ is_commutative has_mul
+ -/
+#print tactic.ring_exp.mul_pf_c_prod /- _inst_1: comm_semiring ↝ is_commutative is_associative has_mul
+ -/
+#print tactic.ring_exp.mul_pf_prod_c /- _inst_1: comm_semiring ↝ is_commutative is_associative has_mul
+ -/
+#print tactic.ring_exp.mul_pp_pf_overlap /- _inst_1: comm_semiring ↝ monoid is_commutative
+ -/
+#print tactic.ring_exp.mul_pp_pf_prod_lt /- _inst_1: comm_semiring ↝ is_commutative is_associative has_mul
+ -/
+#print tactic.ring_exp.mul_pp_pf_prod_gt /- _inst_1: comm_semiring ↝ is_commutative is_associative has_mul
+ -/
+#print tactic.ring_exp.mul_p_pf_zero /- _inst_1: comm_semiring ↝ mul_zero_class
+ -/
+#print tactic.ring_exp.mul_p_pf_sum /- _inst_1: comm_semiring ↝ distrib
+ -/
+#print tactic.ring_exp.mul_pf_zero /- _inst_1: comm_semiring ↝ mul_zero_class
+ -/
+#print tactic.ring_exp.mul_pf_sum /- _inst_1: comm_semiring ↝ distrib
+ -/
+#print tactic.ring_exp.pow_e_pf_exp /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.pow_pp_pf_one /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.pow_pf_c_c /- _inst_1: comm_semiring ↝ has_pow
+ -/
+#print tactic.ring_exp.pow_pp_pf_c /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.pow_pp_pf_prod /- _inst_1: comm_semiring ↝ comm_monoid
+ -/
+#print tactic.ring_exp.pow_p_pf_one /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.pow_p_pf_zero /- _inst_1: comm_semiring ↝ monoid_with_zero
+ -/
+#print tactic.ring_exp.pow_p_pf_succ /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.pow_p_pf_singleton /- _inst_1: comm_semiring ↝ add_monoid has_pow
+ -/
+#print tactic.ring_exp.pow_p_pf_cons /- _inst_1: comm_semiring ↝ has_pow
+ -/
+#print tactic.ring_exp.pow_pf_zero /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.pow_pf_sum /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.simple_pf_sum_zero /- _inst_1: comm_semiring ↝ add_monoid
+ -/
+#print tactic.ring_exp.simple_pf_prod_one /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.simple_pf_var_one /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.simple_pf_exp_one /- _inst_1: comm_semiring ↝ monoid
+ -/
+#print tactic.ring_exp.inverse_pf /- _inst_2: division_ring ↝ has_inv
+ -/
+#print tactic.ring_exp.sub_pf /- _inst_2: ring ↝ has_sub has_neg has_add
+ -/
+#print tactic.ring_exp.div_pf /- _inst_2: division_ring ↝ has_inv has_mul has_div
+ -/
+
+-- topology\algebra\group.lean
+#print nhds_translation_mul_inv /- _inst_3: topological_group ↝ has_continuous_mul
+ -/
+#print nhds_translation_add_neg /- _inst_3: topological_add_group ↝ has_continuous_add
+ -/
+#print quotient_add_group.is_open_map_coe /- _inst_3: topological_add_group ↝ has_continuous_add
+ -/
+#print quotient_group.is_open_map_coe /- _inst_3: topological_group ↝ has_continuous_mul
+ -/
+#print topological_group_quotient /- _inst_4: subgroup.normal ↝ group
+ -/
+#print topological_add_group_quotient /- _inst_4: add_subgroup.normal ↝ add_group
+ -/
+#print is_open.add_left /- _inst_3: topological_add_group ↝ has_continuous_add
+ -/
+#print is_open.mul_left /- _inst_3: topological_group ↝ has_continuous_mul
+ -/
+#print is_open.add_right /- _inst_3: topological_add_group ↝ has_continuous_add
+ -/
+#print is_open.mul_right /- _inst_3: topological_group ↝ has_continuous_mul
+ -/
+#print topological_group.t1_space /- _inst_3: topological_group ↝ has_continuous_mul
+ -/
+#print compact_open_separated_mul /- _inst_3: topological_group ↝ has_continuous_mul
+ -/
+#print compact_open_separated_add /- _inst_3: topological_add_group ↝ has_continuous_add
+ -/
+#print compact_covered_by_mul_left_translates /- _inst_3: topological_group ↝ has_continuous_mul
+ -/
+#print compact_covered_by_add_left_translates /- _inst_3: topological_add_group ↝ has_continuous_add
+ -/
+#print nhds_add /- _inst_2: add_comm_group ↝ has_continuous_add add_comm_semigroup add_group
+ -/
+#print nhds_mul /- _inst_2: comm_group ↝ comm_semigroup group has_continuous_mul
+ -/
+
+-- topology\algebra\monoid.lean
+#print submonoid.mem_nhds_one /- _inst_2: comm_monoid ↝ monoid has_coe
+ -/
+#print add_submonoid.mem_nhds_zero /- _inst_2: add_comm_monoid ↝ add_monoid has_coe
+ -/
+
+-- topology\algebra\ordered.lean
+#print preorder.topology /- _inst_1: preorder ↝ has_lt
+ -/
+#print is_open_iff_generate_intervals /- _inst_2: partial_order ↝ preorder
+ -/
+#print nhds_eq_order /- _inst_2: partial_order ↝ preorder
+ -/
+#print tendsto_Ico_class_nhds /- _inst_2: partial_order ↝ preorder filter.tendsto_Ixx_class
+t: order_topology ↝ filter.tendsto_Ixx_class
+ -/
+#print tendsto_Ioc_class_nhds /- _inst_2: partial_order ↝ preorder filter.tendsto_Ixx_class
+t: order_topology ↝ filter.tendsto_Ixx_class
+ -/
+#print tendsto_Ioo_class_nhds /- _inst_2: partial_order ↝ preorder filter.tendsto_Ixx_class
+t: order_topology ↝ filter.tendsto_Ixx_class
+ -/
+#print tendsto_Ixx_nhds_within /- _inst_2: partial_order ↝ preorder
+ -/
+#print induced_order_topology' /- _inst_1: partial_order ↝ preorder
+ -/
+#print order_topology.t2_space /- _inst_2: linear_order ↝ t2_space preorder
+_inst_3: order_topology ↝ t2_space
+ -/
+#print Iio_mem_nhds /- _inst_3: order_topology ↝ order_closed_topology
+ -/
+#print Ioi_mem_nhds /- _inst_3: order_topology ↝ order_closed_topology
+ -/
+#print Ioo_mem_nhds /- _inst_3: order_topology ↝ order_closed_topology
+ -/
+#print continuous_right_of_strict_mono_surjective /- _inst_3: order_topology ↝ order_closed_topology
+ -/
+#print tendsto_at_top_add_tendsto_left /- _inst_2: linear_ordered_ring ↝ no_bot_order ordered_add_comm_group
+ -/
+#print tendsto_at_bot_add_tendsto_left /- _inst_2: linear_ordered_ring ↝ ordered_add_comm_group no_top_order
+ -/
+#print tendsto_at_top_mul_left /- _inst_1: linear_ordered_semiring ↝ has_coe_t linear_order ordered_semiring
+ -/
+#print tendsto_at_top_mul_right /- _inst_1: linear_ordered_semiring ↝ has_coe_t linear_order ordered_semiring
+ -/
+#print neg_preimage_closure /- _inst_2: ordered_add_comm_group ↝ add_group
+ -/
+#print Sup_mem_closure /- _inst_9: complete_linear_order ↝ complete_lattice linear_order
+ -/
+#print Inf_mem_closure /- _inst_9: complete_linear_order ↝ complete_lattice linear_order
+ -/
+#print is_closed.Sup_mem /- _inst_9: complete_linear_order ↝ complete_lattice linear_order
+ -/
+#print is_closed.Inf_mem /- _inst_9: complete_linear_order ↝ complete_lattice linear_order
+ -/
+#print map_Sup_of_continuous_at_of_monotone' /- _inst_1: complete_linear_order ↝ complete_lattice linear_order
+_inst_4: complete_linear_order ↝ complete_lattice linear_order
+ -/
+#print cSup_mem_closure /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice linear_order
+ -/
+#print cInf_mem_closure /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice linear_order
+ -/
+#print is_closed.cSup_mem /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice linear_order
+ -/
+#print is_closed.cInf_mem /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice linear_order
+ -/
+#print map_cSup_of_continuous_at_of_monotone /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice linear_order
+_inst_4: conditionally_complete_linear_order ↝ conditionally_complete_lattice linear_order
+ -/
+#print is_connected.Ioo_cInf_cSup_subset /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice linear_order order_closed_topology
+_inst_3: order_topology ↝ order_closed_topology
+ -/
+#print is_preconnected.Ioi_cInf_subset /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice linear_order order_closed_topology
+_inst_3: order_topology ↝ order_closed_topology
+ -/
+#print intermediate_value_Icc /- _inst_4: conditionally_complete_linear_order ↝ linear_order order_closed_topology
+_inst_6: order_topology ↝ order_closed_topology
+ -/
+#print intermediate_value_Icc' /- _inst_4: conditionally_complete_linear_order ↝ linear_order order_closed_topology
+_inst_6: order_topology ↝ order_closed_topology
+ -/
+#print is_compact.is_glb_Inf /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice linear_order order_closed_topology
+_inst_3: order_topology ↝ order_closed_topology
+ -/
+#print filter.tendsto.is_cobounded_under_ge /- _inst_4: filter.ne_bot ↝ filter.ne_bot
+ -/
+#print filter.tendsto.is_cobounded_under_le /- _inst_4: filter.ne_bot ↝ filter.ne_bot
+ -/
+#print Limsup_nhds /- _inst_1: conditionally_complete_linear_order ↝ conditionally_complete_lattice linear_order
+ -/
+#print filter.tendsto.limsup_eq /- _inst_4: filter.ne_bot ↝ filter.ne_bot
+ -/
+#print filter.tendsto.liminf_eq /- _inst_4: filter.ne_bot ↝ filter.ne_bot
+ -/
+#print tendsto_of_liminf_eq_limsup /- _inst_1: complete_linear_order ↝ order_top conditionally_complete_linear_order order_bot
+ -/
+#print tendsto_at_top_supr /- _inst_3: complete_linear_order ↝ order_top conditionally_complete_linear_order
+ -/
+#print tendsto_at_top_infi /- _inst_3: complete_linear_order ↝ conditionally_complete_linear_order order_bot
+ -/
+#print supr_eq_of_tendsto /- _inst_4: nonempty ↝ filter.ne_bot
+_inst_5: semilattice_sup ↝ filter.ne_bot preorder
+ -/
+#print infi_eq_of_tendsto /- _inst_4: nonempty ↝ filter.ne_bot
+_inst_5: semilattice_sup ↝ filter.ne_bot preorder
+ -/
+
+-- topology\metric_space\basic.lean
+#print metric.ball /- _inst_1: metric_space ↝ has_dist
+ -/
+#print metric.closed_ball /- _inst_1: metric_space ↝ has_dist
+ -/
+#print metric.sphere /- _inst_1: metric_space ↝ has_dist
+ -/
+#print metric.complete_of_cauchy_seq_tendsto /- _inst_1: metric_space ↝ emetric_space
+ -/
+#print metric.bounded /- _inst_1: metric_space ↝ has_dist
+ -/
+#print metric.diam /- _inst_1: metric_space ↝ emetric_space
+ -/
+
+-- topology\metric_space\emetric_space.lean
+#print uniformity_dist_of_mem_uniformity /- _inst_1: linear_order ↝ has_lt
+ -/
+#print emetric.ball /- _inst_1: emetric_space ↝ has_edist
+ -/
+#print emetric.closed_ball /- _inst_1: emetric_space ↝ has_edist
+ -/
+#print emetric.diam /- _inst_1: emetric_space ↝ has_edist
+ -/
+
+-- topology\order.lean
+#print subsingleton.discrete_topology /- _inst_1: subsingleton ↝ unique
+ -/
+
+-- topology\separation.lean
+#print tendsto_nhds_unique /- _inst_3: filter.ne_bot ↝ filter.ne_bot
+ -/
+#print filter.tendsto.lim_eq /- _inst_3: filter.ne_bot ↝ filter.ne_bot
+ -/
+
+-- topology\subset_properties.lean
+#print is_connected_range /- _inst_3: connected_space ↝ preconnected_space nonempty
+ -/
+#print irreducible_space.connected_space /- _inst_3: irreducible_space ↝ preconnected_space nonempty
+ -/
+
+-- topology\uniform_space\cauchy.lean
+#print filter.tendsto.cauchy_map /- _inst_2: filter.ne_bot ↝ filter.ne_bot
+ -/
+#print cauchy_seq /- _inst_2: semilattice_sup ↝ preorder
+ -/
+#print filter.tendsto.cauchy_seq /- _inst_3: nonempty ↝ filter.ne_bot
+ -/
+#print cauchy_seq_iff_tendsto /- _inst_2: nonempty ↝ filter.ne_bot
+ -/
+#print cauchy_map_iff_exists_tendsto /- _inst_3: filter.ne_bot ↝ filter.ne_bot
+ -/
+
+-- topology\uniform_space\uniform_embedding.lean
+#print uniformly_extend_of_ind /- _inst_4: separated_space ↝ t2_space
+ -/
+#print uniformly_extend_unique /- _inst_4: separated_space ↝ t2_space
+ -/
+
+

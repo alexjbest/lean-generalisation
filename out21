@@ -1,0 +1,2374 @@
+/- Checking 21964 declarations (plus 17989 automatically generated ones) in mathlib (only in imported files) -/
+
+/- The `generalisation_linter` linter reports: -/
+/- typeclass generalisations may be possible: -/
+-- algebra\big_operators\basic.lean
+#print finset.prod_extend_by_one /- >>> only 1
+decidable_eq.{succ u} #2
+[finset.decidable_mem.{u}]
+_inst_2 -/
+#print finset.sum_extend_by_zero /- >>> only 1
+decidable_eq.{succ u} #2
+[finset.decidable_mem.{u}]
+_inst_2 -/
+#print finset.sum_cancels_of_partition_cancels /- >>> only 1
+decidable_rel.{succ u} #5 (setoid.r.{succ u} #5 #0)
+[quotient.decidable_eq.{succ u}]
+_inst_2 -/
+#print finset.prod_cancels_of_partition_cancels /- >>> only 1
+decidable_rel.{succ u} #5 (setoid.r.{succ u} #5 #0)
+[quotient.decidable_eq.{succ u}]
+_inst_2 -/
+
+-- algebra\big_operators\order.lean
+#print finset.abs_sum_le_sum_abs /- >>> only 1
+linear_ordered_field.{u} #1
+[linear_ordered_field.to_linear_ordered_comm_ring.{u}]
+_inst_1 -/
+
+-- algebra\big_operators\ring.lean
+#print finset.sum_mul_sum /- >>> only 1
+comm_semiring.{v} #0
+[comm_semiring.to_semiring.{v}]
+_inst_1 -/
+
+-- algebra\char_p.lean
+#print ring_hom.char_p_iff_char_p /- >>> only 1
+field.{u_1} #1
+[field.to_division_ring.{u_1}]
+_inst_1 -/
+#print char_p.char_ne_one /- >>> only 1
+integral_domain.{u} #0
+[integral_domain.to_domain.{u}]
+_inst_1 -/
+#print char_p.char_is_prime_of_two_le /- >>> only 1
+integral_domain.{u} #0
+[integral_domain.to_domain.{u}]
+_inst_1 -/
+#print char_p.false_of_nontrivial_of_char_one /- >>> only 1
+char_p.{u_1} #2 #1 (has_one.one.{0} nat nat.has_one)
+[char_p.subsingleton.{u_1}]
+_inst_3 -/
+#print char_p_of_ne_zero /- >>> only 1
+comm_ring.{u_1} #0
+[comm_ring.to_ring.{u_1}]
+_inst_1 -/
+#print char_p_of_prime_pow_injective /- >>> only 1
+comm_ring.{u_1} #0
+[comm_ring.to_ring.{u_1}]
+_inst_1 -/
+
+-- algebra\divisibility.lean
+#print monoid_has_dvd /- >>> only 1
+monoid.{u_1} #0
+[monoid.to_semigroup.{u_1}]
+_inst_1 -/
+#print dvd_not_unit /- >>> only 1
+comm_monoid_with_zero.{u_1} #0
+[comm_monoid_with_zero.to_monoid_with_zero.{u_1}]
+_inst_1 -/
+
+-- algebra\field_power.lean
+#print rat.cast_fpow /- >>> only 1
+field.{u_1} #0
+[field.to_division_ring.{u_1}]
+_inst_1 -/
+
+-- algebra\group\pi.lean
+#print pi.one_comp /- >>> unused_arg ? 
+has_one.{u_3} #0
+[]
+_inst_1 -/
+#print pi.zero_comp /- >>> unused_arg ? 
+has_zero.{u_3} #0
+[]
+_inst_1 -/
+
+-- algebra\group\with_one.lean
+#print with_zero.nontrivial /- >>> only 1
+nonempty.{succ u} #0
+[option.nontrivial.{u}]
+_inst_1 -/
+#print with_one.nontrivial /- >>> only 1
+nonempty.{succ u} #0
+[option.nontrivial.{u}]
+_inst_1 -/
+#print with_zero.zero_mul /- >>> only 1
+has_mul.{u} #0
+[with_zero.mul_zero_class.{u}]
+_inst_1 -/
+#print with_zero.mul_zero /- >>> only 1
+has_mul.{u} #0
+[with_zero.mul_zero_class.{u}]
+_inst_1 -/
+#print with_zero.inv_zero /- >>> only 1
+has_inv.{u} #0
+[with_zero.has_inv.{u}]
+_inst_1 -/
+
+-- algebra\group_power\basic.lean
+#print pow_ite /- >>> only 1
+monoid.{u} #0
+[monoid.has_pow.{u}]
+_inst_1 -/
+#print ite_pow /- >>> only 1
+monoid.{u} #0
+[monoid.has_pow.{u}]
+_inst_1 -/
+#print dvd_pow /- >>> only 1
+comm_monoid.{u} #0
+[comm_monoid.to_monoid.{u}]
+_inst_1 -/
+#print pow_abs /- >>> only 1
+linear_ordered_comm_ring.{u₁} #0
+[linear_ordered_comm_ring.to_linear_ordered_ring.{u₁}]
+_inst_1 -/
+
+-- algebra\group_with_zero\basic.lean
+#print div_div_eq_mul_div /- >>> only 1
+comm_group_with_zero.{u_2} #0
+[comm_group_with_zero.to_group_with_zero.{u_2}]
+_inst_1 -/
+#print ne_zero_of_one_div_ne_zero /- >>> only 1
+comm_group_with_zero.{u_2} #0
+[comm_group_with_zero.to_group_with_zero.{u_2}]
+_inst_1 -/
+#print eq_zero_of_one_div_eq_zero /- >>> only 1
+comm_group_with_zero.{u_2} #0
+[comm_group_with_zero.to_group_with_zero.{u_2}]
+_inst_1 -/
+#print div_mul_div_cancel /- >>> only 1
+comm_group_with_zero.{u_2} #0
+[comm_group_with_zero.to_group_with_zero.{u_2}]
+_inst_1 -/
+
+-- algebra\module\basic.lean
+#print module /- >>> only 1
+ring.{u} #1
+[ring.to_semiring.{u}]
+_inst_1>>> only 1
+add_comm_group.{v} #1
+[add_comm_group.to_add_comm_monoid.{v}]
+_inst_2 -/
+#print vector_space /- >>> only 1
+field.{u} #1
+[field.to_division_ring.{u}]
+_inst_1>>> only 1
+add_comm_group.{v} #1
+[add_comm_group.to_add_comm_monoid.{v}]
+_inst_2 -/
+
+-- algebra\order.lean
+#print ge_iff_le /- >>> only 1
+preorder.{u} #0
+[preorder.to_has_le.{u}]
+_inst_1 -/
+#print gt_iff_lt /- >>> only 1
+preorder.{u} #0
+[preorder.to_has_lt.{u}]
+_inst_1 -/
+
+-- algebra\ordered_group.lean
+#print nonneg_add_comm_group.to_linear_ordered_add_comm_group /- >>> unused_arg ? 
+decidable_pred.{succ u} #1 (nonneg_add_comm_group.nonneg.{u} #1 #0)
+[]
+_inst_1 -/
+
+-- algebra\ordered_monoid.lean
+#print with_zero.preorder /- >>> only 1
+preorder.{u} #0
+[with_bot.preorder.{u}]
+_inst_1 -/
+#print with_zero.partial_order /- >>> only 1
+partial_order.{u} #0
+[with_bot.partial_order.{u}]
+_inst_1 -/
+#print with_zero.order_bot /- >>> only 1
+partial_order.{u} #0
+[with_bot.order_bot.{u}]
+_inst_1 -/
+#print with_zero.zero_lt_coe /- >>> only 1
+partial_order.{u} #0
+[partial_order.to_preorder.{u}]
+_inst_1 -/
+#print with_zero.coe_le_coe /- >>> only 1
+partial_order.{u} #0
+[partial_order.to_preorder.{u}]
+_inst_1 -/
+#print with_zero.lattice /- >>> only 1
+lattice.{u} #0
+[with_bot.lattice.{u}]
+_inst_1 -/
+#print with_zero.linear_order /- >>> only 1
+linear_order.{u} #0
+[with_bot.linear_order.{u}]
+_inst_1 -/
+#print with_top.add_top /- >>> only 1
+has_add.{u} #0
+[with_top.has_add.{u}]
+_inst_1 -/
+#print with_top.top_add /- >>> only 1
+has_add.{u} #0
+[with_top.has_add.{u}]
+_inst_1 -/
+#print with_bot.has_zero /- >>> only 1
+has_zero.{u} #0
+[with_top.has_zero.{u}]
+_inst_1 -/
+#print with_bot.has_one /- >>> only 1
+has_one.{u} #0
+[with_top.has_one.{u}]
+_inst_1 -/
+#print with_bot.add_semigroup /- >>> only 1
+add_semigroup.{u} #0
+[with_top.add_semigroup.{u}]
+_inst_1 -/
+#print with_bot.add_comm_semigroup /- >>> only 1
+add_comm_semigroup.{u} #0
+[with_top.add_comm_semigroup.{u}]
+_inst_1 -/
+#print with_bot.add_monoid /- >>> only 1
+add_monoid.{u} #0
+[with_top.add_monoid.{u}]
+_inst_1 -/
+#print with_bot.add_comm_monoid /- >>> only 1
+add_comm_monoid.{u} #0
+[with_top.add_comm_monoid.{u}]
+_inst_1 -/
+#print with_bot.coe_eq_zero /- >>> only 1
+add_monoid.{u_1} #0
+[add_monoid.to_has_zero.{u_1}]
+_inst_1 -/
+#print with_bot.bot_add /- >>> only 1
+ordered_add_comm_monoid.{u} #0
+[ordered_add_comm_monoid.to_add_comm_monoid.{u}]
+_inst_1 -/
+#print with_bot.add_bot /- >>> only 1
+ordered_add_comm_monoid.{u} #0
+[ordered_add_comm_monoid.to_add_comm_monoid.{u}]
+_inst_1 -/
+
+-- algebra\ordered_ring.lean
+#print monotone_mul_left_of_nonneg /- >>> only 1
+linear_ordered_semiring.{u} #0
+[linear_ordered_semiring.to_ordered_semiring.{u}]
+_inst_1 -/
+#print monotone_mul_right_of_nonneg /- >>> only 1
+linear_ordered_semiring.{u} #0
+[linear_ordered_semiring.to_ordered_semiring.{u}]
+_inst_1 -/
+#print monotone.mul /- >>> only 1
+linear_ordered_semiring.{u} #1
+[linear_ordered_semiring.to_ordered_semiring.{u}]
+_inst_1 -/
+#print strict_mono.mul_const /- >>> only 1
+preorder.{u_1} #1
+[preorder.to_has_lt.{u_1}]
+_inst_2 -/
+#print strict_mono.const_mul /- >>> only 1
+preorder.{u_1} #1
+[preorder.to_has_lt.{u_1}]
+_inst_2 -/
+#print strict_mono.mul_monotone /- >>> only 1
+linear_ordered_semiring.{u} #1
+[linear_ordered_semiring.to_ordered_semiring.{u}]
+_inst_1 -/
+#print monotone.mul_strict_mono /- >>> only 1
+linear_ordered_semiring.{u} #1
+[linear_ordered_semiring.to_ordered_semiring.{u}]
+_inst_1 -/
+#print strict_mono.mul /- >>> only 1
+linear_ordered_semiring.{u} #1
+[linear_ordered_semiring.to_ordered_semiring.{u}]
+_inst_1>>> only 1
+preorder.{u_1} #1
+[preorder.to_has_lt.{u_1}]
+_inst_2 -/
+#print linear_nonneg_ring.to_linear_order /- >>> unused_arg ? 
+decidable_pred.{succ u} #1 (linear_nonneg_ring.nonneg.{u} #1 #0)
+[]
+_inst_2 -/
+#print with_top.nontrivial /- >>> only 1
+nonempty.{succ u} #0
+[option.nontrivial.{u}]
+_inst_1 -/
+
+-- algebra\pointwise.lean
+#print set.fintype_mul /- >>> only 1
+decidable_eq.{succ u_1} #1
+[set.fintype_image2.{u_1 u_1 u_1}]
+_inst_2>>> only 1
+fintype.{u_1} (coe_sort.{(max (succ u_1) 1) succ (max 1 (succ u_1))} (set.{u_1} #4) (set.has_coe_to_sort.{u_1} #4) #1)
+[set.fintype_image2.{u_1 u_1 u_1}]
+hs>>> only 1
+fintype.{u_1} (coe_sort.{(max (succ u_1) 1) succ (max 1 (succ u_1))} (set.{u_1} #5) (set.has_coe_to_sort.{u_1} #5) #1)
+[set.fintype_image2.{u_1 u_1 u_1}]
+ht -/
+#print set.fintype_add /- >>> only 1
+decidable_eq.{succ u_1} #1
+[set.fintype_image2.{u_1 u_1 u_1}]
+_inst_2>>> only 1
+fintype.{u_1} (coe_sort.{(max (succ u_1) 1) succ (max 1 (succ u_1))} (set.{u_1} #4) (set.has_coe_to_sort.{u_1} #4) #1)
+[set.fintype_image2.{u_1 u_1 u_1}]
+hs>>> only 1
+fintype.{u_1} (coe_sort.{(max (succ u_1) 1) succ (max 1 (succ u_1))} (set.{u_1} #5) (set.has_coe_to_sort.{u_1} #5) #1)
+[set.fintype_image2.{u_1 u_1 u_1}]
+ht -/
+#print set.univ_inv /- >>> only 1
+group.{u_1} #0
+[group.to_has_inv.{u_1}]
+_inst_1 -/
+#print set.univ_neg /- >>> only 1
+add_group.{u_1} #0
+[add_group.to_has_neg.{u_1}]
+_inst_1 -/
+
+-- algebra\ring\basic.lean
+#print distrib_three_right /- >>> only 1
+semiring.{u} #0
+[semiring.to_distrib.{u}]
+_inst_1 -/
+#print dvd_add /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print two_dvd_bit0 /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print ring_hom.map_dvd /- >>> only 1
+comm_semiring.{u} #1
+[comm_semiring.to_semiring.{u}]
+_inst_1>>> only 1
+comm_semiring.{v} #1
+[comm_semiring.to_semiring.{v}]
+_inst_2 -/
+#print dvd_neg_of_dvd /- >>> only 1
+comm_ring.{u} #0
+[comm_ring.to_ring.{u}]
+_inst_1 -/
+
+-- category_theory\category\default.lean
+#print category_theory.eq_whisker /- >>> only 1
+category_theory.category.{v u} #0
+[category_theory.category.to_category_struct.{v u}]
+_inst_1 -/
+#print category_theory.whisker_eq /- >>> only 1
+category_theory.category.{v u} #0
+[category_theory.category.to_category_struct.{v u}]
+_inst_1 -/
+#print category_theory.comp_dite /- >>> only 1
+category_theory.category.{v u} #0
+[category_theory.category.to_category_struct.{v u}]
+_inst_1 -/
+#print category_theory.dite_comp /- >>> only 1
+category_theory.category.{v u} #0
+[category_theory.category.to_category_struct.{v u}]
+_inst_1 -/
+
+-- control\basic.lean
+#print fish /- >>> only 1
+monad.{u_1 u_2} #0
+[monad.to_has_bind.{u_1 u_2}]
+_inst_3 -/
+
+-- control\functor.lean
+#print functor.comp.has_pure /- >>> only 1
+applicative.{u w} #1
+[applicative.to_has_pure.{u w}]
+_inst_1>>> only 1
+applicative.{v u} #1
+[applicative.to_has_pure.{v u}]
+_inst_2 -/
+
+-- control\traversable\instances.lean
+#print option.comp_traverse /- >>> unused_arg ? 
+is_lawful_applicative.{u u} #3 #1
+[]
+_inst_3 -/
+#print list.comp_traverse /- >>> unused_arg ? 
+is_lawful_applicative.{u u} #3 #1
+[]
+_inst_3 -/
+#print sum.comp_traverse /- >>> unused_arg ? 
+is_lawful_applicative.{u u} #3 #1
+[]
+_inst_3 -/
+
+-- data\array\lemmas.lean
+#print array.inhabited /- >>> unused_arg ? 
+inhabited.{succ u_1} #0
+[]
+_inst_1 -/
+
+-- data\bool.lean
+#print bool.decidable_forall_bool /- >>> only 1
+Pi (b : bool), (decidable (#0 b))
+[and.decidable]
+_inst_1 -/
+#print bool.decidable_exists_bool /- >>> only 1
+Pi (b : bool), (decidable (#0 b))
+[or.decidable]
+_inst_1 -/
+
+-- data\equiv\basic.lean
+#print equiv.subtype_equiv_codomain /- >>> only 1
+decidable_eq.{succ u_1} #1
+[ne.decidable.{succ u_1}]
+_inst_1 -/
+#print equiv.set.insert /- >>> only 1
+decidable_pred.{succ u} #1 #0
+[set.decidable_mem.{u}]
+_inst_1 -/
+#print equiv.set.sum_compl /- >>> only 1
+decidable_pred.{succ u_1} #1 #0
+[set.decidable_mem.{u_1}]
+_inst_1 -/
+#print equiv.set.sum_diff_subset /- >>> only 1
+decidable_pred.{succ u_1} #3 #2
+[set.decidable_mem.{u_1}]
+_inst_1 -/
+#print equiv.set.union_sum_inter /- >>> only 1
+decidable_pred.{succ u} #2 #1
+[set.decidable_mem.{u}]
+_inst_1 -/
+
+-- data\equiv\denumerable.lean
+#print denumerable.prod /- >>> only 1
+denumerable.{u_1} #1
+[denumerable.sigma.{u_1 u_2}]
+_inst_1>>> unused_arg ? 
+denumerable.{u_2} #1
+[]
+_inst_2 -/
+
+-- data\equiv\encodable\basic.lean
+#print encodable.encode_none /- >>> only 1
+encodable.{u_1} #0
+[encodable.option.{u_1}]
+_inst_1 -/
+#print encodable.decode_option_zero /- >>> only 1
+encodable.{u_1} #0
+[encodable.option.{u_1}]
+_inst_1 -/
+#print encodable.encode_inl /- >>> only 1
+encodable.{u_2} #1
+[encodable.sum.{u_1 u_2}]
+_inst_2 -/
+#print encodable.encode_inr /- >>> only 1
+encodable.{u_1} #1
+[encodable.sum.{u_1 u_2}]
+_inst_1 -/
+#print encodable.prod /- >>> only 1
+encodable.{u_1} #1
+[encodable.sigma.{u_1 u_2}]
+_inst_1>>> unused_arg ? 
+encodable.{u_2} #1
+[]
+_inst_2 -/
+#print encodable.subtype.encode_eq /- >>> only 1
+decidable_pred.{succ u_1} #2 #1
+[encodable.subtype.{u_1}]
+decP -/
+#print directed.le_sequence /- >>> only 1
+preorder.{u_2} #2
+[preorder.to_has_le.{u_2}]
+_inst_3 -/
+#print quotient.rep /- >>> only 1
+decidable_rel.{succ u_1} #1 (has_equiv.equiv.{succ u_1} #1 (setoid_has_equiv.{succ u_1} #1 #0))
+[quotient.decidable_eq.{succ u_1}]
+_inst_1 -/
+
+-- data\equiv\list.lean
+#print encodable.encode_list_nil /- >>> only 1
+encodable.{u_1} #0
+[encodable.list.{u_1}]
+_inst_1 -/
+#print encodable.decode_list_zero /- >>> only 1
+encodable.{u_1} #0
+[encodable.list.{u_1}]
+_inst_1 -/
+#print encodable.decode_multiset /- >>> only 1
+encodable.{u_1} #0
+[encodable.list.{u_1}]
+_inst_1 -/
+#print encodable.vector /- >>> only 1
+encodable.{u_1} #0
+[encodable.list.{u_1}]
+_inst_1 -/
+#print encodable.fin_arrow /- >>> only 1
+encodable.{u_1} #0
+[encodable.vector.{u_1}]
+_inst_1 -/
+#print encodable.fin_pi /- >>> only 1
+Pi (i : fin #1), (encodable.{u_1} (#0 i))
+[encodable.sigma.{0 u_1}]
+_inst_1 -/
+#print encodable.array /- >>> unused_arg ? 
+encodable.{u_1} #0
+[]
+_inst_1 -/
+#print encodable.fintype_arrow /- >>> unused_arg ? 
+encodable.{u_2} #2
+[]
+_inst_3 -/
+#print encodable.fintype_pi /- >>> only 1
+Pi (a : #3), (encodable.{u_2} (#2 a))
+[encodable.sigma.{u_1 u_2}]
+_inst_3 -/
+#print encodable.fintype_arrow_of_encodable /- >>> unused_arg ? 
+encodable.{u_2} #2
+[]
+_inst_3 -/
+#print denumerable.list_of_nat_zero /- >>> only 1
+denumerable.{u_1} #0
+[denumerable.denumerable_list.{u_1}]
+_inst_1 -/
+
+-- data\equiv\ring.lean
+#print ring_equiv.trans_apply /- >>> only 1
+semiring.{u_1} #2
+[semiring.to_distrib.{u_1}]
+_inst_7>>> only 1
+semiring.{u_2} #2
+[semiring.to_distrib.{u_2}]
+_inst_8>>> only 1
+semiring.{u_3} #2
+[semiring.to_distrib.{u_3}]
+_inst_9 -/
+#print ring_equiv.map_mul /- >>> only 1
+semiring.{u_1} #1
+[semiring.to_distrib.{u_1}]
+_inst_1>>> only 1
+semiring.{u_2} #1
+[semiring.to_distrib.{u_2}]
+_inst_2 -/
+#print ring_equiv.map_add /- >>> only 1
+semiring.{u_1} #1
+[semiring.to_distrib.{u_1}]
+_inst_1>>> only 1
+semiring.{u_2} #1
+[semiring.to_distrib.{u_2}]
+_inst_2 -/
+
+-- data\fin.lean
+#print fin.tuple0_le /- >>> only 1
+Pi (i : fin (has_zero.zero.{0} nat nat.has_zero)), (preorder.{u_1} (#0 i))
+[pi.preorder.{0 u_1}]
+_inst_1 -/
+
+-- data\finset\basic.lean
+#print finset.decidable_mem /- >>> only 1
+decidable_eq.{succ u_1} #0
+[multiset.decidable_mem.{u_1}]
+h -/
+#print finset.decidable_mem' /- >>> only 1
+decidable_eq.{succ u_1} #0
+[finset.decidable_mem.{u_1}]
+_inst_1 -/
+#print finset.decidable_dforall_finset /- >>> only 1
+Pi (a : #2) (h : has_mem.mem.{u_1 u_1} #2 (finset.{u_1} #2) (finset.has_mem.{u_1} #2) a #1), (decidable (#0 a h))
+[multiset.decidable_dforall_multiset.{u_1}]
+hp -/
+#print finset.decidable_eq_pi_finset /- >>> only 1
+Pi (a : #2), (decidable_eq.{succ u_2} (#0 a))
+[multiset.decidable_eq_pi_multiset.{u_1 u_2}]
+h -/
+#print finset.decidable_dexists_finset /- >>> only 1
+Pi (a : #2) (h : has_mem.mem.{u_1 u_1} #2 (finset.{u_1} #2) (finset.has_mem.{u_1} #2) a #1), (decidable (#0 a h))
+[multiset.decidable_dexists_multiset.{u_1}]
+hp -/
+#print finset.functor /- >>> unused_arg ? 
+Pi (P : Prop), (decidable P)
+[]
+_inst_2 -/
+#print finset.is_lawful_functor /- >>> only 1
+Pi (P : Prop), (decidable P)
+[finset.functor.{u_1}]
+_inst_2 -/
+#print finset.bind_filter_eq_of_maps_to /- >>> unused_arg ? 
+decidable_eq.{succ u_2} #0
+[]
+_inst_1 -/
+#print finset.disjoint_empty_left /- >>> only 1
+decidable_eq.{succ u_1} #0
+[finset.semilattice_inf_bot.{u_1}]
+_inst_1 -/
+#print finset.disjoint_empty_right /- >>> only 1
+decidable_eq.{succ u_1} #0
+[finset.semilattice_inf_bot.{u_1}]
+_inst_1 -/
+#print finset.disjoint_self_iff_empty /- >>> only 1
+decidable_eq.{succ u_1} #0
+[finset.semilattice_inf_bot.{u_1}]
+_inst_1 -/
+#print finset.disjoint_filter_filter /- >>> only 1
+decidable_eq.{succ u_1} #0
+[finset.semilattice_inf_bot.{u_1}]
+_inst_1 -/
+#print finset.diag /- >>> unused_arg ? 
+decidable_eq.{succ u_1} #1
+[]
+_inst_1 -/
+#print finset.off_diag /- >>> only 1
+decidable_eq.{succ u_1} #1
+[ne.decidable.{succ u_1}]
+_inst_1 -/
+
+-- data\finset\lattice.lean
+#print finset.supr_option_to_finset /- >>> only 1
+complete_lattice.{u_2} #0
+[complete_lattice.to_has_Sup.{u_2}]
+_inst_1 -/
+
+-- data\finset\preimage.lean
+#print finset.sigma_preimage_mk /- >>> only 1
+decidable_eq.{succ u} #1
+[finset.decidable_mem.{u}]
+_inst_1 -/
+
+-- data\finset\sort.lean
+#print finset.has_repr /- >>> only 1
+has_repr.{u_1} #0
+[multiset.has_repr.{u_1}]
+_inst_1 -/
+
+-- data\fintype\basic.lean
+#print fintype.decidable_pi_fintype /- >>> unused_arg ? 
+Pi (a : #1), (decidable_eq.{succ u_2} (#0 a))
+[]
+_inst_1 -/
+#print fintype.decidable_forall_fintype /- >>> unused_arg ? 
+decidable_pred.{succ u_1} #1 #0
+[]
+_inst_1 -/
+#print fintype.decidable_exists_fintype /- >>> unused_arg ? 
+decidable_pred.{succ u_1} #1 #0
+[]
+_inst_1 -/
+#print fintype.decidable_eq_equiv_fintype /- >>> unused_arg ? 
+decidable_eq.{succ u_2} #0
+[]
+_inst_1>>> only 1
+fintype.{u_1} #2
+[fintype.decidable_pi_fintype.{u_1 u_2}]
+_inst_2 -/
+#print fintype.decidable_injective_fintype /- >>> unused_arg ? 
+decidable_eq.{succ u_1} #1
+[]
+_inst_1>>> only 1
+decidable_eq.{succ u_2} #1
+[forall_prop_decidable]
+_inst_2>>> only 1
+fintype.{u_1} #3
+[fintype.decidable_forall_fintype.{u_1}]
+_inst_3 -/
+#print fintype.decidable_surjective_fintype /- >>> unused_arg ? 
+decidable_eq.{succ u_2} #0
+[]
+_inst_1>>> only 1
+fintype.{u_1} #2
+[fintype.decidable_exists_fintype.{u_1}]
+_inst_2>>> only 1
+fintype.{u_2} #2
+[fintype.decidable_forall_fintype.{u_2}]
+_inst_3 -/
+#print fintype.decidable_bijective_fintype /- >>> only 1
+decidable_eq.{succ u_1} #1
+[fintype.decidable_injective_fintype.{u_1 u_2}]
+_inst_1>>> only 1
+fintype.{u_2} #3
+[fintype.decidable_surjective_fintype.{u_1 u_2}]
+_inst_4 -/
+#print fintype.decidable_left_inverse_fintype /- >>> unused_arg ? 
+decidable_eq.{succ u_1} #1
+[]
+_inst_1>>> only 1
+fintype.{u_1} #2
+[fintype.decidable_forall_fintype.{u_1}]
+_inst_2 -/
+#print fintype.decidable_right_inverse_fintype /- >>> unused_arg ? 
+decidable_eq.{succ u_2} #0
+[]
+_inst_1>>> only 1
+fintype.{u_2} #1
+[fintype.decidable_forall_fintype.{u_2}]
+_inst_2 -/
+#print sum.fintype /- >>> only 1
+fintype.{u} #1
+[ulift.fintype.{u v}]
+_inst_1>>> only 1
+fintype.{v} #1
+[ulift.fintype.{v (max u v)}]
+_inst_2 -/
+#print list.subtype.fintype /- >>> only 1
+decidable_eq.{succ u_1} #0
+[subtype.decidable_eq.{u_1}]
+_inst_1 -/
+#print multiset.subtype.fintype /- >>> only 1
+decidable_eq.{succ u_1} #0
+[subtype.decidable_eq.{u_1}]
+_inst_1 -/
+#print set_fintype /- >>> only 1
+fintype.{u_1} #0
+[subtype.fintype.{u_1}]
+_inst_1>>> only 1
+decidable_pred.{succ u_1} #2 #0
+[set.decidable_mem.{u_1}]
+_inst_2 -/
+#print d_array.fintype /- >>> only 1
+Pi (n : fin #1), (fintype.{u_1} (#0 n))
+[pi.fintype.{0 u_1}]
+_inst_1 -/
+#print array.fintype /- >>> unused_arg ? 
+fintype.{u_1} #0
+[]
+_inst_1 -/
+#print vector.fintype /- >>> unused_arg ? 
+fintype.{u_1} #0
+[]
+_inst_1 -/
+#print quotient.fintype /- >>> only 1
+decidable_rel.{succ u_1} #2 (has_equiv.equiv.{succ u_1} #2 (setoid_has_equiv.{succ u_1} #2 #0))
+[quotient.decidable_eq.{succ u_1}]
+_inst_2 -/
+#print set.to_finset_empty /- >>> only 1
+fintype.{u_1} #0
+[subtype.fintype.{u_1}]
+_inst_1 -/
+#print psigma.fintype /- >>> only 1
+fintype.{u_1} #1
+[sigma.fintype.{u_1 u_2}]
+_inst_1>>> only 1
+Pi (a : #2), (fintype.{u_2} (#1 a))
+[sigma.fintype.{u_1 u_2}]
+_inst_2 -/
+#print psigma.fintype_prop_right /- >>> only 1
+Pi (a : #1), (decidable (#0 a))
+[subtype.fintype.{u_1}]
+_inst_1>>> only 1
+fintype.{u_1} #2
+[subtype.fintype.{u_1}]
+_inst_2 -/
+#print psigma.fintype_prop_prop /- >>> only 1
+decidable #1
+[exists_prop_decidable]
+_inst_1>>> only 1
+Pi (a : #2), (decidable (#1 a))
+[exists_prop_decidable]
+_inst_2 -/
+#print fintype.card_equiv /- >>> only 1
+decidable_eq.{succ u_2} #1
+[equiv.fintype.{u_1 u_2}]
+_inst_2>>> only 1
+fintype.{u_2} #3
+[equiv.fintype.{u_1 u_2}]
+_inst_4 -/
+#print fintype.bij_inv /- >>> unused_arg ? 
+decidable_eq.{succ u_2} #1
+[]
+_inst_2 -/
+#print infinite.nonempty /- >>> only 1
+infinite.{u_1} #0
+[infinite.nontrivial.{u_1}]
+_inst_1 -/
+#print trunc_sigma_of_exists /- >>> only 1
+fintype.{u_1} #0
+[psigma.fintype_prop_right.{u_1}]
+_inst_1>>> only 1
+decidable_pred.{succ u_1} #2 #0
+[psigma.fintype_prop_right.{u_1}]
+_inst_2 -/
+
+-- data\indicator_function.lean
+#print set.is_add_group_hom.indicator /- >>> only 1
+add_group.{u_3} #0
+[add_group.to_add_monoid.{u_3}]
+_inst_1 -/
+#print set.indicator_compl /- >>> only 1
+add_group.{u_3} #0
+[add_group.to_add_monoid.{u_3}]
+_inst_1 -/
+#print set.indicator_finset_sum /- >>> only 1
+add_comm_monoid.{u_2} #0
+[add_comm_monoid.to_add_monoid.{u_2}]
+_inst_2 -/
+#print set.indicator_le' /- >>> only 1
+preorder.{u_3} #1
+[preorder.to_has_le.{u_3}]
+_inst_2 -/
+
+-- data\int\cast.lean
+#print int.cast_zero /- >>> only 1
+has_one.{u_1} #1
+[int.cast_coe.{u_1}]
+_inst_2>>> only 1
+has_add.{u_1} #2
+[int.cast_coe.{u_1}]
+_inst_3>>> only 1
+has_neg.{u_1} #3
+[int.cast_coe.{u_1}]
+_inst_4 -/
+#print int.cast_of_nat /- >>> only 1
+has_neg.{u_1} #3
+[int.cast_coe.{u_1}]
+_inst_4 -/
+#print int.cast_coe_nat /- >>> only 1
+has_neg.{u_1} #3
+[int.cast_coe.{u_1}]
+_inst_4 -/
+#print int.cast_one /- >>> only 1
+has_neg.{u_1} #2
+[int.cast_coe.{u_1}]
+_inst_3 -/
+#print int.cast_min /- >>> only 1
+linear_ordered_comm_ring.{u_1} #0
+[linear_ordered_comm_ring.to_linear_ordered_ring.{u_1}]
+_inst_1 -/
+#print int.cast_max /- >>> only 1
+linear_ordered_comm_ring.{u_1} #0
+[linear_ordered_comm_ring.to_linear_ordered_ring.{u_1}]
+_inst_1 -/
+
+-- data\int\range.lean
+#print int.decidable_le_lt /- >>> only 1
+decidable_pred.{1} int #0
+[list.decidable_ball.{0}]
+_inst_1 -/
+#print int.decidable_le_le /- >>> only 1
+decidable_pred.{1} int #0
+[list.decidable_ball.{0}]
+_inst_1 -/
+#print int.decidable_lt_lt /- >>> only 1
+decidable_pred.{1} int #0
+[int.decidable_le_lt]
+_inst_1 -/
+#print int.decidable_lt_le /- >>> only 1
+decidable_pred.{1} int #0
+[int.decidable_le_le]
+_inst_1 -/
+
+-- data\list\basic.lean
+#print list.insert_neg /- >>> only 1
+decidable_eq.{succ u} #0
+[list.has_insert.{u}]
+_inst_1 -/
+#print list.insert_pos /- >>> only 1
+decidable_eq.{succ u} #0
+[list.has_insert.{u}]
+_inst_1 -/
+#print list.alternating_prod_nil /- >>> only 1
+comm_group.{u_1} #0
+[comm_group.to_group.{u_1}]
+_inst_1 -/
+#print list.alternating_sum_nil /- >>> only 1
+add_comm_group.{u_1} #0
+[add_comm_group.to_add_group.{u_1}]
+_inst_1 -/
+#print list.alternating_sum_singleton /- >>> only 1
+add_comm_group.{u_1} #0
+[add_comm_group.to_add_group.{u_1}]
+_inst_1 -/
+#print list.alternating_prod_singleton /- >>> only 1
+comm_group.{u_1} #0
+[comm_group.to_group.{u_1}]
+_inst_1 -/
+#print list.alternating_prod_cons_cons /- >>> only 1
+comm_group.{u_1} #0
+[comm_group.to_group.{u_1}]
+_inst_1 -/
+#print list.alternating_sum_cons_cons' /- >>> only 1
+add_comm_group.{u_1} #0
+[add_comm_group.to_add_group.{u_1}]
+_inst_1 -/
+#print list.alternating_sum_cons_cons /- >>> only 1
+add_comm_group.{u_1} #0
+[add_comm_group.to_add_group.{u_1}]
+_inst_2 -/
+#print list.has_le' /- >>> only 1
+linear_order.{u} #0
+[list.linear_order.{u}]
+_inst_1 -/
+#print list.insert_nil /- >>> only 1
+decidable_eq.{succ u} #0
+[list.has_insert.{u}]
+_inst_1 -/
+#print list.nil_union /- >>> only 1
+decidable_eq.{succ u} #0
+[list.has_union.{u}]
+_inst_1 -/
+#print list.inter_nil /- >>> only 1
+decidable_eq.{succ u} #0
+[list.has_inter.{u}]
+_inst_1 -/
+#print list.inter_cons_of_mem /- >>> only 1
+decidable_eq.{succ u} #0
+[list.has_inter.{u}]
+_inst_1 -/
+#print list.inter_cons_of_not_mem /- >>> only 1
+decidable_eq.{succ u} #0
+[list.has_inter.{u}]
+_inst_1 -/
+#print list.mem_of_mem_inter_left /- >>> only 1
+decidable_eq.{succ u} #0
+[list.has_inter.{u}]
+_inst_1 -/
+#print list.mem_of_mem_inter_right /- >>> only 1
+decidable_eq.{succ u} #0
+[list.has_inter.{u}]
+_inst_1 -/
+#print list.mem_inter_of_mem_of_mem /- >>> only 1
+decidable_eq.{succ u} #0
+[list.has_inter.{u}]
+_inst_1 -/
+#print list.mem_inter /- >>> only 1
+decidable_eq.{succ u} #0
+[list.has_inter.{u}]
+_inst_1 -/
+#print list.inter_subset_left /- >>> only 1
+decidable_eq.{succ u} #0
+[list.has_inter.{u}]
+_inst_1 -/
+
+-- data\list\defs.lean
+#print list.split_on /- >>> unused_arg ? 
+decidable_eq.{succ u} #0
+[]
+_inst_1 -/
+#print list.decidable_pairwise /- >>> only 1
+decidable_rel.{succ u} #1 #0
+[list.decidable_ball.{u}]
+_inst_1 -/
+#print list.decidable_chain /- >>> only 1
+decidable_rel.{succ u} #1 #0
+[and.decidable]
+_inst_1 -/
+#print list.decidable_chain' /- >>> only 1
+decidable_rel.{succ u} #1 #0
+[list.decidable_chain.{u}]
+_inst_1 -/
+#print list.nodup_decidable /- >>> only 1
+decidable_eq.{succ u} #0
+[ne.decidable.{succ u}]
+_inst_1 -/
+#print list.erase_dup /- >>> only 1
+decidable_eq.{succ u} #0
+[ne.decidable.{succ u}]
+_inst_1 -/
+
+-- data\list\nodup.lean
+#print list.nodup_inter_of_nodup /- >>> only 1
+decidable_eq.{succ u} #0
+[list.has_inter.{u}]
+_inst_1 -/
+
+-- data\list\perm.lean
+#print list.perm.inter_right /- >>> only 1
+decidable_eq.{succ uu} #0
+[list.has_inter.{uu}]
+_inst_1 -/
+
+-- data\list\sort.lean
+#print list.decidable_sorted /- >>> only 1
+decidable_rel.{succ uu} #1 #0
+[list.decidable_pairwise.{uu}]
+_inst_1 -/
+
+-- data\mllist.lean
+#print tactic.mllist.uncons /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.of_list /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.m_of_list /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.force /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.take /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.map /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.mmap /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.filter /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.mfilter /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.filter_map /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.mfilter_map /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.append /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.join /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.enum_from /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.monad_lift /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1>>> only 1
+monad.{u u} #1
+[monad.to_applicative.{u u}]
+_inst_2 -/
+#print tactic.mllist.head /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+#print tactic.mllist.mfirst /- >>> unused_arg ? 
+alternative.{u u} #0
+[]
+_inst_1 -/
+
+-- data\multiset\basic.lean
+#print multiset.decidable_mem /- >>> only 1
+decidable_eq.{succ u_1} #0
+[list.decidable_mem.{u_1}]
+_inst_1 -/
+#print multiset.abs_sum_le_sum_abs /- >>> only 1
+linear_ordered_field.{u_1} #0
+[linear_ordered_field.to_linear_ordered_comm_ring.{u_1}]
+_inst_1 -/
+#print multiset.decidable_forall_multiset /- >>> only 1
+Pi (a : #2), (decidable (#0 a))
+[list.decidable_ball.{u_1}]
+hp -/
+#print multiset.decidable_dforall_multiset /- >>> unused_arg ? 
+Pi (a : #2) (h : has_mem.mem.{u_1 u_1} #2 (multiset.{u_1} #2) (multiset.has_mem.{u_1} #2) a #1), (decidable (#0 a h))
+[]
+hp -/
+#print multiset.decidable_eq_pi_multiset /- >>> unused_arg ? 
+Pi (a : #2), (decidable_eq.{succ u_2} (#0 a))
+[]
+h -/
+#print multiset.decidable_exists_multiset /- >>> only 1
+decidable_pred.{succ u_1} #2 #0
+[list.decidable_exists_mem.{u_1}]
+_inst_1 -/
+#print multiset.decidable_dexists_multiset /- >>> unused_arg ? 
+Pi (a : #2) (h : has_mem.mem.{u_1 u_1} #2 (multiset.{u_1} #2) (multiset.has_mem.{u_1} #2) a #1), (decidable (#0 a h))
+[]
+hp -/
+#print multiset.sub_zero /- >>> only 1
+decidable_eq.{succ u_1} #0
+[multiset.has_sub.{u_1}]
+_inst_1 -/
+#print multiset.sub_add' /- >>> only 1
+decidable_eq.{succ u_1} #0
+[multiset.has_sub.{u_1}]
+_inst_1 -/
+#print multiset.union /- >>> only 1
+decidable_eq.{succ u_1} #0
+[multiset.has_sub.{u_1}]
+_inst_1 -/
+#print multiset.le_union_left /- >>> only 1
+decidable_eq.{succ u_1} #0
+[multiset.has_union.{u_1}]
+_inst_1 -/
+#print multiset.le_union_right /- >>> only 1
+decidable_eq.{succ u_1} #0
+[multiset.has_union.{u_1}]
+_inst_1 -/
+#print multiset.eq_union_left /- >>> only 1
+decidable_eq.{succ u_1} #0
+[multiset.has_union.{u_1}]
+_inst_1 -/
+#print multiset.union_le_union_right /- >>> only 1
+decidable_eq.{succ u_1} #0
+[multiset.has_union.{u_1}]
+_inst_1 -/
+#print multiset.cons_inter_of_neg /- >>> only 1
+decidable_eq.{succ u_1} #0
+[multiset.has_inter.{u_1}]
+_inst_1 -/
+#print multiset.inter_le_left /- >>> only 1
+decidable_eq.{succ u_1} #0
+[multiset.has_inter.{u_1}]
+_inst_1 -/
+#print multiset.filter_union /- >>> only 1
+decidable_eq.{succ u_1} #2
+[multiset.has_union.{u_1}]
+_inst_2 -/
+
+-- data\multiset\finset_ops.lean
+#print multiset.ndinter /- >>> only 1
+decidable_eq.{succ u_1} #0
+[multiset.decidable_mem.{u_1}]
+_inst_1 -/
+
+-- data\multiset\nodup.lean
+#print multiset.nodup_decidable /- >>> only 1
+decidable_eq.{succ u_1} #0
+[list.nodup_decidable.{u_1}]
+_inst_1 -/
+
+-- data\nat\basic.lean
+#print nat.decidable_forall_fin /- >>> unused_arg ? 
+decidable_pred.{1} (fin #1) #0
+[]
+H -/
+#print nat.decidable_ball_le /- >>> unused_arg ? 
+Pi (n : nat) (h : has_le.le.{0} nat nat.has_le n #1), (decidable (#0 n h))
+[]
+H -/
+#print nat.decidable_lo_hi /- >>> unused_arg ? 
+decidable_pred.{1} nat #0
+[]
+H -/
+#print nat.decidable_lo_hi_le /- >>> only 1
+decidable_pred.{1} nat #0
+[nat.decidable_lo_hi]
+H -/
+
+-- data\nat\cast.lean
+#print nat.cast_zero /- >>> only 1
+has_one.{u_1} #1
+[nat.cast_coe.{u_1}]
+_inst_2>>> only 1
+has_add.{u_1} #2
+[nat.cast_coe.{u_1}]
+_inst_3 -/
+#print nat.cast_add_one /- >>> only 1
+has_zero.{u_1} #0
+[nat.cast_coe.{u_1}]
+_inst_1 -/
+#print nat.cast_succ /- >>> only 1
+has_zero.{u_1} #0
+[nat.cast_coe.{u_1}]
+_inst_1 -/
+#print nat.cast_ite /- >>> only 1
+has_zero.{u_1} #0
+[nat.cast_coe.{u_1}]
+_inst_1>>> only 1
+has_one.{u_1} #1
+[nat.cast_coe.{u_1}]
+_inst_2>>> only 1
+has_add.{u_1} #2
+[nat.cast_coe.{u_1}]
+_inst_3 -/
+
+-- data\nat\choose\sum.lean
+#print finset.sum_powerset_neg_one_pow_card /- >>> only 1
+decidable_eq.{succ u_1} #0
+[finset.has_decidable_eq.{u_1}]
+_inst_1 -/
+
+-- data\nat\prime.lean
+#print nat.monoid.prime_pow /- >>> only 1
+monoid.{u_1} #0
+[monoid.has_pow.{u_1}]
+_inst_1 -/
+
+-- data\prod.lean
+#print prod.lex.decidable /- >>> only 1
+decidable_eq.{succ u_1} #1
+[and.decidable]
+_inst_1>>> only 1
+decidable_rel.{succ u_1} #4 #1
+[or.decidable]
+_inst_2>>> only 1
+decidable_rel.{succ u_2} #4 #1
+[and.decidable]
+_inst_3 -/
+
+-- data\real\cau_seq.lean
+#print is_cau_seq /- >>> only 1
+ring.{u_2} #0
+[ring.to_add_comm_group.{u_2}]
+_inst_2 -/
+#print cau_seq.add_apply /- >>> only 1
+is_absolute_value.{u_1 u_2} #4 #3 #2 #1 #0
+[cau_seq.has_add.{u_1 u_2}]
+_inst_3 -/
+#print cau_seq.inhabited /- >>> only 1
+is_absolute_value.{u_1 u_2} #4 #3 #2 #1 #0
+[cau_seq.has_zero.{u_1 u_2}]
+_inst_3 -/
+#print cau_seq.zero_apply /- >>> only 1
+is_absolute_value.{u_1 u_2} #4 #3 #2 #1 #0
+[cau_seq.has_zero.{u_1 u_2}]
+_inst_3 -/
+#print cau_seq.one_apply /- >>> only 1
+is_absolute_value.{u_1 u_2} #4 #3 #2 #1 #0
+[cau_seq.has_one.{u_1 u_2}]
+_inst_3 -/
+#print cau_seq.mul_apply /- >>> only 1
+is_absolute_value.{u_1 u_2} #4 #3 #2 #1 #0
+[cau_seq.has_mul.{u_1 u_2}]
+_inst_3 -/
+#print cau_seq.neg_apply /- >>> only 1
+is_absolute_value.{u_1 u_2} #4 #3 #2 #1 #0
+[cau_seq.has_neg.{u_1 u_2}]
+_inst_3 -/
+#print cau_seq.sub_apply /- >>> only 1
+is_absolute_value.{u_1 u_2} #4 #3 #2 #1 #0
+[cau_seq.ring.{u_1 u_2}]
+_inst_3 -/
+#print cau_seq.one_not_equiv_zero /- >>> only 1
+integral_domain.{u_2} #0
+[integral_domain.to_domain.{u_2}]
+_inst_2 -/
+
+-- data\real\cau_seq_completion.lean
+#print cau_seq.completion.Cauchy /- >>> only 1
+comm_ring.{u_2} #0
+[comm_ring.to_ring.{u_2}]
+_inst_2>>> only 1
+is_absolute_value.{u_1 u_2} #4 #3 #2 (comm_ring.to_ring.{u_2} #2 #1) #0
+[cau_seq.equiv.{u_1 u_2}]
+_inst_3 -/
+
+-- data\set\basic.lean
+#print set.decidable_mem /- >>> unused_arg ? 
+decidable_pred.{succ u} #1 #0
+[]
+H -/
+#print set.decidable_set_of /- >>> unused_arg ? 
+decidable_pred.{succ u} #1 #0
+[]
+H -/
+
+-- data\set\countable.lean
+#print set.countable_encodable /- >>> only 1
+encodable.{u} #0
+[encodable.subtype.{u}]
+_inst_1 -/
+#print set.countable_Union /- >>> only 1
+encodable.{u} #2
+[encodable.sigma.{u v}]
+_inst_1 -/
+
+-- data\set\finite.lean
+#print set.decidable_mem_of_fintype /- >>> only 1
+decidable_eq.{succ u} #0
+[finset.decidable_mem.{u}]
+_inst_1 -/
+#print set.finite_univ /- >>> only 1
+fintype.{u} #0
+[set.fintype_univ.{u}]
+_inst_1 -/
+#print set.fintype_inter /- >>> only 1
+fintype.{u} (coe_sort.{(max (succ u) 1) succ (max 1 (succ u))} (set.{u} #2) (set.has_coe_to_sort.{u} #2) #1)
+[set.fintype_sep.{u}]
+_inst_1>>> only 1
+decidable_pred.{succ u} #3 #1
+[set.decidable_mem.{u}]
+_inst_2 -/
+#print set.fintype_subset /- >>> only 1
+fintype.{u} (coe_sort.{(max (succ u) 1) succ (max 1 (succ u))} (set.{u} #2) (set.has_coe_to_sort.{u} #2) #1)
+[set.fintype_inter.{u}]
+_inst_1>>> only 1
+decidable_pred.{succ u} #3 #1
+[set.fintype_inter.{u}]
+_inst_2 -/
+#print set.finite_range /- >>> only 1
+fintype.{u} #2
+[set.fintype_range.{u v}]
+_inst_1 -/
+#print set.fintype_map /- >>> only 1
+decidable_eq.{succ u_1} #0
+[set.fintype_image.{u_1 u_1}]
+_inst_1 -/
+#print set.finite_Union /- >>> only 1
+fintype.{u_1} #0
+[set.fintype_Union.{u u_1}]
+_inst_1 -/
+#print set.fintype_bUnion /- >>> only 1
+decidable_eq.{succ u} #0
+[set.fintype_Union.{u u_1}]
+_inst_1>>> only 1
+fintype.{u_1} (coe_sort.{(max (succ u_1) 1) succ (max 1 (succ u_1))} (set.{u_1} #1) (set.has_coe_to_sort.{u_1} #1) #0)
+[set.fintype_Union.{u u_1}]
+_inst_2 -/
+#print set.fintype_bUnion' /- >>> unused_arg ? 
+Pi (i : #3), (fintype.{u} (coe_sort.{(max (succ u) 1) succ (max 1 (succ u))} (set.{u} #5) (set.has_coe_to_sort.{u} #5) (#0 i)))
+[]
+H -/
+#print set.fintype_image2 /- >>> only 1
+decidable_eq.{succ x} #0
+[set.fintype_image.{(max u v) x}]
+_inst_1>>> only 1
+fintype.{u} (coe_sort.{(max (succ u) 1) succ (max 1 (succ u))} (set.{u} #6) (set.has_coe_to_sort.{u} #6) #1)
+[set.fintype_prod.{u v}]
+hs>>> only 1
+fintype.{v} (coe_sort.{(max (succ v) 1) succ (max 1 (succ v))} (set.{v} #6) (set.has_coe_to_sort.{v} #6) #1)
+[set.fintype_prod.{u v}]
+ht -/
+#print set.fintype_bind' /- >>> unused_arg ? 
+Pi (a : #5), (fintype.{u_1} (coe_sort.{(max (succ u_1) 1) succ (max 1 (succ u_1))} (set.{u_1} #4) (set.has_coe_to_sort.{u_1} #4) (#0 a)))
+[]
+H -/
+#print set.fintype_seq /- >>> only 1
+fintype.{u} (coe_sort.{(max (succ u) 1) succ (max 1 (succ u))} (set.{u} (#4 -> #3)) (set.has_coe_to_sort.{u} (#4 -> #3)) #1)
+[set.fintype_bind'.{u}]
+_inst_2>>> only 1
+fintype.{u} (coe_sort.{(max (succ u) 1) succ (max 1 (succ u))} (set.{u} #5) (set.has_coe_to_sort.{u} #5) #1)
+[set.fintype_map.{u}]
+_inst_3 -/
+#print set.to_finset_inter /- >>> only 1
+fintype.{u_1} #0
+[subtype.fintype.{u_1}]
+_inst_1 -/
+
+-- data\set\function.lean
+#print set.compl.decidable_mem /- >>> only 1
+Pi (j : #1), (decidable (has_mem.mem.{u u} #1 (set.{u} #1) (set.has_mem.{u} #1) j #0))
+[not.decidable]
+_inst_1 -/
+
+-- data\set\intervals\basic.lean
+#print set.Ioo /- >>> only 1
+preorder.{u} #0
+[preorder.to_has_lt.{u}]
+_inst_1 -/
+#print set.Iio /- >>> only 1
+preorder.{u} #0
+[preorder.to_has_lt.{u}]
+_inst_1 -/
+#print set.Icc /- >>> only 1
+preorder.{u} #0
+[preorder.to_has_le.{u}]
+_inst_1 -/
+#print set.Iic /- >>> only 1
+preorder.{u} #0
+[preorder.to_has_le.{u}]
+_inst_1 -/
+#print set.Ici /- >>> only 1
+preorder.{u} #0
+[preorder.to_has_le.{u}]
+_inst_1 -/
+#print set.Ioi /- >>> only 1
+preorder.{u} #0
+[preorder.to_has_lt.{u}]
+_inst_1 -/
+
+-- data\set\intervals\ord_connected.lean
+#print set.Icc_subset /- >>> unused_arg ? 
+set.ord_connected.{u_1} #2 #1 #0
+[]
+hs -/
+#print set.ord_connected_pi' /- >>> unused_arg ? 
+Pi (i : #4), (set.ord_connected.{u_2} (#3 i) (#2 i) (#0 i))
+[]
+h -/
+
+-- data\set\intervals\surj_on.lean
+#print surj_on_Ioo_of_monotone_surjective /- >>> only 1
+partial_order.{u_2} #1
+[partial_order.to_preorder.{u_2}]
+_inst_2 -/
+#print surj_on_Ioi_of_monotone_surjective /- >>> only 1
+partial_order.{u_2} #1
+[partial_order.to_preorder.{u_2}]
+_inst_2 -/
+
+-- data\vector2.lean
+#print vector.traverse_def /- >>> unused_arg ? 
+is_lawful_applicative.{u u} #1 #0
+[]
+_inst_3 -/
+
+-- deprecated\group.lean
+#print is_add_hom.add /- >>> only 1
+add_semigroup.{u_1} #1
+[add_semigroup.to_has_add.{u_1}]
+_inst_4 -/
+#print is_mul_hom.mul /- >>> only 1
+semigroup.{u_1} #1
+[semigroup.to_has_mul.{u_1}]
+_inst_4 -/
+#print add_equiv.is_add_hom /- >>> only 1
+add_monoid.{u_1} #1
+[add_monoid.to_add_semigroup.{u_1}]
+_inst_1>>> only 1
+add_monoid.{u_2} #1
+[add_monoid.to_add_semigroup.{u_2}]
+_inst_2 -/
+#print mul_equiv.is_mul_hom /- >>> only 1
+monoid.{u_1} #1
+[monoid.to_semigroup.{u_1}]
+_inst_1>>> only 1
+monoid.{u_2} #1
+[monoid.to_semigroup.{u_2}]
+_inst_2 -/
+#print is_add_monoid_hom.map_add /- >>> only 1
+is_add_monoid_hom.{u v} #4 #3 #2 #1 #0
+[is_add_monoid_hom.to_is_add_hom.{u v}]
+_inst_3 -/
+#print is_monoid_hom.map_mul /- >>> only 1
+is_monoid_hom.{u v} #4 #3 #2 #1 #0
+[is_monoid_hom.to_is_mul_hom.{u v}]
+_inst_3 -/
+#print is_group_hom.to_is_monoid_hom /- >>> only 1
+is_group_hom.{u v} #4 #3 #2 #1 #0
+[is_group_hom.to_is_mul_hom.{u v}]
+_inst_3 -/
+#print is_add_group_hom.to_is_add_monoid_hom /- >>> only 1
+is_add_group_hom.{u v} #4 #3 #2 #1 #0
+[is_add_group_hom.to_is_add_hom.{u v}]
+_inst_3 -/
+#print is_group_hom.map_one /- >>> only 1
+is_group_hom.{u v} #4 #3 #2 #1 #0
+[is_group_hom.to_is_monoid_hom.{u v}]
+_inst_3 -/
+#print is_add_group_hom.map_zero /- >>> only 1
+is_add_group_hom.{u v} #4 #3 #2 #1 #0
+[is_add_group_hom.to_is_add_monoid_hom.{u v}]
+_inst_3 -/
+#print is_group_hom.comp /- >>> only 1
+is_group_hom.{u v} #4 #3 #2 #1 #0
+[is_group_hom.to_is_mul_hom.{u v}]
+_inst_3>>> only 1
+is_group_hom.{v u_1} #7 #2 #5 #1 #0
+[is_group_hom.to_is_mul_hom.{v u_1}]
+_inst_5 -/
+#print is_add_group_hom.comp /- >>> only 1
+is_add_group_hom.{u v} #4 #3 #2 #1 #0
+[is_add_group_hom.to_is_add_hom.{u v}]
+_inst_3>>> only 1
+is_add_group_hom.{v u_1} #7 #2 #5 #1 #0
+[is_add_group_hom.to_is_add_hom.{v u_1}]
+_inst_5 -/
+#print is_add_group_hom.add /- >>> only 1
+is_add_group_hom.{u_1 u_2} #5 #4 #3 (add_comm_group.to_add_group.{u_2} #4 #2) #1
+[is_add_group_hom.to_is_add_hom.{u_1 u_2}]
+_inst_6>>> only 1
+is_add_group_hom.{u_1 u_2} #6 #5 #4 (add_comm_group.to_add_group.{u_2} #5 #3) #1
+[is_add_group_hom.to_is_add_hom.{u_1 u_2}]
+_inst_7 -/
+#print is_group_hom.mul /- >>> only 1
+is_group_hom.{u_1 u_2} #5 #4 #3 (comm_group.to_group.{u_2} #4 #2) #1
+[is_group_hom.to_is_mul_hom.{u_1 u_2}]
+_inst_6>>> only 1
+is_group_hom.{u_1 u_2} #6 #5 #4 (comm_group.to_group.{u_2} #5 #3) #1
+[is_group_hom.to_is_mul_hom.{u_1 u_2}]
+_inst_7 -/
+#print is_group_hom.inv /- >>> only 1
+is_group_hom.{u_1 u_2} #4 #3 #2 (comm_group.to_group.{u_2} #3 #1) #0
+[is_group_hom.to_is_mul_hom.{u_1 u_2}]
+_inst_6 -/
+#print is_add_group_hom.neg /- >>> only 1
+is_add_group_hom.{u_1 u_2} #4 #3 #2 (add_comm_group.to_add_group.{u_2} #3 #1) #0
+[is_add_group_hom.to_is_add_hom.{u_1 u_2}]
+_inst_6 -/
+#print is_add_group_hom.sub /- >>> only 1
+is_add_group_hom.{u_1 u_2} #5 #4 #3 (add_comm_group.to_add_group.{u_2} #4 #2) #1
+[is_add_group_hom.add.{u_1 u_2}]
+_inst_3>>> only 1
+is_add_group_hom.{u_1 u_2} #6 #5 #4 (add_comm_group.to_add_group.{u_2} #5 #3) #1
+[is_add_group_hom.neg.{u_1 u_2}]
+_inst_4 -/
+#print additive.is_add_group_hom /- >>> only 1
+is_group_hom.{u v} #4 #3 #2 #1 #0
+[is_group_hom.to_is_mul_hom.{u v}]
+_inst_3 -/
+#print multiplicative.is_group_hom /- >>> only 1
+is_add_group_hom.{u v} #4 #3 #2 #1 #0
+[is_add_group_hom.to_is_add_hom.{u v}]
+_inst_3 -/
+
+-- group_theory\coset.lean
+#print quotient_group.quotient.fintype /- >>> only 1
+fintype.{u_1} #1
+[quotient.fintype.{u_1}]
+_inst_2 -/
+
+-- group_theory\group_action\basic.lean
+#print mul_action.orbit /- >>> only 1
+mul_action.{u v} #2 #1 #0
+[mul_action.to_has_scalar.{u v}]
+_inst_2 -/
+#print mul_action.stabilizer_carrier /- >>> only 1
+mul_action.{u v} #2 #1 #0
+[mul_action.to_has_scalar.{u v}]
+_inst_2 -/
+#print mul_action.fixed_points /- >>> only 1
+mul_action.{u v} #2 #1 #0
+[mul_action.to_has_scalar.{u v}]
+_inst_2 -/
+#print mul_action.fixed_by /- >>> only 1
+mul_action.{u v} #2 #1 #0
+[mul_action.to_has_scalar.{u v}]
+_inst_2 -/
+
+-- group_theory\group_action\defs.lean
+#print ite_smul /- >>> only 1
+mul_action.{u v} #2 #1 #0
+[mul_action.to_has_scalar.{u v}]
+_inst_2 -/
+#print smul_ite /- >>> only 1
+mul_action.{u v} #2 #1 #0
+[mul_action.to_has_scalar.{u v}]
+_inst_2 -/
+
+-- group_theory\order_of_element.lean
+#print quotient_group.fintype /- >>> only 1
+fintype.{u_1} #1
+[quotient.fintype.{u_1}]
+_inst_2>>> unused_arg ? 
+decidable_pred.{succ u_1} #3 (fun (a : #3), (has_mem.mem.{u_1 u_1} #3 (subgroup.{u_1} #3 #2) (subgroup.has_mem.{u_1} #3 #2) a #0))
+[]
+d -/
+#print card_eq_card_quotient_mul_card_subgroup /- >>> only 1
+decidable_pred.{succ u_1} #4 (fun (a : #4), (has_mem.mem.{u_1 u_1} #4 (subgroup.{u_1} #4 #3) (subgroup.has_mem.{u_1} #4 #3) a #1))
+[quotient_group.fintype.{u_1}]
+_inst_4 -/
+#print order_of /- >>> unused_arg ? 
+decidable_eq.{succ u_1} #2
+[]
+dec -/
+
+-- group_theory\quotient_group.lean
+#print quotient_add_group.mk' /- >>> only 1
+add_subgroup.normal.{u} #2 #1 #0
+[quotient_add_group.add_group.{u}]
+nN -/
+#print quotient_group.mk' /- >>> only 1
+subgroup.normal.{u} #2 #1 #0
+[quotient_group.quotient.group.{u}]
+nN -/
+#print quotient_add_group.coe_zero /- >>> only 1
+add_subgroup.normal.{u} #2 #1 #0
+[quotient_add_group.add_group.{u}]
+nN -/
+#print quotient_group.coe_one /- >>> only 1
+subgroup.normal.{u} #2 #1 #0
+[quotient_group.quotient.group.{u}]
+nN -/
+#print quotient_add_group.coe_add /- >>> only 1
+add_subgroup.normal.{u} #2 #1 #0
+[quotient_add_group.add_group.{u}]
+nN -/
+#print quotient_group.coe_mul /- >>> only 1
+subgroup.normal.{u} #2 #1 #0
+[quotient_group.quotient.group.{u}]
+nN -/
+#print quotient_group.coe_inv /- >>> only 1
+subgroup.normal.{u} #2 #1 #0
+[quotient_group.quotient.group.{u}]
+nN -/
+#print quotient_add_group.coe_neg /- >>> only 1
+add_subgroup.normal.{u} #2 #1 #0
+[quotient_add_group.add_group.{u}]
+nN -/
+
+-- group_theory\subgroup.lean
+#print monoid_hom.eq_of_eq_on_top /- >>> only 1
+group.{u_3} #0
+[group.to_monoid.{u_3}]
+_inst_3 -/
+#print add_monoid_hom.eq_of_eq_on_top /- >>> only 1
+add_group.{u_3} #0
+[add_group.to_add_monoid.{u_3}]
+_inst_3 -/
+
+-- logic\basic.lean
+#print coe_fn_coe_trans /- >>> only 1
+has_coe_t_aux.{u_2 u_3} #2 #1
+[coe_fn_trans.{u_2 u_3 u_4}]
+_inst_2>>> only 1
+has_coe_to_fun.{u_3 u_4} #2
+[coe_fn_trans.{u_2 u_3 u_4}]
+_inst_3 -/
+#print coe_sort_coe_trans /- >>> only 1
+has_coe_t_aux.{u_2 u_3} #2 #1
+[coe_sort_trans.{u_2 u_3 u_4}]
+_inst_2>>> only 1
+has_coe_to_sort.{u_3 u_4} #2
+[coe_sort_trans.{u_2 u_3 u_4}]
+_inst_3 -/
+#print decidable.or_iff_not_and_not /- >>> only 1
+decidable #1
+[or.decidable]
+_inst_1>>> only 1
+decidable #1
+[or.decidable]
+_inst_2 -/
+#print decidable.and_iff_not_or_not /- >>> only 1
+decidable #1
+[and.decidable]
+_inst_2 -/
+
+-- order\basic.lean
+#print order.preimage.decidable /- >>> unused_arg ? 
+decidable_rel.{u_2} #2 #0
+[]
+H -/
+#print monotone /- >>> only 1
+preorder.{u} #1
+[preorder.to_has_le.{u}]
+_inst_1>>> only 1
+preorder.{v} #1
+[preorder.to_has_le.{v}]
+_inst_2 -/
+#print order_dual.nonempty /- >>> unused_arg ? 
+nonempty.{succ u_1} #0
+[]
+h -/
+
+-- order\bounded_lattice.lean
+#print with_bot.coe_le /- >>> only 1
+partial_order.{u} #0
+[partial_order.to_preorder.{u}]
+_inst_1 -/
+#print with_bot.coe_lt_coe /- >>> only 1
+partial_order.{u} #0
+[partial_order.to_preorder.{u}]
+_inst_1 -/
+#print with_top.coe_le_coe /- >>> only 1
+partial_order.{u} #0
+[partial_order.to_preorder.{u}]
+_inst_1 -/
+#print with_top.coe_lt_coe /- >>> only 1
+partial_order.{u} #0
+[partial_order.to_preorder.{u}]
+_inst_1 -/
+#print with_top.coe_lt_top /- >>> only 1
+partial_order.{u} #0
+[partial_order.to_preorder.{u}]
+_inst_1 -/
+#print with_top.decidable_le /- >>> unused_arg ? 
+decidable_rel.{succ u} #1 (has_le.le.{u} #1 (preorder.to_has_le.{u} #1 #0))
+[]
+_inst_2 -/
+#print with_top.decidable_lt /- >>> unused_arg ? 
+decidable_rel.{succ u} #1 (has_lt.lt.{u} #1 #0)
+[]
+_inst_2 -/
+#print with_top.lt_iff_exists_coe_btwn /- >>> only 1
+densely_ordered.{u} #1 (partial_order.to_preorder.{u} #1 #0)
+[with_top.densely_ordered.{u}]
+_inst_2>>> only 1
+no_top_order.{u} #2 (partial_order.to_preorder.{u} #2 #1)
+[with_top.densely_ordered.{u}]
+_inst_3 -/
+
+-- order\bounds.lean
+#print upper_bounds /- >>> only 1
+preorder.{u} #0
+[preorder.to_has_le.{u}]
+_inst_1 -/
+#print lower_bounds /- >>> only 1
+preorder.{u} #0
+[preorder.to_has_le.{u}]
+_inst_1 -/
+
+-- order\conditionally_complete_lattice.lean
+#print with_bot.cSup_empty /- >>> only 1
+conditionally_complete_lattice.{u_1} #0
+[conditionally_complete_lattice.to_has_Sup.{u_1}]
+_inst_1 -/
+#print Sup_within_of_ord_connected /- >>> unused_arg ? 
+set.ord_connected.{u_1} #2 (directed_order.to_preorder.{u_1} #2 (linear_order.to_directed_order.{u_1} #2 (conditionally_complete_linear_order.to_linear_order.{u_1} #2 #1))) #0
+[]
+hs -/
+#print Inf_within_of_ord_connected /- >>> unused_arg ? 
+set.ord_connected.{u_1} #2 (directed_order.to_preorder.{u_1} #2 (linear_order.to_directed_order.{u_1} #2 (conditionally_complete_linear_order.to_linear_order.{u_1} #2 #1))) #0
+[]
+hs -/
+
+-- order\filter\at_top_bot.lean
+#print filter.prod_at_top_at_top_eq /- >>> only 1
+semilattice_sup.{u_1} #1
+[semilattice_sup.to_partial_order.{u_1}]
+_inst_1>>> only 1
+semilattice_sup.{u_2} #1
+[semilattice_sup.to_partial_order.{u_2}]
+_inst_2 -/
+#print filter.tendsto_at_top_of_monotone_of_subseq /- >>> only 1
+filter.ne_bot.{u_2} #7 #0
+[filter.map_ne_bot.{u_2 u_1}]
+_inst_3 -/
+#print filter.tendsto_at_bot_of_monotone_of_subseq /- >>> only 1
+filter.ne_bot.{u_2} #7 #0
+[filter.map_ne_bot.{u_2 u_1}]
+_inst_3 -/
+
+-- order\filter\interval.lean
+#print filter.tendsto_Ico_pure_bot /- >>> only 1
+partial_order.{u_2} #0
+[partial_order.to_preorder.{u_2}]
+_inst_2 -/
+#print filter.tendsto_Ioc_pure_bot /- >>> only 1
+partial_order.{u_2} #0
+[partial_order.to_preorder.{u_2}]
+_inst_2 -/
+
+-- order\filter\pointwise.lean
+#print filter.has_one /- >>> only 1
+has_one.{u} #0
+[set.has_one.{u}]
+_inst_1 -/
+#print filter.has_zero /- >>> only 1
+has_zero.{u} #0
+[set.has_zero.{u}]
+_inst_1 -/
+
+-- order\filter\ultrafilter.lean
+#print filter.is_ultrafilter_hyperfilter /- >>> only 1
+infinite.{u} #0
+[filter.cofinite_ne_bot.{u}]
+_inst_1 -/
+
+-- order\galois_connection.lean
+#print galois_connection /- >>> only 1
+preorder.{u} #1
+[preorder.to_has_le.{u}]
+_inst_1>>> only 1
+preorder.{v} #1
+[preorder.to_has_le.{v}]
+_inst_2 -/
+#print galois_connection.u_l_u_eq_u /- >>> only 1
+partial_order.{v} #1
+[partial_order.to_preorder.{v}]
+_inst_2 -/
+#print galois_connection.l_u_l_eq_l /- >>> only 1
+partial_order.{u} #1
+[partial_order.to_preorder.{u}]
+_inst_1 -/
+#print galois_connection.l_unique /- >>> only 1
+partial_order.{u} #1
+[partial_order.to_preorder.{u}]
+_inst_1 -/
+#print galois_connection.u_unique /- >>> only 1
+partial_order.{v} #1
+[partial_order.to_preorder.{v}]
+_inst_2 -/
+#print galois_insertion.strict_mono_u /- >>> only 1
+partial_order.{v} #3
+[partial_order.to_preorder.{v}]
+_inst_2 -/
+
+-- order\lattice.lean
+#print lt_sup_iff /- >>> only 1
+is_total.{u} #1 (has_le.le.{u} #1 (preorder.to_has_le.{u} #1 (partial_order.to_preorder.{u} #1 (semilattice_sup.to_partial_order.{u} #1 #0))))
+[as_linear_order.linear_order.{u}]
+_inst_2 -/
+
+-- order\liminf_limsup.lean
+#print filter.liminf_le_limsup /- >>> only 1
+filter.ne_bot.{u_2} #2 #0
+[filter.map_ne_bot.{u_2 u_1}]
+_inst_2 -/
+
+-- order\rel_classes.lean
+#print is_well_order.is_strict_total_order /- >>> only 1
+is_well_order.{u_1} #1 #0
+[is_well_order.to_is_strict_total_order'.{u_1}]
+_inst_1 -/
+#print is_well_order.is_extensional /- >>> only 1
+is_well_order.{u_1} #1 #0
+[is_well_order.to_is_strict_total_order'.{u_1}]
+_inst_1 -/
+#print is_well_order.is_trichotomous /- >>> only 1
+is_well_order.{u_1} #1 #0
+[is_well_order.to_is_strict_total_order'.{u_1}]
+_inst_1 -/
+#print is_well_order.is_trans /- >>> only 1
+is_well_order.{u_1} #1 #0
+[is_well_order.to_is_strict_total_order'.{u_1}]
+_inst_1 -/
+#print is_well_order.is_irrefl /- >>> only 1
+is_well_order.{u_1} #1 #0
+[is_well_order.to_is_strict_total_order'.{u_1}]
+_inst_1 -/
+#print is_well_order.linear_order /- >>> only 1
+is_well_order.{u} #1 #0
+[is_well_order.to_is_strict_total_order'.{u}]
+_inst_1 -/
+
+-- order\rel_iso.lean
+#print order_embedding.map_le_iff /- >>> only 1
+preorder.{u_1} #1
+[preorder.to_has_le.{u_1}]
+_inst_1>>> only 1
+preorder.{u_2} #1
+[preorder.to_has_le.{u_2}]
+_inst_2 -/
+
+-- tactic\abel.lean
+#print tactic.abel.term /- >>> only 1
+add_comm_monoid.{u_1} #0
+[add_comm_monoid.to_add_monoid.{u_1}]
+_inst_1 -/
+#print tactic.abel.termg /- >>> only 1
+add_comm_group.{u_1} #0
+[add_comm_group.to_add_group.{u_1}]
+_inst_1 -/
+#print tactic.abel.smul /- >>> only 1
+add_comm_monoid.{u_1} #0
+[add_comm_monoid.to_add_monoid.{u_1}]
+_inst_1 -/
+#print tactic.abel.smulg /- >>> only 1
+add_comm_group.{u_1} #0
+[add_comm_group.to_add_group.{u_1}]
+_inst_1 -/
+
+-- tactic\chain.lean
+#print tactic.trace_output /- >>> unused_arg ? 
+has_to_string.{0} (tactic.tactic_script #0)
+[]
+_inst_1 -/
+
+-- tactic\norm_num.lean
+#print norm_num.bit0_mul /- >>> only 1
+semiring.{u_1} #0
+[semiring.to_distrib.{u_1}]
+_inst_1 -/
+#print norm_num.mul_bit0' /- >>> only 1
+semiring.{u_1} #0
+[semiring.to_distrib.{u_1}]
+_inst_1 -/
+
+-- tactic\ring.lean
+#print tactic.ring.horner /- >>> only 1
+comm_semiring.{u_1} #0
+[comm_semiring.to_semiring.{u_1}]
+_inst_1 -/
+#print tactic.ring.pow_succ /- >>> only 1
+comm_semiring.{u_1} #0
+[comm_semiring.to_semiring.{u_1}]
+_inst_1 -/
+#print tactic.ring.subst_into_pow /- >>> only 1
+monoid.{u_1} #0
+[monoid.has_pow.{u_1}]
+_inst_1 -/
+
+-- tactic\ring_exp.lean
+#print tactic.ring_exp.sum_congr /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.exp_congr /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.base_to_exp_pf /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.exp_to_prod_pf /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.prod_to_sum_pf /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.atom_to_sum_pf /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.mul_coeff_pf_one_mul /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.mul_coeff_pf_mul_one /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.add_overlap_pf /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.add_overlap_pf_zero /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.add_pf_z_sum /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.add_pf_sum_z /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.add_pf_sum_overlap /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.add_pf_sum_overlap_zero /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.add_pf_sum_lt /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.add_pf_sum_gt /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.mul_p_pf_zero /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.mul_p_pf_sum /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.mul_pf_zero /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.mul_pf_sum /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.pow_e_pf_exp /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.pow_pp_pf_one /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.pow_pf_c_c /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.pow_pp_pf_c /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.pow_p_pf_one /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.pow_p_pf_zero /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.pow_p_pf_succ /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.pow_p_pf_singleton /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.pow_p_pf_cons /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.pow_pf_zero /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.pow_pf_sum /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.simple_pf_sum_zero /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.simple_pf_prod_one /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.simple_pf_var_one /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.simple_pf_exp_one /- >>> only 1
+comm_semiring.{u} #0
+[comm_semiring.to_semiring.{u}]
+_inst_1 -/
+#print tactic.ring_exp.inverse_pf /- >>> only 1
+division_ring.{u_1} #0
+[division_ring.to_has_inv.{u_1}]
+_inst_2 -/
+
+-- topology\algebra\group.lean
+#print nhds_translation_mul_inv /- >>> only 1
+topological_group.{w} #2 #1 #0
+[topological_group.to_has_continuous_mul.{w}]
+_inst_3 -/
+#print nhds_translation_add_neg /- >>> only 1
+topological_add_group.{w} #2 #1 #0
+[topological_add_group.to_has_continuous_add.{w}]
+_inst_3 -/
+#print quotient_add_group.quotient.topological_space /- >>> only 1
+topological_space.{u_1} #1
+[quotient.topological_space.{u_1}]
+_inst_5 -/
+#print quotient_group.quotient.topological_space /- >>> only 1
+topological_space.{u_1} #1
+[quotient.topological_space.{u_1}]
+_inst_5 -/
+#print quotient_add_group.is_open_map_coe /- >>> only 1
+topological_add_group.{w} #2 #1 #0
+[topological_add_group.to_has_continuous_add.{w}]
+_inst_3 -/
+#print quotient_group.is_open_map_coe /- >>> only 1
+topological_group.{w} #2 #1 #0
+[topological_group.to_has_continuous_mul.{w}]
+_inst_3 -/
+#print is_open.add_left /- >>> only 1
+topological_add_group.{w} #2 #1 #0
+[topological_add_group.to_has_continuous_add.{w}]
+_inst_3 -/
+#print is_open.mul_left /- >>> only 1
+topological_group.{w} #2 #1 #0
+[topological_group.to_has_continuous_mul.{w}]
+_inst_3 -/
+#print is_open.add_right /- >>> only 1
+topological_add_group.{w} #2 #1 #0
+[topological_add_group.to_has_continuous_add.{w}]
+_inst_3 -/
+#print is_open.mul_right /- >>> only 1
+topological_group.{w} #2 #1 #0
+[topological_group.to_has_continuous_mul.{w}]
+_inst_3 -/
+#print topological_group.t1_space /- >>> only 1
+topological_group.{w} #2 #1 #0
+[topological_group.to_has_continuous_mul.{w}]
+_inst_3 -/
+#print compact_open_separated_mul /- >>> only 1
+topological_group.{w} #2 #1 #0
+[topological_group.to_has_continuous_mul.{w}]
+_inst_3 -/
+#print compact_open_separated_add /- >>> only 1
+topological_add_group.{w} #2 #1 #0
+[topological_add_group.to_has_continuous_add.{w}]
+_inst_3 -/
+#print compact_covered_by_mul_left_translates /- >>> only 1
+topological_group.{w} #2 #1 #0
+[topological_group.to_has_continuous_mul.{w}]
+_inst_3 -/
+#print compact_covered_by_add_left_translates /- >>> only 1
+topological_add_group.{w} #2 #1 #0
+[topological_add_group.to_has_continuous_add.{w}]
+_inst_3 -/
+
+-- topology\algebra\monoid.lean
+#print submonoid.mem_nhds_one /- >>> only 1
+comm_monoid.{u_3} #1
+[comm_monoid.to_monoid.{u_3}]
+_inst_2 -/
+#print add_submonoid.mem_nhds_zero /- >>> only 1
+add_comm_monoid.{u_3} #1
+[add_comm_monoid.to_add_monoid.{u_3}]
+_inst_2 -/
+
+-- topology\algebra\ordered.lean
+#print preorder.topology /- >>> only 1
+preorder.{u_1} #0
+[preorder.to_has_lt.{u_1}]
+_inst_1 -/
+#print order_dual.order_topology /- >>> only 1
+partial_order.{u_1} #1
+[partial_order.to_preorder.{u_1}]
+_inst_2 -/
+#print is_open_iff_generate_intervals /- >>> only 1
+partial_order.{u} #1
+[partial_order.to_preorder.{u}]
+_inst_2 -/
+#print nhds_eq_order /- >>> only 1
+partial_order.{u} #1
+[partial_order.to_preorder.{u}]
+_inst_2 -/
+#print tendsto_Ico_class_nhds /- >>> only 1
+order_topology.{u} #2 #1 (partial_order.to_preorder.{u} #2 #0)
+[tendsto_Icc_class_nhds.{u}]
+t -/
+#print tendsto_Ioc_class_nhds /- >>> only 1
+order_topology.{u} #2 #1 (partial_order.to_preorder.{u} #2 #0)
+[tendsto_Icc_class_nhds.{u}]
+t -/
+#print tendsto_Ioo_class_nhds /- >>> only 1
+order_topology.{u} #2 #1 (partial_order.to_preorder.{u} #2 #0)
+[tendsto_Icc_class_nhds.{u}]
+t -/
+#print tendsto_Ixx_nhds_within /- >>> only 1
+partial_order.{u} #1
+[partial_order.to_preorder.{u}]
+_inst_2 -/
+#print induced_order_topology' /- >>> only 1
+partial_order.{u} #1
+[partial_order.to_preorder.{u}]
+_inst_1 -/
+#print order_topology_of_ord_connected /- >>> unused_arg ? 
+set.ord_connected.{u} #4 (directed_order.to_preorder.{u} #4 (linear_order.to_directed_order.{u} #4 #2)) #0
+[]
+ht -/
+#print order_topology.t2_space /- >>> only 1
+order_topology.{u} #2 #1 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 #0))
+[order_topology.to_order_closed_topology.{u}]
+_inst_3 -/
+#print Iio_mem_nhds /- >>> only 1
+order_topology.{u} #2 #1 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 #0))
+[order_topology.to_order_closed_topology.{u}]
+_inst_3 -/
+#print Ioi_mem_nhds /- >>> only 1
+order_topology.{u} #2 #1 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 #0))
+[order_topology.to_order_closed_topology.{u}]
+_inst_3 -/
+#print Ioo_mem_nhds /- >>> only 1
+order_topology.{u} #2 #1 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 #0))
+[order_topology.to_order_closed_topology.{u}]
+_inst_3 -/
+#print pi_Iic_mem_nhds' /- >>> only 1
+linear_order.{u} #1
+[linear_order.to_directed_order.{u}]
+_inst_2>>> unused_arg ? 
+order_topology.{u} #2 #1 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 #0))
+[]
+_inst_3 -/
+#print pi_Ici_mem_nhds' /- >>> only 1
+linear_order.{u} #1
+[linear_order.to_directed_order.{u}]
+_inst_2>>> unused_arg ? 
+order_topology.{u} #2 #1 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 #0))
+[]
+_inst_3 -/
+#print pi_Icc_mem_nhds' /- >>> only 1
+linear_order.{u} #1
+[linear_order.to_directed_order.{u}]
+_inst_2>>> unused_arg ? 
+order_topology.{u} #2 #1 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 #0))
+[]
+_inst_3 -/
+#print pi_Iio_mem_nhds' /- >>> only 1
+linear_order.{u} #1
+[linear_order.to_directed_order.{u}]
+_inst_2>>> unused_arg ? 
+order_topology.{u} #2 #1 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 #0))
+[]
+_inst_3 -/
+#print pi_Ioi_mem_nhds' /- >>> only 1
+linear_order.{u} #1
+[linear_order.to_directed_order.{u}]
+_inst_2>>> unused_arg ? 
+order_topology.{u} #2 #1 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 #0))
+[]
+_inst_3 -/
+#print pi_Ioc_mem_nhds' /- >>> only 1
+linear_order.{u} #1
+[linear_order.to_directed_order.{u}]
+_inst_2>>> unused_arg ? 
+order_topology.{u} #2 #1 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 #0))
+[]
+_inst_3 -/
+#print pi_Ico_mem_nhds' /- >>> only 1
+linear_order.{u} #1
+[linear_order.to_directed_order.{u}]
+_inst_2>>> unused_arg ? 
+order_topology.{u} #2 #1 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 #0))
+[]
+_inst_3 -/
+#print pi_Ioo_mem_nhds' /- >>> only 1
+linear_order.{u} #1
+[linear_order.to_directed_order.{u}]
+_inst_2>>> unused_arg ? 
+order_topology.{u} #2 #1 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 #0))
+[]
+_inst_3 -/
+#print continuous_right_of_strict_mono_surjective /- >>> only 1
+order_topology.{u} #3 #1 (directed_order.to_preorder.{u} #3 (linear_order.to_directed_order.{u} #3 #0))
+[order_topology.to_order_closed_topology.{u}]
+_inst_3 -/
+#print neg_preimage_closure /- >>> only 1
+ordered_add_comm_group.{u} #1
+[ordered_add_comm_group.to_add_comm_group.{u}]
+_inst_2 -/
+#print is_compact.bdd_above /- >>> only 1
+order_topology.{u} #2 #1 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 #0))
+[order_topology.to_order_closed_topology.{u}]
+_inst_9 -/
+#print is_connected.Ioo_cInf_cSup_subset /- >>> only 1
+order_topology.{u} #2 #0 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 (conditionally_complete_linear_order.to_linear_order.{u} #2 #1)))
+[order_topology.to_order_closed_topology.{u}]
+_inst_3 -/
+#print is_preconnected.Ioi_cInf_subset /- >>> only 1
+order_topology.{u} #2 #0 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 (conditionally_complete_linear_order.to_linear_order.{u} #2 #1)))
+[order_topology.to_order_closed_topology.{u}]
+_inst_3 -/
+#print intermediate_value_Icc /- >>> only 1
+conditionally_complete_linear_order.{v} #3
+[conditionally_complete_linear_order.to_linear_order.{v}]
+_inst_4>>> only 1
+order_topology.{v} #5 #0 (directed_order.to_preorder.{v} #5 (linear_order.to_directed_order.{v} #5 (conditionally_complete_linear_order.to_linear_order.{v} #5 #1)))
+[order_topology.to_order_closed_topology.{v}]
+_inst_6 -/
+#print intermediate_value_Icc' /- >>> only 1
+conditionally_complete_linear_order.{v} #3
+[conditionally_complete_linear_order.to_linear_order.{v}]
+_inst_4>>> only 1
+order_topology.{v} #5 #0 (directed_order.to_preorder.{v} #5 (linear_order.to_directed_order.{v} #5 (conditionally_complete_linear_order.to_linear_order.{v} #5 #1)))
+[order_topology.to_order_closed_topology.{v}]
+_inst_6 -/
+#print is_compact.is_glb_Inf /- >>> only 1
+order_topology.{u} #2 #0 (directed_order.to_preorder.{u} #2 (linear_order.to_directed_order.{u} #2 (conditionally_complete_linear_order.to_linear_order.{u} #2 #1)))
+[order_topology.to_order_closed_topology.{u}]
+_inst_3 -/
+#print filter.tendsto.is_cobounded_under_ge /- >>> only 1
+filter.ne_bot.{v} #6 #2
+[filter.map_ne_bot.{v u}]
+_inst_4 -/
+#print filter.tendsto.is_cobounded_under_le /- >>> only 1
+filter.ne_bot.{v} #6 #2
+[filter.map_ne_bot.{v u}]
+_inst_4 -/
+#print filter.tendsto.limsup_eq /- >>> only 1
+filter.ne_bot.{v} #6 #2
+[filter.map_ne_bot.{v u}]
+_inst_4 -/
+#print filter.tendsto.liminf_eq /- >>> only 1
+filter.ne_bot.{v} #6 #2
+[filter.map_ne_bot.{v u}]
+_inst_4 -/
+#print supr_eq_of_tendsto /- >>> only 1
+nonempty.{succ u_2} #3
+[filter.at_top_ne_bot.{u_2}]
+_inst_4 -/
+#print infi_eq_of_tendsto /- >>> only 1
+nonempty.{succ v} #4
+[filter.at_top_ne_bot.{v}]
+_inst_4 -/
+
+-- topology\basic.lean
+#print map_cluster_pt_of_comp /- >>> only 1
+filter.ne_bot.{u_2} #5 #2
+[filter.map_ne_bot.{u_2 u}]
+_inst_2 -/
+
+-- topology\metric_space\basic.lean
+#print metric.ball /- >>> only 1
+metric_space.{u} #0
+[metric_space.to_has_dist.{u}]
+_inst_1 -/
+#print metric.closed_ball /- >>> only 1
+metric_space.{u} #0
+[metric_space.to_has_dist.{u}]
+_inst_1 -/
+#print metric.sphere /- >>> only 1
+metric_space.{u} #0
+[metric_space.to_has_dist.{u}]
+_inst_1 -/
+#print metric.bounded /- >>> only 1
+metric_space.{u} #0
+[metric_space.to_has_dist.{u}]
+_inst_1 -/
+#print metric.diam /- >>> only 1
+metric_space.{u} #0
+[metric_space.to_emetric_space.{u}]
+_inst_1 -/
+
+-- topology\metric_space\emetric_space.lean
+#print uniformity_dist_of_mem_uniformity /- >>> only 1
+linear_order.{v} #0
+[linear_order.to_directed_order.{v}]
+_inst_1 -/
+#print emetric.ball /- >>> only 1
+emetric_space.{u} #0
+[emetric_space.to_has_edist.{u}]
+_inst_1 -/
+#print emetric.closed_ball /- >>> only 1
+emetric_space.{u} #0
+[emetric_space.to_has_edist.{u}]
+_inst_1 -/
+#print emetric.diam /- >>> only 1
+emetric_space.{u} #0
+[emetric_space.to_has_edist.{u}]
+_inst_1 -/
+
+-- topology\order.lean
+#print subsingleton.discrete_topology /- >>> only 1
+subsingleton.{succ u} #1
+[subsingleton.unique_topological_space.{u}]
+_inst_1 -/
+
+-- topology\separation.lean
+#print tendsto_nhds_unique /- >>> only 1
+filter.ne_bot.{v} #6 #2
+[filter.map_ne_bot.{v u}]
+_inst_3 -/
+#print filter.tendsto.lim_eq /- >>> only 1
+filter.ne_bot.{v} #4 #0
+[filter.map_ne_bot.{v u}]
+_inst_3 -/
+
+-- topology\subset_properties.lean
+#print quotient.compact_space /- >>> only 1
+compact_space.{u} #2 #1
+[quot.compact_space.{u}]
+_inst_3 -/
+#print connected_component_in /- >>> only 1
+topological_space.{u} #0
+[subtype.topological_space.{u}]
+_inst_1 -/
+
+-- topology\uniform_space\basic.lean
+#print uniform_space.is_open_ball /- >>> only 1
+uniform_space.{u_1} #0
+[uniform_space.to_topological_space.{u_1}]
+_inst_1 -/
+
+-- topology\uniform_space\cauchy.lean
+#print filter.tendsto.cauchy_map /- >>> only 1
+filter.ne_bot.{v} #2 #0
+[filter.map_ne_bot.{v u}]
+_inst_2 -/
+#print cauchy_seq /- >>> only 1
+semilattice_sup.{v} #1
+[semilattice_sup.to_partial_order.{v}]
+_inst_2 -/
+#print filter.tendsto.cauchy_seq /- >>> only 1
+nonempty.{succ v} #2
+[filter.at_top_ne_bot.{v}]
+_inst_3 -/
+#print cauchy_seq_iff_tendsto /- >>> only 1
+nonempty.{succ v} #1
+[filter.at_top_ne_bot.{v}]
+_inst_2 -/
+#print cauchy_map_iff_exists_tendsto /- >>> only 1
+filter.ne_bot.{v} #4 #1
+[filter.map_ne_bot.{v u}]
+_inst_3 -/
+
+-- topology\uniform_space\separation.lean
+#print uniform_space.separation_quotient.inhabited /- >>> only 1
+inhabited.{succ u} #1
+[quotient.inhabited.{succ u}]
+_inst_4 -/
+
+-- topology\uniform_space\uniform_embedding.lean
+#print uniformly_extend_of_ind /- >>> only 1
+separated_space.{u_3} #8 #5
+[separated_regular.{u_3}]
+_inst_4 -/
+#print uniformly_extend_unique /- >>> only 1
+separated_space.{u_3} #7 #4
+[separated_regular.{u_3}]
+_inst_4 -/
+
+

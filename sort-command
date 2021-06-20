@@ -1,0 +1,1 @@
+sed '1d; $d' out17cut |awk '{printf $0(/^nada/?"\n":"?")}' |sort |tr '?' '\n' >out17cutsorted
