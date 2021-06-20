@@ -187,6 +187,7 @@ do t ← env.mfold (dag.mk bound_class)
       generalising_trace $ has_to_format.to_format src ++ " → " ++ has_to_format.to_format tgt,
       return (a.insert_edge src tgt)) <|>
       return a),
+  trace "dag gend",
   return t
   -- set_option trace.generalising true
   -- run_cmd (get_env >>= class_dag)

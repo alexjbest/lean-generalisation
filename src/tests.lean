@@ -473,4 +473,5 @@ end
 
 set_option profiler true
 #lint only generalisation_linter
+#lint only generalisation_linter
 end lint_tests
