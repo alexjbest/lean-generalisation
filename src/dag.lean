@@ -26,6 +26,7 @@ meta def vertices : dag T → list T := native.rb_map.keys
 meta def edges (d : dag T) : list (T × T) := native.rb_map.fold d []
   (λ v es old, old ++ es.map (λ x, (v, x)))
 meta def erase_all (d : dag T) (l : list T) : dag T := l.foldl (λ o v, native.rb_map.fold (native.rb_map.erase o v) (native.rb_map.erase o v) (λ w ll oll, native.rb_map.insert oll w (ll.erase v))) d
+meta def num_edges (d : dag T) : ℕ := d.fold 0 (λ _ l o, o + l.length)
 
 variables [has_to_format T]
 open format prod native.rb_map
@@ -219,12 +220,12 @@ S.foldl (λ (ol : bool) (w : T), ol && dreach.contains w) tt
 -- TODO this is hilariously inefficient
 --#eval ((dag.mk ℕ).insert_edges [(1, 5), (3, 2), (4,5), (2,5)]).is_reachable [] 3 3
 
-meta def meet [inhabited T] [has_to_string T] (d : dag T) (S : list T) : T := let ts := d.topological_sort in
+meta def meet [has_to_string T] (d : dag T) (S : list T) : T := let ts := d.topological_sort in
 -- trace (to_string ts)
 ((slice_up_to (∈ S) ts).reverse.find (λ v, d.all_reachable ts v S)).iget
 
 --#eval ((dag.mk ℕ).insert_edges [(1, 5), (3, 2), (4,5), (2,5),(7,1),(7,3)]).meet [3,1]
-meta def meets_of_components [inhabited T] [has_to_string T] (d : dag T) (start : native.rb_set T) :
+meta def meets_of_components [has_to_string T] (d : dag T) (start : native.rb_set T) :
   native.rb_set T :=
 rb_set.of_list $ (d.minimal_vertices_with_components start).snd.map (λ S, d.meet S)
 --#eval rb_set.to_list $ ((dag.mk ℕ).insert_edges [(1, 5), (3, 2), (4,5), (2,5),(7,1),(7,3),(7,6), (6,8)]).meets_of_components
