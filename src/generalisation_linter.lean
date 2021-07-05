@@ -188,6 +188,8 @@ do t ← env.mfold (dag.mk bound_class)
       return (a.insert_edge src tgt)) <|>
       return a),
   trace "dag gend",
+  trace t.size,
+  trace t.num_edges,
   return t
   -- set_option trace.generalising true
   -- run_cmd (get_env >>= class_dag)
