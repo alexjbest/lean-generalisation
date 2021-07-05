@@ -11,7 +11,7 @@ set_option pp.all false
 #print  is_unit_iff_dvd_one
 
 lemma atest (α : Type*) [comm_monoid α] : (1 : α) * 1 = 1 ∧ ∀ a b : α, a * b = b * a := ⟨mul_one _, mul_comm⟩
-lemma atest' (α : Type*) [comm_semigroup α] [monoid α] : (1 : α) * 1 = 1 ∧ ∀ a b : α, a * b = b * a := ⟨mul_one _, mul_comm⟩
+-- lemma atest' (α : Type*) [comm_semigroup α] [monoid α] : (1 : α) * 1 = 1 ∧ ∀ a b : α, a * b = b * a := ⟨mul_one _, mul_comm⟩
 lemma btest (α : Type*) [ordered_ring α] (a b : α) : 0 ≤ 0 ∧ a * b + b = a * b + b := ⟨eq.le rfl, rfl⟩
 lemma btest' (α : Type*) [ring α] [preorder α] (a b : α) : 0 ≤ 0 ∧ a * b + b = a * b + b := ⟨eq.le rfl, rfl⟩
 variables (α : Type*)
@@ -23,11 +23,11 @@ variables (α : Type*)
 
 
 --- only needs semiring and has neg doesn't matter what negative ints do.
-theorem exists_int_gt (x : α) : ∃ n : ℤ, x < n :=
+theorem exists_int_gt' [linear_ordered_ring α] [archimedean α] (x : α) : ∃ n : ℤ, x < n :=
 let ⟨n, h⟩ := exists_nat_gt x in ⟨n, by rwa ← coe_coe⟩
 
 
-@[simp] lemma mul_le_mul_right_of_neg [ordered_ring α] [linear_order α] {a b c : α} (h : c < 0) : a * c ≤ b * c ↔ b ≤ a :=
+@[simp] lemma mul_le_mul_right_of_neg' [linear_ordered_ring α] {a b c : α} (h : c < 0) : a * c ≤ b * c ↔ b ≤ a :=
 ⟨le_imp_le_of_lt_imp_lt $ λ h', mul_lt_mul_of_neg_right h' h,
   λ h', mul_le_mul_of_nonpos_right h' h.le⟩
 
@@ -39,7 +39,7 @@ section
     exact h,
   end
 
-  lemma good2 (G : Type*) [add_monoid G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
+  lemma good2 (G : Type*) [add_monoid G] (n : ℕ) (g : G) (h : n •  g = 0) : (2*n)•  g = 0 :=
   by rw [mul_nsmul, h, nsmul_zero]
 
   -- monoid?
@@ -50,15 +50,15 @@ section
   -- #check ring.to_distrib
   -- #check ring.to_semiring
   -- add_monoid
-  lemma bad2diamond (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
+  lemma bad2diamond (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •  g = 0) : (2*n)•  g = 0 :=
   by rw [mul_nsmul, h, nsmul_zero]
 
   -- statement generalises but proof does not!! this one is hard then
   -- add_monoid linter only finds semiring
-  lemma bad3pfbad (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
+  lemma bad3pfbad (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •  g = 0) : (2*n)•  g = 0 :=
   by simp only [nsmul_eq_mul] at h; simp only [nat.cast_bit0, nsmul_eq_mul, nat.cast_one, nat.cast_mul]; assoc_rewrite h; exact mul_zero 2
   set_option pp.all true
-  lemma bad3pfbad' (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
+  lemma bad3pfbad' (G : Type*) [ring G] (n : ℕ) (g : G) (h : n • g = 0) : (2*n)• g = 0 :=
   by {rw [nsmul_eq_mul] at ⊢ h,  rw [nat.cast_mul, mul_assoc, h], exact mul_zero _}
 set_option pp.max_steps 30000
 set_option pp.max_depth 30000
@@ -73,11 +73,11 @@ set_option trace.generalising false
 --   return ()
 
   -- add_monoid
-  lemma bad4 (G : Type*) [add_comm_group G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
+  lemma bad4 (G : Type*) [add_comm_group G] (n : ℕ) (g : G) (h : n • g = 0) : (2*n)• g = 0 :=
   by rw [mul_nsmul, h, nsmul_zero]
 
   -- add_monoid
-  lemma bad5 (G : Type*) [add_group G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
+  lemma bad5 (G : Type*) [add_group G] (n : ℕ) (g : G) (h : n • g = 0) : (2*n)• g = 0 :=
   by rw [mul_nsmul, h, nsmul_zero]
 
   -- this works without the second stage checking the body, but it has a diamond if we include the type
@@ -124,13 +124,14 @@ section
 -- has_pow int and nat are different!
 -- solutions: add to dag separately? or treat the instance chain as shorter
 local attribute [semireducible] int.nonneg
-lemma one_lt_fpow' {K} [linear_ordered_field K] {p : K} (hp : 1 < p) :
+lemma one_lt_fpow' {K}  [linear_ordered_field K] {p : K} (hp : 1 < p) :
   ∀ z : ℤ, 0 < z → 1 < p ^ z
-| (int.of_nat n) h := one_lt_pow hp (nat.succ_le_of_lt (int.lt_of_coe_nat_lt_coe_nat h))
-#check @int.has_pow
+| (n : ℕ) h := by { rw [gpow_coe_nat],
+    exact one_lt_pow hp (nat.succ_le_of_lt (int.lt_of_coe_nat_lt_coe_nat h)) }
 #print one_lt_fpow'
-#check alpha_eqv
+#check expr.alpha_eqv
 set_option trace.generalising false
+open tactic
 run_cmd do d ← get_decl `one_lt_fpow',
   cd ← dag_attr.get_cache,
   e ← get_env,
@@ -138,18 +139,18 @@ run_cmd do d ← get_decl `one_lt_fpow',
   d.type.mfold () (λ e n _, do --trace (e.instantiate_nth_var 4 ((expr.var 0))),
                               trace (e.instantiate_vars (list.repeat (expr.var 0) e.get_free_var_range)), return ()),
   return ()
-  end
-#eval trace `(∀ l m t: ℕ, (l < t → l < t)).pi_binders
+#eval tactic.trace `(∀ l m t: ℕ, (l < t → l < t)).pi_binders
 #check (`(∀ l m t: ℕ, (l < t → 0 < t)) : expr).match_pi
 set_option pp.all false
 run_cmd (do
   let body :=  (`(∀ m t: ℕ, (t + m > 0)):expr).pi_binders.2,
-  trace body,
-  trace $ body.replace (λ e n, match e with
-  | var n := some (var 0)
+  tactic.trace body,
+  tactic.trace $ body.replace (λ e n, match e with
+  | expr.var n := some (expr.var 0)
   | e := none
   end),
   return () )
+  end
 
 open equiv.set equiv sum nat function set subtype
 
@@ -168,7 +169,7 @@ lemma supr_apply' {α : Type*} {β : α → Type*} {ι : Sort*} [Π i, has_Sup (
 
 
 
-variables {α β γ :Type} {ι : Sort} {s : set α}
+variables {β γ :Type} {ι : Sort} {s : set α}
 --none
 theorem exists_nat_ge' [linear_ordered_semiring α] [archimedean α] (x : α) :
   ∃ n : ℕ, x ≤ n :=
@@ -198,18 +199,19 @@ lemma unbounded_of_tendsto_at_top' [nonempty α] [semilattice_inf α] [preorder 
 
 -- it looks like we only need has_pow here as has_pow is all that appears in the proof
 -- however to_monoid and to_inv also appear in the statement, so should not show up
-theorem gpow_neg_succ_of_nat' {G : Type } [group G] (a : G) (n : ℕ) : a ^ -[1+n] = (a ^ n.succ)⁻¹ := rfl
+-- theorem gpow_neg_succ_of_nat' {G : Type } [group G] (a : G) (n : ℕ) : a ^ -[1+n] = (a ^ n.succ)⁻¹ := rfl
 -- #printgpow_neg_succ_of_nat
 
 -- #print sum_diff_subset_apply_inr'
 
 -- lemma char_p_iff_char_p' {K L : Type*} [division_ring K] [semiring L] [nontrivial L] (f : K →+* L) (p : ℕ) :
-lemma char_p_iff_char_p' {K L : Type*} [field K] [field L] (f : K →+* L) (p : ℕ) :
+
+lemma ring_hom.char_p_iff_char_p' {K L : Type*} [field K] [field L] (f : K →+* L) (p : ℕ) :
   char_p K p ↔ char_p L p :=
 begin
   split;
   { introI _c, constructor, intro n,
-    rw [← @char_p.cast_eq_zero_iff _ _ p _c n, ← f.injective.eq_iff, f.map_nat_cast, f.map_zero] }
+    rw [← @char_p.cast_eq_zero_iff _ _ _ p _c n, ← f.injective.eq_iff, f.map_nat_cast, f.map_zero] }
 end
 open nat subtype multiset
 
@@ -220,19 +222,11 @@ s.piecewise_congr (λ i hi, finset.piecewise_eq_of_mem _ _ _ (h hi)) (λ _ _, rf
 -- #check       piecewise_piecewise_of_subset_left'
 
 lemma sub_le_of_abs_sub_le_left' {c b a : α} [linear_ordered_ring α] (h : abs (a - b) ≤ c) : b - c ≤ a :=
-if hz : 0 ≤ a - b then
-  (calc
-      a ≥ b     : le_of_sub_nonneg hz
-    ... ≥ b - c : sub_le_self _ $ (abs_nonneg _).trans h)
-else
-  have habs : b - a ≤ c, by rwa [abs_of_neg (lt_of_not_ge hz), neg_sub] at h,
-  have habs' : b ≤ c + a, from le_add_of_sub_right_le habs,
-  sub_left_le_of_le_add habs'
+_root_.sub_le.1 $ (abs_sub_le_iff.1 h).2
 
 lemma inf_ind' [semilattice_inf α] [is_total α (≤)] (a b : α) {p : α → Prop} (ha : p a) (hb : p b) : p (a ⊓ b) :=
 @sup_ind (order_dual α) _ _ _ _ _ ha hb
 -- #print inf_ind --TODO why is inst_2 removed
-#eval modeq.chinese_remainder (by dec_trivial : gcd 1 0 = 1) 1 1
 
 open_locale filter
 lemma map_at_bot_eq [nonempty α] [semilattice_inf α] {f : α → β} :
@@ -255,11 +249,12 @@ lemma mem_orbit_self
 -- run_cmd do e ← get_env, cd ← class_dag e, l← e.get `mem_orbit_self, aa ← get_instance_chains `mul_action 0 l.value.binding_body.binding_body.binding_body.binding_body , trace $ cd.minimal_vertices aa --.lambda_body.app_fn.app_fn.app_arg.lambda_body.app_fn.app_arg.app_fn.lambda_body--find_gens' cd e l.type l.value 0 ""
   #print euclidean_domain.gcd
 
-  #print algebra.of_semimodule'  --TODO
+  #print algebra.of_module  --TODO
 #print distrib.to_has_mul
 #print semiring.to_distrib
 #print mul_action.to_has_scalar
-run_cmd do d ← get_decl `algebra.of_semimodule',
+open tactic
+run_cmd do d ← get_decl `algebra.of_module,
   cd ← dag_attr.get_cache,
   e ← get_env,
   trace $ find_gens' d cd e d.type d.value 0 "",
@@ -279,7 +274,7 @@ trace $ cd.minimal_vertices aa --.lambda_body.app_fn.app_fn.app_arg.lambda_body.
   end
   section
 
- variables {α β : Type} {s s₁ s₂ : finset α} {a : α} {b : β}  {f g : α → β}
+ variables {β : Type} {s s₁ s₂ : finset α} {a : α} {b : β}  {f g : α → β}
 
 
 variables [semiring β]

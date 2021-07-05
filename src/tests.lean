@@ -169,7 +169,7 @@ end
 --     exact h,
 --   end
 
---   lemma good2 (G : Type*) [add_monoid G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
+--   lemma good2 (G : Type*) [add_monoid G] (n : ℕ) (g : G) (h : n •  g = 0) : (2*n)•  g = 0 :=
 --   by rw [mul_nsmul, h, nsmul_zero]
 
 --   -- monoid?
@@ -177,23 +177,23 @@ end
 --   by rw [pow_mul', h, one_pow]
 
 --   -- add_monoid
---   lemma bad2diamond (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
+--   lemma bad2diamond (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •  g = 0) : (2*n)•  g = 0 :=
 --   by rw [mul_nsmul, h, nsmul_zero]
 
 --   -- statement generalises but proof does not!! this one is hard then, beyond current scope to complete
 --   -- add_monoid linter only finds semiring
---   lemma bad3pfbad (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
+--   lemma bad3pfbad (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •  g = 0) : (2*n)•  g = 0 :=
 --   by simp only [nsmul_eq_mul] at h; simp only [nat.cast_bit0, nsmul_eq_mul, nat.cast_one, nat.cast_mul]; assoc_rewrite h; exact mul_zero 2
 
---   lemma bad3 (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
+--   lemma bad3 (G : Type*) [ring G] (n : ℕ) (g : G) (h : n •  g = 0) : (2*n)•  g = 0 :=
 --   by {rw [mul_nsmul, h], exact nsmul_zero _}
 
 --   -- add_monoid
---   lemma bad4 (G : Type*) [add_comm_group G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
+--   lemma bad4 (G : Type*) [add_comm_group G] (n : ℕ) (g : G) (h : n •  g = 0) : (2*n)•  g = 0 :=
 --   by rw [mul_nsmul, h, nsmul_zero]
 
 --   -- add_monoid
---   lemma bad5 (G : Type*) [add_group G] (n : ℕ) (g : G) (h : n •ℕ g = 0) : (2*n)•ℕ g = 0 :=
+--   lemma bad5 (G : Type*) [add_group G] (n : ℕ) (g : G) (h : n •  g = 0) : (2*n)•  g = 0 :=
 --   by rw [mul_nsmul, h, nsmul_zero]
 
 --   -- add_comm_semigroup
@@ -467,8 +467,8 @@ end
 
 -- lemma aa (X : Type) [bar X] : (foo.f : X → X) = foo.f := rfl
 
--- lemma mn_tors_of_n_tors {X : Type*} [semiring X] (m n : ℕ) (x : X) (h : n •ℕ x = 0) :
---   (m * n) •ℕ x = 0 := by rw [mul_nsmul, h, nsmul_zero]
+-- lemma mn_tors_of_n_tors {X : Type*} [semiring X] (m n : ℕ) (x : X) (h : n •  x = 0) :
+--   (m * n) •  x = 0 := by rw [mul_nsmul, h, nsmul_zero]
 -- end
 
 set_option profiler true
