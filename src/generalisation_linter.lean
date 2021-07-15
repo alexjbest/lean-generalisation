@@ -187,9 +187,9 @@ do t ← env.mfold (dag.mk bound_class)
       generalising_trace $ has_to_format.to_format src ++ " → " ++ has_to_format.to_format tgt,
       return (a.insert_edge src tgt)) <|>
       return a),
-  trace "dag gend",
-  trace t.size,
-  trace t.num_edges,
+  generalising_trace "dag gend",
+  generalising_trace t.size,
+  generalising_trace t.num_edges,
   return t
   -- set_option trace.generalising true
   -- run_cmd (get_env >>= class_dag)
@@ -229,7 +229,7 @@ do c ← get_env,
   class_dag c >>= (λ d, trace $ d.minimal_vertices (native.rb_set.of_list l))
 meta def print_div' (l : list bound_class) : tactic unit :=
 do c ← get_env,
-  class_dag c >>= (λ d, trace $ d.meets_of_components (native.rb_set.of_list l))
+  class_dag c >>= (λ d, trace $ d.meets_of_components d.topological_sort d.reachable_table (native.rb_set.of_list l))
 -- run_cmd print_div' [ ⟨`linear_order,[var 0]⟩, ⟨`linear_ordered_add_comm_group,[var 0]⟩,
   -- ⟨`ordered_ring ,[var 0]⟩ ]
 
@@ -424,7 +424,7 @@ meta def get_instance_chains (cla : bound_class) : ℕ → expr → tactic (nati
 -- find the typeclass generalisations possible in a given decl
 -- input should be the type and then the body
 -- TODO env not needed?
-meta def find_gens' (de : declaration) (cd : dag bound_class) (env : environment) : expr → expr → ℕ → string → tactic (option string)
+meta def find_gens' (de : declaration) (cd : dag bound_class) (cts : list bound_class) (cdr : rb_map bound_class (rb_set bound_class)) (env : environment) : expr → expr → ℕ → string → tactic (option string)
 -- we match the binders on the type and body simultaneously
 | (pi tna binder_info.inst_implicit tty tbody) (lam na binder_info.inst_implicit ty body) n s := do
   -- We are now trying to generalise `tna` which is of type `tty`
@@ -437,9 +437,12 @@ meta def find_gens' (de : declaration) (cd : dag bound_class) (env : environment
     -- generalising_trace n,
     ou  ← get_instance_chains tty.to_bound_class 0 body,
     tou ← get_instance_chains tty.to_bound_class 0 tbody,
+    generalising_trace ">>>>> body inst chains",
     generalising_trace ou,
+    generalising_trace ">>>>> type inst chains",
     generalising_trace tou,
-    let ans := (λ u, (cd.meets_of_components u).union $ u.filter (λ v, ¬ cd.contains v)) (ou.union tou),
+    let ans := (λ u, (cd.meets_of_components cts cdr u).union $ u.filter (λ v, ¬ cd.contains v)) (ou.union tou),
+    generalising_trace ">>>>> component meets",
     generalising_trace ans,
     -- do unused separety
     --  guard ((ans.size = 0) && (¬us')) >>
@@ -448,9 +451,7 @@ meta def find_gens' (de : declaration) (cd : dag bound_class) (env : environment
     --   (find_gens' tbody body (n + 1) (s ++ "unused_arg ? " ++ "\n" ++ ty.to_string ++ "\n" ++ ts'.to_string ++ "\n" ++ na.to_string)) <|>
     guard (¬ ans.contains tty.to_bound_class), -- this probably shouldn't happen?
     --  && (¬us')
-    generalising_trace ans,
     guard (tty.get_app_fn.const_name.get_prefix ∉ banned_aliases), -- TODO check if this actually does anything
-    generalising_trace ans,
     --  has_attribute `instance ts'.head.const_name >>
     find_gens' tbody body (n + 1) (s ++ na.to_string ++ ": " ++
       ty.get_app_fn.const_name.to_string ++ " ↝" ++
@@ -485,8 +486,8 @@ meta def find_gens' (de : declaration) (cd : dag bound_class) (env : environment
 | (pi _ _ _ tbody) (lam _ _ _ body) n s := find_gens' tbody body (n + 1) s -- a non instance binder
 | _ _ _ s := return (if s.length = 0 then none else s) -- done with binders so finish
 
--- A mostly useless wrapping class that gets a bunch of debug info and calls find_gens'
-meta def print_gens (cd : dag bound_class) (decl : declaration) : tactic (option string) :=
+-- A mostly useless wrapping function that gets a bunch of debug info and calls find_gens'
+meta def print_gens (cd : dag bound_class) (ts : list bound_class) (cdr : rb_map bound_class (rb_set bound_class)) (decl : declaration) : tactic (option string) :=
   guard decl.is_trusted >> (do -- ignore meta stuff
   env ← get_env,
   let name := decl.to_name,
@@ -513,7 +514,7 @@ meta def print_gens (cd : dag bound_class) (decl : declaration) : tactic (option
   generalising_trace ("  classes: " ++ to_string classes_in_val),
   generalising_trace ("  Value uses others: " ++ to_string value_others),
   generalising_trace ("  Fields: " ++ (to_string $ (env.structure_fields_full name).get_or_else [])),
-  find_gens' decl cd env decl.type decl.value 0 ""
+  find_gens' decl cd ts cdr env decl.type decl.value 0 ""
   -- a ← classes_in_type.mmap (λ c,
   -- do
   --   trace "generalising",
@@ -541,18 +542,18 @@ meta def print_gens (cd : dag bound_class) (decl : declaration) : tactic (option
   ) <|> return none
 
 @[user_attribute]
-meta def dag_attr : user_attribute (dag bound_class) unit := {
+meta def dag_attr : user_attribute (dag bound_class × list bound_class × _) unit := {
   name := "_dag",
   descr := "(internal) attribute just to store the class dag",
-  cache_cfg := ⟨λ _, (do e ← get_env, class_dag e), []⟩
+  cache_cfg := ⟨λ _, (do e ← get_env, d ← class_dag e, return (d, d.topological_sort, d.reachable_table)), []⟩
 }
 
 meta def print_gens_wrap (decl : declaration) : tactic (option string) :=
 do
   e ← get_env,
-  cd ← dag_attr.get_cache,
+  (cd, ts, cdr) ← dag_attr.get_cache,
   --  cd ← class_dag e,
-  print_gens cd decl
+  print_gens cd ts cdr decl
 
 meta def gene : tactic unit := -- old function for running the linter before it was hooked up as a linter
 do curr_env ← get_env,
@@ -562,7 +563,7 @@ do curr_env ← get_env,
       (not (to_name x).is_internal)
       && x.is_trusted), -- don't worry about meta stuff?
   cd ← class_dag curr_env,
-  local_decls.mmap' (λ a, (do l ← print_gens cd a, ll ← l, trace a.to_name, trace ll) <|> skip)
+  local_decls.mmap' (λ a, (do l ← print_gens cd cd.topological_sort cd.reachable_table a, ll ← l, trace a.to_name, trace ll) <|> skip)
 --  #print star_injective
 
 set_option pp.all true

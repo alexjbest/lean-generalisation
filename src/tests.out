@@ -1,6 +1,4 @@
-C:\Users\alexj\lean-generalisation\src\generalisation_linter.lean:3:0: warning: imported file 'C:\Users\alexj\lean-generalisation\src\dag.lean' uses sorry
-C:\Users\alexj\lean-generalisation\src\tests.lean:9:0: warning: imported file 'C:\Users\alexj\lean-generalisation\src\dag.lean' uses sorry
-/- Checking 53 declarations (plus 41 automatically generated ones) in the current file -/
+/- Checking 54 declarations (plus 44 automatically generated ones) in the current file -/
 
 /- The `generalisation_linter` linter reports: -/
 /- typeclass generalisations may be possible: -/
@@ -36,9 +34,7 @@ _inst_4: fintype ↝
  -/
 #print lint_tests.bad11 /- _inst_1: comm_group ↝ group
  -/
-#print lint_tests.one_lt_fpow /- _inst_1: linear_ordered_field ↝ has_pow linear_ordered_semiring
- -/
-#print lint_tests.gpow_neg_succ_of_nat /- _inst_1: group ↝ has_inv has_pow has_pow
+#print lint_tests.eval /- _inst_1: monoid ↝ mul_one_class
  -/
 #print lint_tests.char_p_iff_char_p /- _inst_1: field ↝ division_ring
 _inst_2: field ↝ domain

@@ -34,6 +34,8 @@ _inst_4: fintype ↝
  -/
 #print lint_tests.bad11 /- _inst_1: comm_group ↝ group
  -/
+#print lint_tests.eval /- _inst_1: monoid ↝ mul_one_class
+ -/
 #print lint_tests.char_p_iff_char_p /- _inst_1: field ↝ division_ring
 _inst_2: field ↝ nontrivial semiring
  -/
@@ -49,3 +51,4 @@ _inst_2: field ↝ nontrivial semiring
  -/
 #print lint_tests.mn_tors_of_n_tors /- _inst_1: semiring ↝ add_monoid
  -/
+

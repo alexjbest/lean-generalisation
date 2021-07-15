@@ -42,6 +42,7 @@ meta instance : has_repr (dag T) := ⟨λ s, (has_to_format.to_format s).to_stri
 open native
 /-- Depth first search used for topological sorting. -/
 meta def dfs (d : dag T) : T → (list T × rb_set T) → (list T × rb_set T)
+-- vertex and stack, visited pair
 | v stavis :=
   (λ a : list T × rb_set T, (v :: a.fst, a.snd))
     ((d.find v).foldl
@@ -52,10 +53,25 @@ meta def dfs (d : dag T) : T → (list T × rb_set T) → (list T × rb_set T)
           dfs w stavis')
       (stavis.fst, stavis.snd.insert v))
 -- #eval (((((dag.mk ℕ).insert_vertex 3).insert_edge 2 1).insert_edge 1 3).dfs 1 [] (rb_map.mk _ _)).fst
-/-- Take the sub-graph of things reachable from -/
 -- TODO is this inefficient?
+/-- Take the sub-graph of things reachable from `v` -/
 meta def reachable (d : dag T) (v : T) : dag T :=
 (d.dfs v ([], mk_rb_map)).fst.foldl (λ ol w, rb_map.insert ol w $ d.find w) (dag.mk T)
+/-- Depth first search used for reachability lookup table. -/
+meta def dfs_reach_table (d : dag T) : T → rb_map T (rb_set T) → rb_map T (rb_set T)
+| v rea :=
+  let a := ((d.find v).foldl
+      (λ (rea' : rb_map T (rb_set T)) w, let n :=
+        if rea'.contains w then
+          rea'
+        else
+          dfs_reach_table w rea' in
+        n.insert v $ (((n.find v).get_or_else mk_rb_set).union $ (n.find w).get_or_else mk_rb_set))
+      rea) in a.insert v $ ((a.find v).get_or_else mk_rb_set).insert v
+
+meta def reachable_table (d : dag T) : rb_map T (rb_set T) :=
+d.fold mk_rb_map (λ v _ n, d.dfs_reach_table v n)
+-- #eval (((((dag.mk ℕ).insert_edges [(1, 5), (3, 2), (4,5), (2,5), (5,6),(5,8),(8,7),(8,6), (6,7)]).reachable_table).find 5).get_or_else mk_rb_set).to_list
 -- | [] c := c
 -- | (n :: S) c := (d.find n).foldl
 --   (λ old ins,
@@ -211,7 +227,16 @@ meta def is_reachable [has_to_string T] (d : dag T) (ts : list T) (v w : T) : bo
 -- _root_.trace (_root_.to_string v) $
 -- _root_.trace (_root_.to_string w) $
 (d.reachable v).contains w
-meta def all_reachable [has_to_string T] (d : dag T) (ts : list T) (v : T) (S : list T) : bool :=
+/-- are all vertices in `S` inside dag `d` with reachable table `dr` reachable from `v` -/
+meta def all_reachable [has_to_string T] (d : dag T) (dr : rb_map T (rb_set T)) (v : T) (S : list T) : bool :=
+-- _root_.trace (_root_.to_string v) $
+-- _root_.trace (_root_.to_string S) $
+-- _root_.trace (has_to_format.to_format dreach).to_string $
+S.foldl (λ (ol : bool) (w : T), ol && ((dr.find v).get_or_else mk_rb_set).contains w) tt
+-- TODO this is hilariously inefficient
+--#eval ((dag.mk ℕ).insert_edges [(1, 5), (3, 2), (4,5), (2,5)]).is_reachable [] 3 3
+/-- are all vertices in `S` inside dag `d` with topological sort `ts` reachable from `v` -/
+meta def all_reachable' [has_to_string T] (d : dag T) (ts : list T) (v : T) (S : list T) : bool :=
 -- _root_.trace (_root_.to_string v) $
 -- _root_.trace (_root_.to_string S) $
 let dreach := d.reachable v in
@@ -220,14 +245,21 @@ S.foldl (λ (ol : bool) (w : T), ol && dreach.contains w) tt
 -- TODO this is hilariously inefficient
 --#eval ((dag.mk ℕ).insert_edges [(1, 5), (3, 2), (4,5), (2,5)]).is_reachable [] 3 3
 
-meta def meet [has_to_string T] (d : dag T) (S : list T) : T := let ts := d.topological_sort in
+meta def meet [has_to_string T] (d : dag T) (ts : list T) (dr : rb_map T (rb_set T)) (S : list T) : T :=
 -- trace (to_string ts)
-((slice_up_to (∈ S) ts).reverse.find (λ v, d.all_reachable ts v S)).iget
+((slice_up_to (∈ S) ts).reverse.find (λ v, d.all_reachable dr v S)).iget
+
+meta def meet' [has_to_string T] (d : dag T) (S : list T) : T := let ts := d.topological_sort in
+-- trace (to_string ts)
+((slice_up_to (∈ S) ts).reverse.find (λ v, d.all_reachable' ts v S)).iget
 
 --#eval ((dag.mk ℕ).insert_edges [(1, 5), (3, 2), (4,5), (2,5),(7,1),(7,3)]).meet [3,1]
-meta def meets_of_components [has_to_string T] (d : dag T) (start : native.rb_set T) :
+meta def meets_of_components [has_to_string T] (d : dag T) (ts : list T) (dr : rb_map T (rb_set T)) (start : native.rb_set T) :
   native.rb_set T :=
-rb_set.of_list $ (d.minimal_vertices_with_components start).snd.map (λ S, d.meet S)
+rb_set.of_list $ (d.minimal_vertices_with_components start).snd.map (λ S, d.meet ts dr S)
+meta def meets_of_components' [has_to_string T] (d : dag T) (start : native.rb_set T) :
+  native.rb_set T :=
+rb_set.of_list $ (d.minimal_vertices_with_components start).snd.map (λ S, d.meet' S)
 --#eval rb_set.to_list $ ((dag.mk ℕ).insert_edges [(1, 5), (3, 2), (4,5), (2,5),(7,1),(7,3),(7,6), (6,8)]).meets_of_components
   -- (rb_set.of_list [4,7])
 --#eval ((dag.mk ℕ).insert_edges [(1, 5), (3, 2), (4,5), (2,5),(7,1),(7,3), (6,8)]).meet [8]
