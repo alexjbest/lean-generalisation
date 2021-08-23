@@ -6,7 +6,7 @@ import algebra.category.Group
 import algebra.group_power
 import algebra.algebra.basic
 import analysis.convex.integral
-import measure_theory.set_integral
+import measure_theory.integral.set_integral
 
 /-! Tests for generalisation linter, should produce test.expected.out -/
 namespace lint_tests
@@ -92,7 +92,7 @@ begin
       (simple_func.integrable_approx_on hfm hfi h₀ hc _)],
     exact tendsto_integral_of_L1 _ hfi
       (eventually_of_forall $ simple_func.integrable_approx_on hfm hfi h₀ hc)
-      (simple_func.tendsto_approx_on_L1_edist hfm h₀ hfs (hfi.sub hc).2) },
+      (simple_func.tendsto_approx_on_L1_nnnorm hfm h₀ hfs (hfi.sub hc).2) },
   refine hsc.mem_of_tendsto (tendsto_const_nhds.smul this) (eventually_of_forall $ λ n, _),
   have : ∑ y in (F n).range, (μ ((F n) ⁻¹' {y})).to_real = (μ univ).to_real,
     by rw [← (F n).sum_range_measure_preimage_singleton, @ennreal.to_real_sum _ _
@@ -247,8 +247,8 @@ section
 
   open equiv.set equiv sum nat function set subtype
 
-  @[simp] lemma sum_diff_subset_apply_inr {α : Sort} {β : Sort} {γ : Sort}
-    {α} {s t : set α} (h : s ⊆ t) [decidable_pred s] (x : t \ s) :
+  @[simp] lemma sum_diff_subset_apply_inr
+    {α} {s t : set α} (h : s ⊆ t) [decidable_pred (∈ s)] (x : t \ s) :
     equiv.set.sum_diff_subset h (sum.inr x) = inclusion (diff_subset t s) x := rfl
 
   lemma supr_apply {α : Type*} {β : α → Type*} {ι : Sort*} [Π i, has_Sup (β i)] {f : ι → Πa, β a}
@@ -450,8 +450,12 @@ section
 
   -- odd one the linter wants to assume add_comm_monoid has_mul and is_add_monoid_hom mul
   -- this is weaker than semiring indeed as no mul identity needed
-  lemma sum_mul : (∑ x in s, f x) * b = ∑ x in s, f x * b :=
-  (s.sum_hom (λ x, x * b)).symm
+  -- Update: mathlib now has non-unital non-assoc semi so does that
+lemma sum_mul : (∑ x in s, f x) * b = ∑ x in s, f x * b :=
+add_monoid_hom.map_sum (add_monoid_hom.mul_right b) _ s
+--   lemma sum_mul : (∑ x in s, f x) * b = ∑ x in s, f x * b :=
+-- add_monoid_hom.map_sum (add_monoid_hom.mul_right b) _ s
+  -- (s.sum_hom (λ x, x * b)).symm
   open tactic
   set_option trace.generalising true
   set_option pp.all true
