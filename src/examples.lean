@@ -154,8 +154,8 @@ run_cmd (do
 
 open equiv.set equiv sum nat function set subtype
 
-@[simp] lemma sum_diff_subset_apply_inr' {α : Sort} {β : Sort} {γ : Sort}
-  {α} {s t : set α} (h : s ⊆ t) [decidable_pred s] (x : t \ s) :
+@[simp] lemma sum_diff_subset_apply_inr'
+  {α} {s t : set α} (h : s ⊆ t) [decidable_pred (∈ s)] (x : t \ s) :
   equiv.set.sum_diff_subset h (sum.inr x) = inclusion (diff_subset t s) x := rfl
   set_option pp.all false
   -- #check equiv.set.sum_diff_subset
@@ -251,7 +251,6 @@ lemma mem_orbit_self
 
   #print algebra.of_module  --TODO
 #print distrib.to_has_mul
-#print semiring.to_distrib
 #print mul_action.to_has_scalar
 open tactic
 run_cmd do d ← get_decl `algebra.of_module,
@@ -272,16 +271,4 @@ trace $ cd.minimal_vertices aa --.lambda_body.app_fn.app_fn.app_arg.lambda_body.
   #print finset.prod_sum_elim /- _inst_2: decidable_eq ↝
  -/
   end
-  section
-
- variables {β : Type} {s s₁ s₂ : finset α} {a : α} {b : β}  {f g : α → β}
-
-
-variables [semiring β]
-open_locale big_operators
-open function
-
-lemma sum_mul [add_comm_monoid β] [has_mul β]: (∑ x in s, f x) * b = ∑ x in s, f x * b :=
-(s.sum_hom (λ x, x * b)).symm
-end
 end examples
