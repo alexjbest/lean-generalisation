@@ -1,5 +1,4 @@
-import tactic
-import data.finset.basic
+import meta.rb_map
 variables (T : Type) [has_lt T] [decidable_rel ((<) : T → T → Prop)]
 meta def dag : Type := native.rb_lmap T T
 -- TODO remove has_to_strings that were only needed for tracing
