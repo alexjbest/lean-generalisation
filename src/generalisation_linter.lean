@@ -1,6 +1,6 @@
 import dag
 import utils
-import data.list.basic
+import data.list.lex
 
 /-! # Generalisation linter
 

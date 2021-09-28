@@ -7,6 +7,7 @@ import algebra.group_power
 import algebra.algebra.basic
 import analysis.convex.integral
 import measure_theory.integral.set_integral
+import measure_theory.measure.finite_measure_weak_convergence
 
 /-! Tests for generalisation linter, should produce test.expected.out -/
 namespace lint_tests
@@ -77,8 +78,9 @@ variables {α E : Type*} [measurable_space α] {μ : measure α}
   [normed_group E] [normed_space ℝ E] [complete_space E]
   [topological_space.second_countable_topology E] [measurable_space E] [borel_space E]
 
+
 private lemma convex.smul_integral_mem_of_measurable
-  [finite_measure μ] {s : set E} (hs : convex s) (hsc : is_closed s)
+  [is_finite_measure μ] {s : set E} (hs : convex ℝ s) (hsc : is_closed s)
   (hμ : μ ≠ 0) {f : α → E} (hfs : ∀ᵐ x ∂μ, f x ∈ s) (hfi : integrable f μ) (hfm : measurable f) :
   (μ univ).to_real⁻¹ • ∫ x, f x ∂μ ∈ s :=
 begin
@@ -96,7 +98,7 @@ begin
   refine hsc.mem_of_tendsto (tendsto_const_nhds.smul this) (eventually_of_forall $ λ n, _),
   have : ∑ y in (F n).range, (μ ((F n) ⁻¹' {y})).to_real = (μ univ).to_real,
     by rw [← (F n).sum_range_measure_preimage_singleton, @ennreal.to_real_sum _ _
-      (λ y, μ ((F n) ⁻¹' {y})) (λ _ _, (measure_lt_top _ _))],
+      (λ y, μ ((F n) ⁻¹' {y})) (λ _ _, (measure_ne_top _ _))],
   rw [← this, simple_func.integral],
   refine hs.center_mass_mem (λ _ _, ennreal.to_real_nonneg) _ _,
   { rw [this, ennreal.to_real_pos_iff, pos_iff_ne_zero, ne.def, measure.measure_univ_eq_zero],
@@ -106,12 +108,12 @@ begin
     exact simple_func.approx_on_mem hfm h₀ n x }
 end
 
-  /-- If `μ` is a non-zero finite measure on `α`, `s` is a convex closed set in `E`, and `f` is an
-  integrable function sending `μ`-a.e. points to `s`, then the average value of `f` belongs to `s`:
-  `(μ univ).to_real⁻¹ • ∫ x, f x ∂μ ∈ s`. See also `convex.center_mass_mem` for a finite sum version
-  of this lemma. -/
+/-- If `μ` is a non-zero finite measure on `α`, `s` is a convex closed set in `E`, and `f` is an
+integrable function sending `μ`-a.e. points to `s`, then the average value of `f` belongs to `s`:
+`(μ univ).to_real⁻¹ • ∫ x, f x ∂μ ∈ s`. See also `convex.center_mass_mem` for a finite sum version
+of this lemma. -/
 lemma convex.smul_integral_mem
-  [finite_measure μ] {s : set E} (hs : convex s) (hsc : is_closed s)
+  [is_finite_measure μ] {s : set E} (hs : convex ℝ s) (hsc : is_closed s)
   (hμ : μ ≠ 0) {f : α → E} (hfs : ∀ᵐ x ∂μ, f x ∈ s) (hfi : integrable f μ) :
   (μ univ).to_real⁻¹ • ∫ x, f x ∂μ ∈ s :=
 begin
