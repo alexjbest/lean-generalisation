@@ -238,11 +238,11 @@ section
 end
 
 section
-  local attribute [semireducible] int.nonneg
-lemma one_lt_fpow {K}  [linear_ordered_field K] {p : K} (hp : 1 < p) :
+
+lemma one_lt_fpow {K} [linear_ordered_field K] {p : K} (hp : 1 < p) :
   ∀ z : ℤ, 0 < z → 1 < p ^ z
-| (n : ℕ) h := by { rw [gpow_coe_nat],
-    exact one_lt_pow hp (nat.succ_le_of_lt (int.lt_of_coe_nat_lt_coe_nat h)) }
+| (n : ℕ) h := (gpow_coe_nat p n).symm.subst (one_lt_pow hp $ int.coe_nat_ne_zero.mp h.ne')
+| -[1+ n] h := ((int.neg_succ_not_pos _).mp h).elim
 end
 
 section
