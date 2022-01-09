@@ -8,6 +8,7 @@ import algebra.algebra.basic
 import analysis.convex.integral
 import measure_theory.integral.set_integral
 import measure_theory.measure.finite_measure_weak_convergence
+import tactic.group
 
 /-! Tests for generalisation linter, should produce test.expected.out -/
 namespace lint_tests
@@ -42,7 +43,7 @@ end
 section
 
   universe u
-  variables (α : Type u) [integral_domain α]
+  variables (α : Type u) [comm_ring α] [is_domain α]
 
   open char_p nat
   theorem char_ne_one (p : ℕ) [hc : char_p α p] : p ≠ 1 :=
@@ -51,7 +52,7 @@ section
   absurd this one_ne_zero
 
   theorem char_is_prime_of_two_le (p : ℕ) [hc : char_p α p] (hp : 2 ≤ p) : nat.prime p :=
-  suffices ∀d ∣ p, d = 1 ∨ d = p, from ⟨hp, this⟩,
+  suffices ∀d ∣ p, d = 1 ∨ d = p, from nat.prime_def_lt''.mpr ⟨hp, this⟩,
   assume (d : ℕ) (hdvd : ∃ e, p = d * e),
   let ⟨e, hmul⟩ := hdvd in
   have (p : α) = 0, from (cast_eq_zero_iff α p p).mpr (dvd_refl p),
@@ -101,8 +102,8 @@ begin
       (λ y, μ ((F n) ⁻¹' {y})) (λ _ _, (measure_ne_top _ _))],
   rw [← this, simple_func.integral],
   refine hs.center_mass_mem (λ _ _, ennreal.to_real_nonneg) _ _,
-  { rw [this, ennreal.to_real_pos_iff, pos_iff_ne_zero, ne.def, measure.measure_univ_eq_zero],
-    exact ⟨hμ, measure_ne_top _ _⟩ },
+  { rw this,
+    exact ennreal.to_real_pos (mt measure.measure_univ_eq_zero.mp hμ) (measure_ne_top _ _) },
   { simp only [simple_func.mem_range],
     rintros _ ⟨x, rfl⟩,
     exact simple_func.approx_on_mem hfm h₀ n x }
@@ -168,7 +169,7 @@ end
 section
   lemma good (G : Type*) [group G] (n : ℤ) (g : G) (h : g^(-n) = 1) : g^n = 1 :=
   begin
-    rw [gpow_neg, inv_eq_one] at h,
+    rw [zpow_neg, inv_eq_one] at h,
     exact h,
   end
 
@@ -221,7 +222,7 @@ section
   -- group
   lemma bad11 (G : Type*) [comm_group G] (n : ℤ) (g : G) (h : g^(-n) = 1) : g^n = 1 :=
   begin
-    rw [gpow_neg, inv_eq_one] at h,
+    rw [zpow_neg, inv_eq_one] at h,
     exact h,
   end
 
@@ -241,7 +242,7 @@ section
 
 lemma one_lt_fpow {K} [linear_ordered_field K] {p : K} (hp : 1 < p) :
   ∀ z : ℤ, 0 < z → 1 < p ^ z
-| (n : ℕ) h := (gpow_coe_nat p n).symm.subst (one_lt_pow hp $ int.coe_nat_ne_zero.mp h.ne')
+| (n : ℕ) h := (zpow_coe_nat p n).symm.subst (one_lt_pow hp $ int.coe_nat_ne_zero.mp h.ne')
 | -[1+ n] h := ((int.neg_succ_not_pos _).mp h).elim
 end
 
