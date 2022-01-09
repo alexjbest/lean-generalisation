@@ -488,7 +488,8 @@ meta def find_gens' (de : declaration) (cd : dag bound_class) (cts : list bound_
 
 -- A mostly useless wrapping function that gets a bunch of debug info and calls find_gens'
 meta def print_gens (cd : dag bound_class) (ts : list bound_class) (cdr : rb_map bound_class (rb_set bound_class)) (decl : declaration) : tactic (option string) :=
-  guard decl.is_trusted >> (do -- ignore meta stuff
+  -- ignore meta stuff and sorried values
+  guard (decl.is_trusted ∧ ¬decl.value.contains_sorry) >> (do
   env ← get_env,
   let name := decl.to_name,
   --pos := pos_line (env.decl_pos name),
