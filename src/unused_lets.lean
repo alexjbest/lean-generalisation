@@ -1,12 +1,15 @@
+import tactic.lint
+import algebra.continued_fractions.computation.approximations
 --set_option pp.all true
-set_option profiler true
+-- set_option profiler true
 lemma another (g : 1000 = 2*500): 1000 = 2*500 ∧ 1000 = 2*500 :=
 begin
-  let h :ℕ ,
+  let h :ℕ :=1,
   exact ⟨rfl, rfl⟩
 end
 #print another
 #lint
+
 lemma foo (p : Prop) : p → p :=
 assume hp : p,
 have hp2 : p, from hp,
@@ -26,9 +29,6 @@ show false, from hnp hp
 
 
 open tactic declaration expr
-
-meta def expr.has_zero_var (e : expr) : bool :=
-e.fold ff $ λ e' d res, res || match e' with | var k := k = d | _ := ff end
 
 meta def find_unused_have_macro : expr → tactic (list name)
 | (app a a_1) := (++) <$> find_unused_have_macro a <*> find_unused_have_macro a_1
@@ -58,7 +58,10 @@ meta def unused_of_decl : declaration → tactic (list name)
 | (defn a a_1 a_2 bd a_4 a_5) := find_unused_let_macro bd
 | (thm a a_1 a_2 bd) := find_unused_let_macro bd.get
 | _ := return []
-run_cmd unused_of_decl int_fract_pair.le_of_succ_succ_nth_continuants_aux_b
+
+run_cmd
+do d ← get_decl `generalized_continued_fraction.le_of_succ_succ_nth_continuants_aux_b,
+unused_of_decl  d
 
 @[linter] meta def linter.unused_lets : linter :=
 { test := λ d,
