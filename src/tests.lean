@@ -152,7 +152,7 @@ section
     ⟨nat.pred n, le_of_not_lt (nat.find_min h hltn), by rwa hnsp⟩
 
   theorem exists_int_gt (x : α) : ∃ n : ℤ, x < n :=
-  let ⟨n, h⟩ := exists_nat_gt x in ⟨n, by rwa ← coe_coe⟩
+  let ⟨n, h⟩ := exists_nat_gt x in ⟨n, by rwa int.cast_coe_nat⟩
   --- only needs semiring and has neg doesn't matter what negative ints do.
 
 end
@@ -167,7 +167,8 @@ section
 end
 
 section
-  lemma good (G : Type*) [group G] (n : ℤ) (g : G) (h : g^(-n) = 1) : g^n = 1 :=
+
+  lemma good (G : Type*) [division_monoid G] (n : ℤ) (g : G) (h : g^(-n) = 1) : g^n = 1 :=
   begin
     rw [zpow_neg, inv_eq_one] at h,
     exact h,
@@ -220,7 +221,7 @@ section
   ⟨one_pow 2, one_pow 2⟩
 
   -- group
-  lemma bad11 (G : Type*) [comm_group G] (n : ℤ) (g : G) (h : g^(-n) = 1) : g^n = 1 :=
+  lemma bad11 (G : Type*) [group G] (n : ℤ) (g : G) (h : g^(-n) = 1) : g^n = 1 :=
   begin
     rw [zpow_neg, inv_eq_one] at h,
     exact h,
@@ -230,6 +231,12 @@ section
   lemma bun (G : Group) (g : G) : g^2*g^2 = g^4 :=
   begin
     group,
+  end
+
+  lemma bad_now (G : Type*) [division_monoid G] (n : ℤ) (g : G) (h : g^(-n) = 1) : g^n = 1 :=
+  begin
+    rw [zpow_neg, inv_eq_one] at h,
+    exact h,
   end
 
 end
@@ -263,7 +270,7 @@ end
 
 section
 
-  variables {α β γ :Type} {ι : Sort} {s : set α}
+  variables {α β γ :Type} {ι : Sort*} {s : set α}
   --none
   theorem exists_nat_ge [linear_ordered_semiring α] [archimedean α] (x : α) :
     ∃ n : ℕ, x ≤ n :=
@@ -283,9 +290,9 @@ end
 section
   variables {α β :Type}
   open set
-  lemma finite.bdd_below_bUnion [semilattice_inf α] [nonempty α] {I : set β} {S : β → set α} (H : finite I) :
-    (bdd_below (⋃i∈I, S i)) ↔ (∀i ∈ I, bdd_below (S i)) :=
-  @finite.bdd_above_bUnion (order_dual α) _ _ _ _ _ H
+  lemma finite.bdd_below_bUnion [semilattice_inf α] [nonempty α] {I : set β} {S : β → set α} (H : set.finite I) :
+  bdd_below (⋃ i ∈ I, S i) ↔ ∀ i ∈ I, bdd_below (S i) :=
+  @finite.bdd_above_bUnion αᵒᵈ _ _ _ _ _ H
 end
 
 section
@@ -293,10 +300,17 @@ section
   open filter set
   variables {α β :Type}
   variables  {ι' : Type}
-  lemma unbounded_of_tendsto_at_top [nonempty α] [semilattice_inf α] [preorder β] [no_top_order β]
-    {f : α → β} (h : tendsto f at_bot at_top) :
+  lemma unbounded_of_tendsto_at_top [nonempty α] [semilattice_sup α] [preorder β] [no_max_order β]
+    {f : α → β} (h : tendsto f at_top at_top) :
     ¬ bdd_above (range f) :=
-  @unbounded_of_tendsto_at_top (order_dual α) _ _ _ _ _ _ h
+  begin
+    rintros ⟨M, hM⟩,
+    cases mem_at_top_sets.mp (h $ Ioi_mem_at_top M) with a ha,
+    apply lt_irrefl M,
+    calc
+    M < f a : ha a le_rfl
+    ... ≤ M : hM (set.mem_range_self a)
+  end
 
 end
 
@@ -311,11 +325,7 @@ end
 section
 lemma char_p_iff_char_p {K L : Type*} [field K] [field L] (f : K →+* L) (p : ℕ) :
   char_p K p ↔ char_p L p :=
-begin
-  split;
-  { introI _c, constructor, intro n,
-    rw [← @char_p.cast_eq_zero_iff _ _ _ p _c n, ← f.injective.eq_iff, f.map_nat_cast, f.map_zero] }
-end
+by simp only [char_p_iff, ← f.injective.eq_iff, map_nat_cast f, f.map_zero]
 
 section
   open nat subtype multiset
@@ -345,8 +355,8 @@ end
 
 section
   variables {α β :Type}
-  lemma inf_ind [semilattice_inf α] [is_total α (≤)] (a b : α) {p : α → Prop} (ha : p a) (hb : p b) : p (a ⊓ b) :=
-  @sup_ind (order_dual α) _ _ _ _ _ ha hb
+  lemma inf_ind [linear_order α] (a b : α) {p : α → Prop} (ha : p a) (hb : p b) : p (a ⊓ b) :=
+  @sup_ind αᵒᵈ _ _ _ _ ha hb
 end
 
 section

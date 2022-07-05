@@ -1,6 +1,6 @@
 import tactic
 import dag
-import algebra.ordered_ring
+import algebra.order.ring
 import ring_theory.int.basic
 import tactic.slim_check
 

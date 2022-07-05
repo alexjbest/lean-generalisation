@@ -1,54 +1,59 @@
-/- Checking 53 declarations (plus 41 automatically generated ones) in the current file -/
+/- Checking 54 declarations (plus 44 automatically generated ones) in the current file -/
 
 /- The `generalisation_linter` linter reports: -/
-/- typeclass generalisations may be possible: -/
-#print lint_tests.btest /- _inst_1: ordered_ring ↝ has_add has_mul has_zero preorder
+/- typeclass generalisations may be possible -/
+#check @lint_tests.btest /- _inst_1: ordered_ring ↝ has_add has_mul has_zero preorder
  -/
-#print lint_tests.char_ne_one /- _inst_1: integral_domain ↝ nontrivial semiring
+#check @lint_tests.char_ne_one /- _inst_1: integral_domain ↝ nontrivial semiring
  -/
-#print lint_tests.char_is_prime_of_two_le /- _inst_1: integral_domain ↝ no_zero_divisors semiring
+#check @lint_tests.char_is_prime_of_two_le /- _inst_1: comm_ring ↝ ring
+_inst_2: is_domain ↝ no_zero_divisors
  -/
-#print lint_tests.exists_int_gt /- _inst_1: linear_ordered_ring ↝ has_neg linear_ordered_semiring
+#check @lint_tests.exists_int_gt /- _inst_1: linear_ordered_ring ↝ has_neg linear_ordered_semiring
  -/
-#print lint_tests.bad /- _inst_1: group ↝ monoid
+#check @lint_tests.bad /- _inst_1: group ↝ monoid
  -/
-#print lint_tests.bad2diamond /- _inst_1: ring ↝ add_monoid
+#check @lint_tests.bad2diamond /- _inst_1: ring ↝ add_monoid
  -/
-#print lint_tests.bad3pfbad /- _inst_1: ring ↝ semiring
+#check @lint_tests.bad3pfbad /- _inst_1: ring ↝ semiring
  -/
-#print lint_tests.bad3 /- _inst_1: ring ↝ add_monoid
+#check @lint_tests.bad3 /- _inst_1: ring ↝ add_monoid
  -/
-#print lint_tests.bad4 /- _inst_1: add_comm_group ↝ add_monoid
+#check @lint_tests.bad4 /- _inst_1: add_comm_group ↝ add_monoid
  -/
-#print lint_tests.bad5 /- _inst_1: add_group ↝ add_monoid
+#check @lint_tests.bad5 /- _inst_1: add_group ↝ add_monoid
  -/
-#print lint_tests.bad6 /- _inst_1: add_comm_group ↝ add_comm_semigroup
+#check @lint_tests.bad6 /- _inst_1: add_comm_group ↝ add_comm_semigroup
  -/
-#print lint_tests.bad8 /- _inst_1: add_comm_group ↝ add_comm_semigroup
+#check @lint_tests.bad8 /- _inst_1: add_comm_group ↝ add_comm_semigroup
  -/
-#print lint_tests.bad7pibinder /- _inst_1: add_comm_group ↝ add_comm_semigroup
+#check @lint_tests.bad7pibinder /- _inst_1: add_comm_group ↝ add_comm_semigroup
  -/
-#print lint_tests.bad9 /- _inst_2: group ↝ monoid
+#check @lint_tests.bad9 /- _inst_2: group ↝ monoid
 _inst_3: fintype ↝
 _inst_4: fintype ↝
  -/
-#print lint_tests.bad11 /- _inst_1: comm_group ↝ group
+#check @lint_tests.bad11 /- _inst_1: comm_group ↝ division_monoid
  -/
-#print lint_tests.eval /- _inst_1: monoid ↝ mul_one_class
+#check @lint_tests.bad_now /- _inst_1: group ↝ division_monoid
  -/
-#print lint_tests.char_p_iff_char_p /- _inst_1: field ↝ division_ring
+#check @lint_tests.eval /- _inst_1: monoid ↝ mul_one_class
+ -/
+#check @lint_tests.one_lt_fpow /- _inst_1: linear_ordered_field ↝ linear_ordered_semifield
+ -/
+#check @lint_tests.char_p_iff_char_p /- _inst_1: field ↝ division_ring
 _inst_2: field ↝ nontrivial semiring
  -/
-#print lint_tests.sub_le_of_abs_sub_le_left /- _inst_1: linear_ordered_ring ↝ linear_ordered_add_comm_group
+#check @lint_tests.sub_le_of_abs_sub_le_left /- _inst_1: linear_ordered_ring ↝ linear_ordered_add_comm_group
  -/
-#print lint_tests.abs_sum_le_sum_abs /- _inst_1: linear_ordered_field ↝ linear_ordered_add_comm_group
+#check @lint_tests.abs_sum_le_sum_abs /- _inst_1: linear_ordered_field ↝ linear_ordered_add_comm_group
  -/
-#print lint_tests.sum_mul /- _inst_1: semiring ↝ add_comm_monoid has_mul is_add_monoid_hom
+#check @lint_tests.sum_mul /- _inst_1: semiring ↝ add_comm_monoid has_mul is_add_monoid_hom
  -/
-#print lint_tests.is_closed_singleton /- _inst_2: t2_space ↝ t1_space
+#check @lint_tests.is_closed_singleton /- _inst_2: t2_space ↝ t1_space
  -/
-#print lint_tests.aa /- _inst_1: lint_tests.bar ↝ lint_tests.foo
+#check @lint_tests.aa /- _inst_1: lint_tests.bar ↝ lint_tests.foo
  -/
-#print lint_tests.mn_tors_of_n_tors /- _inst_1: semiring ↝ add_monoid
+#check @lint_tests.mn_tors_of_n_tors /- _inst_1: semiring ↝ add_monoid
  -/
 
