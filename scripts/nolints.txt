@@ -1,0 +1,13 @@
+import .all
+run_cmd tactic.skip
+
+--tactic/may_assume
+apply_nolint tactic.interactive.may_assume doc_blame
+apply_nolint tactic.take_pi_args doc_blame
+apply_nolint tactic.interactive.wlog' doc_blame
+apply_nolint tactic.interactive.doneif doc_blame
+
+--ready_for_mathlib/tactic/slim_check.lean
+apply_nolint slim_check.total_function.zero_default unused_arguments
+apply_nolint slim_check.total_function.zero_default_supp unused_arguments
+apply_nolint slim_check.total_function.apply_finsupp doc_blame
