@@ -32,7 +32,7 @@ jobs:
           access_token: ${{ github.token }}
 
   build:
-    name: Build flt-regular
+    name: Build lean-generalisation
     runs-on: ubuntu-latest
     env:
       # number of commits to check for olean cache
@@ -79,12 +79,12 @@ jobs:
           lean --json --make src | python scripts/detect_errors.py
 
       - name: push release to azure
-        if: always() && (github.repository == 'leanprover-community/flt-regular') && steps.build.outputs.started == 'true' && github.ref == 'refs/heads/master'
+        if: always() && (github.repository == 'leanprover-community/lean-generalisation') && steps.build.outputs.started == 'true' && github.ref == 'refs/heads/master'
         continue-on-error: true
         run: |
           archive_name="$(git rev-parse HEAD).tar.xz"
           find src/ -name "*.olean" -o -name ".noisy_files" | tar cJf "$archive_name" -T -
-          azcopy copy "$archive_name" "https://oleanstorage.blob.core.windows.net/mathlib/flt-regular/$archive_name${{ secrets.AZURE_SAS_TOKEN }}" --block-size-mb 99 --overwrite false
+          azcopy copy "$archive_name" "https://oleanstorage.blob.core.windows.net/mathlib/lean-generalisation/$archive_name${{ secrets.AZURE_SAS_TOKEN }}" --block-size-mb 99 --overwrite false
 
       - name: setup precompiled zip file
         if: always() && steps.build.outputs.started == 'true'
@@ -93,9 +93,9 @@ jobs:
           touch workspace.tar
           tar -cf workspace.tar --exclude=*.tar* .
           git_hash="$(git log -1 --pretty=format:%h)"
-          echo "::set-output name=artifact_name::precompiled-flt-regular-$short_lean_version-$git_hash"
+          echo "::set-output name=artifact_name::precompiled-lean-generalisation-$short_lean_version-$git_hash"
 
-      - name: upload precompiled flt-regular zip file
+      - name: upload precompiled lean-generalisation zip file
         if: always() && steps.build.outputs.started == 'true'
         uses: actions/upload-artifact@v2
         with:
@@ -103,7 +103,7 @@ jobs:
           path: workspace.tar
 
   lint:
-    name: Lint flt-regular
+    name: Lint lean-generalisation
     runs-on: ubuntu-latest
     needs: build
 
@@ -131,7 +131,7 @@ jobs:
           lean --run scripts/lint_project.lean
 
   stats:
-    name: Stats for flt-regular
+    name: Stats for lean-generalisation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
